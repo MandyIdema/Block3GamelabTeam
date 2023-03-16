@@ -26,11 +26,22 @@ namespace Mirror.Discovery
 
         public void Host()
         {
-            networkManager.StartHost();
+           
             menuPanel.SetActive(false);
             gamePanel.SetActive(true);
             paused = false;
 
+            discoveredServers.Clear();
+            NetworkManager.singleton.StartHost();
+            networkDiscovery.AdvertiseServer();
+
+        }
+
+        public void StartServer()
+        {
+            discoveredServers.Clear();
+            NetworkManager.singleton.StartServer();
+            networkDiscovery.AdvertiseServer();
         }
 
         public void SetIP(string ip)
@@ -40,7 +51,6 @@ namespace Mirror.Discovery
 
         public void Join()
         {
-            networkManager.StartClient();
             menuPanel.SetActive(false);
             gamePanel.SetActive(true);
             paused = false;
@@ -53,11 +63,13 @@ namespace Mirror.Discovery
         {
             if (networkManager.mode == NetworkManagerMode.Host)
             {
-                networkManager.StopHost();
+                NetworkManager.singleton.StopHost();
+                networkDiscovery.StopDiscovery();
             }
             if (networkManager.mode == NetworkManagerMode.ClientOnly)
             {
-                networkManager.StopClient();
+                NetworkManager.singleton.StopClient();
+                networkDiscovery.StopDiscovery();
             }
             paused = false;
         }
