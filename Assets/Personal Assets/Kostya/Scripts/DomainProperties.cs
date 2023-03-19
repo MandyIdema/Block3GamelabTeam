@@ -1,0 +1,98 @@
+using Mirror;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class DomainProperties : NetworkBehaviour
+{
+    public GameObject domainClassMenu;
+
+    [Space]
+
+    [Header ("Domain Info")]
+    public int domainNumber;
+    public DomainStatus currentStatus = DomainStatus.free;
+
+    private DomainDescriptions domainDesc;
+    private int peopleBrowsing = 0;
+
+    public enum DomainStatus
+    {
+        free,
+        pending,
+        chosen
+    }
+    void Start()
+    {
+        // Not used now, might do sth with it later
+        // domainClassMenu.transform.GetChild(0);
+        domainDesc = GetComponentInParent<DomainDescriptions>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (currentStatus != DomainStatus.chosen)
+        {
+            if (peopleBrowsing == 0)
+            {
+                currentStatus = DomainStatus.free;
+            }
+            else
+            {
+                currentStatus = DomainStatus.pending;
+            }
+        }
+        else
+        {
+            peopleBrowsing = 0;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+        {
+            collision.gameObject.GetComponent<Movement>().currentlyOnDomain = true;
+            peopleBrowsing++;
+            InitializeDomainMenu(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+        {
+            collision.gameObject.GetComponent<Movement>().currentlyOnDomain = false;
+            peopleBrowsing--;
+            InitializeDomainMenu(false);
+        }
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Movement>() != null)
+        {
+            if (currentStatus == DomainStatus.pending &&
+                collision.gameObject.GetComponent<Movement>().domainChosen == true)
+            {
+                CmdAssignPlayerDomain(collision.gameObject);
+            }
+        }
+    }
+
+    private void InitializeDomainMenu(bool activationStatus)
+    {
+        // Currently uses this structure to get the text object, might change later
+        domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
+        domainClassMenu.SetActive(activationStatus);
+    }
+    public void CmdAssignPlayerDomain(GameObject player)
+    {
+        player.GetComponent<Movement>().playerChosenDomain = domainNumber;
+        currentStatus = DomainStatus.chosen;
+        InitializeDomainMenu(false);
+    }
+}

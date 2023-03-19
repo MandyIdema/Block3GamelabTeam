@@ -9,6 +9,11 @@ public class Movement : NetworkBehaviour
     public TextMesh playerNameText;
     public GameObject floatingInfo;
 
+    [Space]
+    public int playerChosenDomain = 0;
+    public bool currentlyOnDomain = false;
+    public bool domainChosen = false;
+
     private Material playerMaterialClone;
 
     float speed = 0.1f;
@@ -32,11 +37,17 @@ public class Movement : NetworkBehaviour
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
             this.transform.position = transform.position + movement;
+
+            if (currentlyOnDomain)
+            {
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    domainChosen = true;
+                }
+            }
         }
 
     }
-
- 
 
     [SyncVar(hook = nameof(OnNameChanged))]
     public string playerName;
@@ -66,8 +77,6 @@ public class Movement : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
-
-
         string name = "Player" + Random.Range(100, 999);
         Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         CmdSetupPlayer(name, color);

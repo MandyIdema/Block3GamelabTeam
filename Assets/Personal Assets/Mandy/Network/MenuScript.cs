@@ -22,13 +22,14 @@ namespace Mirror.Discovery
         public NetworkManager networkManager;
         public GameObject menuPanel;
         public GameObject gamePanel;
+        public GameObject domains;  // [KOSTYA] Injected code to activate the domain choice
         bool paused = false;
 
         public void Host()
         {
-           
             menuPanel.SetActive(false);
             gamePanel.SetActive(true);
+            domains.SetActive(true);  // [KOSTYA] Injected code to activate the domain choice
             paused = false;
 
             discoveredServers.Clear();
