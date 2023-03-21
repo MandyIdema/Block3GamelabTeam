@@ -515,6 +515,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 2
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &785414837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +735,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 4
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &963863221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +889,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 6
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &1675048578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,6 +1038,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 5
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &1928679491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,6 +1187,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 3
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &1961807507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,6 +1336,7 @@ MonoBehaviour:
   domainClassMenu: {fileID: 1174566943}
   domainNumber: 1
   currentStatus: 0
+  playersInDomain: []
 --- !u!114 &1996270585
 MonoBehaviour:
   m_ObjectHideFlags: 0

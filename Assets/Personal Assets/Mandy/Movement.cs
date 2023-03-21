@@ -38,9 +38,9 @@ public class Movement : NetworkBehaviour
             Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
             this.transform.position = transform.position + movement;
 
-            if (currentlyOnDomain && domainChosen ==false)
+            if (currentlyOnDomain && !domainChosen)
             {
-                if (Input.GetKeyUp(KeyCode.Space))
+                if (Input.GetKey(KeyCode.Space))
                 {
                     domainChosen = true;
                 }

@@ -13,6 +13,7 @@ public class DomainProperties : NetworkBehaviour
     [Header ("Domain Info")]
     public int domainNumber;
     public DomainStatus currentStatus = DomainStatus.free;
+    public List<GameObject> playersInDomain = new List<GameObject>();
 
     private DomainDescriptions domainDesc;
     private int peopleBrowsing = 0;
@@ -43,6 +44,16 @@ public class DomainProperties : NetworkBehaviour
             {
                 currentStatus = DomainStatus.pending;
             }
+
+            foreach (GameObject player in playersInDomain)
+            {
+                if (player.GetComponent<Movement>().domainChosen)
+                {
+                    player.GetComponent<Movement>().playerChosenDomain = domainNumber;
+                    currentStatus = DomainStatus.chosen;
+                    InitializeDomainMenu(false);
+                }
+            }
         }
         else
         {
@@ -54,6 +65,7 @@ public class DomainProperties : NetworkBehaviour
     {
         if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
         {
+            playersInDomain.Add(collision.gameObject);
             collision.gameObject.GetComponent<Movement>().currentlyOnDomain = true;
             peopleBrowsing++;
             InitializeDomainMenu(true);
@@ -64,6 +76,7 @@ public class DomainProperties : NetworkBehaviour
     {
         if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
         {
+            playersInDomain.Remove(collision.gameObject);
             collision.gameObject.GetComponent<Movement>().currentlyOnDomain = false;
             peopleBrowsing--;
             InitializeDomainMenu(false);
@@ -73,14 +86,7 @@ public class DomainProperties : NetworkBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Movement>() != null)
-        {
-            if (currentStatus == DomainStatus.pending &&
-                collision.gameObject.GetComponent<Movement>().domainChosen == true)
-            {
-                CmdAssignPlayerDomain(collision.gameObject);
-            }
-        }
+
     }
 
     private void InitializeDomainMenu(bool activationStatus)
@@ -89,10 +95,13 @@ public class DomainProperties : NetworkBehaviour
         domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
         domainClassMenu.SetActive(activationStatus);
     }
-    public void CmdAssignPlayerDomain(GameObject player)
+
+    // Currently not used
+    /*public void CmdAssignPlayerDomain(GameObject player)
     {
         player.GetComponent<Movement>().playerChosenDomain = domainNumber;
+        player.GetComponent<Movement>().currentlyOnDomain = false;
         currentStatus = DomainStatus.chosen;
         InitializeDomainMenu(false);
-    }
+    }*/
 }
