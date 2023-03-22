@@ -6,7 +6,8 @@ using TMPro;
 
 public class DomainProperties : NetworkBehaviour
 {
-    public GameObject domainClassMenu;
+    private GameObject domainClassMenu;
+    public DomainInformation domainInfo;
 
     [Space]
 
@@ -15,7 +16,6 @@ public class DomainProperties : NetworkBehaviour
     public DomainStatus currentStatus = DomainStatus.free;
     public List<GameObject> playersInDomain = new List<GameObject>();
 
-    private DomainDescriptions domainDesc;
     private int peopleBrowsing = 0;
 
 
@@ -25,16 +25,15 @@ public class DomainProperties : NetworkBehaviour
         pending,
         chosen
     }
-    void Start()
-    {
-        // Not used now, might do sth with it later
-        // domainClassMenu.transform.GetChild(0);
-        domainDesc = GetComponentInParent<DomainDescriptions>();
-    }
 
+    private void Start()
+    {
+        domainClassMenu = domainInfo.canvas.transform.GetChild(2).gameObject;
+    }
     // Update is called once per frame
     void Update()
     {
+
         if (currentStatus != DomainStatus.chosen)
         {
             if (peopleBrowsing == 0)
@@ -98,9 +97,8 @@ public class DomainProperties : NetworkBehaviour
         // Currently uses this structure to get the text object, might change later
         if (NetworkClient.active)
         {
-            // domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
-            // domainClassMenu.SetActive(activationStatus);
-            Debug.Log("Die");
+            domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainInfo.domainDescription[domainNumber];
+            domainClassMenu.SetActive(activationStatus);
         }
     }
 

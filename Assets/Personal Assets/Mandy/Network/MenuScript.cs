@@ -84,27 +84,30 @@ namespace Mirror.Discovery
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (gamePanel != null && menuPanel != null)
             {
-                paused = !paused;
-            }
-            //are we connected
-            if (NetworkServer.active || NetworkClient.active)
-            {
-
-                if (paused)
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    gamePanel.SetActive(true);
+                    paused = !paused;
+                }
+                //are we connected
+                if (NetworkServer.active || NetworkClient.active)
+                {
+
+                    if (paused)
+                    {
+                        gamePanel.SetActive(true);
+                    }
+                    else
+                    {
+                        gamePanel.SetActive(false);
+                    }
                 }
                 else
                 {
+                    menuPanel.SetActive(true);
                     gamePanel.SetActive(false);
                 }
-            }
-            else
-            {
-                menuPanel.SetActive(true);
-                gamePanel.SetActive(false);
             }
 
         }
