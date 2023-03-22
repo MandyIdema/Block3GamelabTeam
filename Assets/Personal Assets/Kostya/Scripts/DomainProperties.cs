@@ -96,7 +96,7 @@ public class DomainProperties : NetworkBehaviour
     private void InitializeDomainMenu(bool activationStatus)
     {
         // Currently uses this structure to get the text object, might change later
-        if (NetworkServer.active || NetworkClient.active)
+        if (NetworkClient.active)
         {
             // domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
             // domainClassMenu.SetActive(activationStatus);
