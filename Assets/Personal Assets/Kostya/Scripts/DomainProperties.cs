@@ -18,6 +18,7 @@ public class DomainProperties : NetworkBehaviour
     private DomainDescriptions domainDesc;
     private int peopleBrowsing = 0;
 
+
     public enum DomainStatus
     {
         free,
@@ -63,24 +64,32 @@ public class DomainProperties : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+        if (collision.gameObject.GetComponent<Movement>() != null)
         {
-            playersInDomain.Add(collision.gameObject);
-            collision.gameObject.GetComponent<Movement>().currentlyOnDomain = true;
-            peopleBrowsing++;
-            InitializeDomainMenu(true);
+            if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+            {
+                playersInDomain.Add(collision.gameObject);
+                collision.gameObject.GetComponent<Movement>().currentlyOnDomain = true;
+                peopleBrowsing++;
+                InitializeDomainMenu(true);
+            }
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+        if (collision.gameObject.GetComponent<Movement>() != null)
         {
-            playersInDomain.Remove(collision.gameObject);
-            collision.gameObject.GetComponent<Movement>().currentlyOnDomain = false;
-            peopleBrowsing--;
-            InitializeDomainMenu(false);
+            if (collision.gameObject.GetComponent<Movement>().domainChosen == false)
+            {
+                playersInDomain.Remove(collision.gameObject);
+                collision.gameObject.GetComponent<Movement>().currentlyOnDomain = false;
+                peopleBrowsing--;
+                InitializeDomainMenu(false);
+            }
         }
+            
 
     }
     [Client]
@@ -89,8 +98,9 @@ public class DomainProperties : NetworkBehaviour
         // Currently uses this structure to get the text object, might change later
         if (NetworkServer.active || NetworkClient.active)
         {
-            domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
-            domainClassMenu.SetActive(activationStatus);
+            // domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
+            // domainClassMenu.SetActive(activationStatus);
+            Debug.Log("Die");
         }
     }
 
