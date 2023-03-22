@@ -83,19 +83,12 @@ public class DomainProperties : NetworkBehaviour
         }
 
     }
-
+    [Client]
     private void InitializeDomainMenu(bool activationStatus)
     {
         // Currently uses this structure to get the text object, might change later
-        // domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
-        // domainClassMenu.SetActive(activationStatus);
-
-        if (NetworkServer.active || NetworkClient.active)
-        {
-            domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
-            domainClassMenu.SetActive(activationStatus);
-        }
-
+        domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDesc.domainDescription[domainNumber];
+        domainClassMenu.SetActive(activationStatus);
     }
 
     // Currently not used
