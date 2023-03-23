@@ -16,7 +16,7 @@ public class Movement : NetworkBehaviour
 
     private Material playerMaterialClone;
 
-    float speed = 0.1f;
+    float speed = 0.01f;
     // Start is called before the first frame update
     void Start()
     {
