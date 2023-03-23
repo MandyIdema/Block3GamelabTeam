@@ -1368,11 +1368,12 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 10
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1180309548568415271, guid: fab5300621b5f0044b217b0b1ff5f0cd, type: 3}
-  autoCreatePlayer: 1
+  playerPrefab: {fileID: 0}
+  autoCreatePlayer: 0
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 1629456616528017121, guid: c40d5f93efd2a2e4fa3127d54390832f, type: 3}
+  - {fileID: 8432335774314543091, guid: 4ff69f709b3449d4f8f443151472b2e6, type: 3}
+  - {fileID: 1180309548568415271, guid: fab5300621b5f0044b217b0b1ff5f0cd, type: 3}
   timeInterpolationGui: 0
 --- !u!114 &7377238387367789767
 MonoBehaviour:

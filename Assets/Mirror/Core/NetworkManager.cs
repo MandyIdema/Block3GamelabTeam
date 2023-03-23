@@ -1409,4 +1409,12 @@ namespace Mirror
             NetworkClient.OnGUI();
         }
     }
+
+    public struct CreateMMOCharacterMessage : NetworkMessage
+    {
+
+        public string name;
+
+    }
+
 }
