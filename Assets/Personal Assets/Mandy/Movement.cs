@@ -20,7 +20,9 @@ public class Movement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Pepe added whatever in desparation to get the camera moving
+        var _camera = GameObject.Find("Main Camera");
+        _camera.transform.SetParent(transform);
     }
 
     // Update is called once per frame

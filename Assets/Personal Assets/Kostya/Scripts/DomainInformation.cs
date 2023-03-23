@@ -16,6 +16,9 @@ public class DomainInformation : MonoBehaviour
         child1.SetActive(false);
         var child2 = canvas.transform.GetChild(1).gameObject;
         child2.SetActive(false);
+        //added by pepe
+        var child3 = canvas.transform.GetChild(2).gameObject;
+        child3.SetActive(false);
     }
 
     private void Start()
