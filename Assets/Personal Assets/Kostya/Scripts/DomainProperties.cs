@@ -91,8 +91,8 @@ public class DomainProperties : NetworkBehaviour
             
 
     }
-    [Client]
-    private void InitializeDomainMenu(bool activationStatus)
+    [ClientRpc]
+    public void InitializeDomainMenu(bool activationStatus)
     {
         // Currently uses this structure to get the text object, might change later
         if (NetworkClient.active)
