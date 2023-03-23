@@ -21,8 +21,8 @@ public class Movement : NetworkBehaviour
     void Start()
     {
         //Pepe added whatever in desparation to get the camera moving
-        var _camera = GameObject.Find("Main Camera");
-        _camera.transform.SetParent(transform);
+/*         var _camera = GameObject.Find("Main Camera");
+        _camera.transform.SetParent(transform); */
     }
 
     // Update is called once per frame
