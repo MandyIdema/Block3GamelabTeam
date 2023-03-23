@@ -10,17 +10,18 @@ public class CameraFollow : NetworkBehaviour
 
      void Awake()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //players = GameObject.FindGameObjectsWithTag("Player");
     }
     // Start is called before the first frame update
 
     void FixedUpdate()
     {
-        if (isLocalPlayer)
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length>0)
         {
-            Debug.Log("Fsgsgsg");
+            
             followTransform = players[0].transform;
-            this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, followTransform.position.z);
+            this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, followTransform.position.z-10);
         }
     }
 }
