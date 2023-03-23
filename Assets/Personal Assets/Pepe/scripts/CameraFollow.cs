@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : NetworkBehaviour
+public class CameraFollow : MonoBehaviour
 {
     public Transform followTransform;
     GameObject[] players;
@@ -12,15 +12,25 @@ public class CameraFollow : NetworkBehaviour
     {
         //players = GameObject.FindGameObjectsWithTag("Player");
     }
-    // Start is called before the first frame update
+
+    void Update()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+    }
 
     void FixedUpdate()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length>0)
         {
-            
-            followTransform = players[0].transform;
+            foreach(GameObject i in players)
+            {
+                if (i.name=="Local")
+                {
+                    followTransform = i.transform;
+                    Debug.Log("Found it");
+                }
+            }
+            //followTransform = players[0].transform;
             this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, followTransform.position.z-10);
         }
     }

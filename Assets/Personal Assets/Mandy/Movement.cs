@@ -26,7 +26,7 @@ public class Movement : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         movement();
     }
@@ -81,6 +81,8 @@ public class Movement : NetworkBehaviour
     {
         string name = "Player" + Random.Range(100, 999);
         Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        base.OnStartLocalPlayer();
+        gameObject.name = "Local";
         CmdSetupPlayer(name, color);
     }
 }
