@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DomainProperties : NetworkBehaviour
+public class DomainProperties : MonoBehaviour
 {
     private GameObject domainClassMenu;
     public DomainInformation domainInfo;
@@ -91,15 +91,11 @@ public class DomainProperties : NetworkBehaviour
             
 
     }
-    [ClientRpc]
     public void InitializeDomainMenu(bool activationStatus)
     {
         // Currently uses this structure to get the text object, might change later
-        if (NetworkClient.active)
-        {
             domainClassMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainInfo.domainDescription[domainNumber];
             domainClassMenu.SetActive(activationStatus);
-        }
     }
 
     // Currently not used
