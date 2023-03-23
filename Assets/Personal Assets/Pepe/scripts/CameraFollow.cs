@@ -8,7 +8,7 @@ public class CameraFollow : NetworkBehaviour
     public Transform followTransform;
     GameObject[] players;
 
-/*     void Awake()
+     void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
     }
@@ -22,5 +22,5 @@ public class CameraFollow : NetworkBehaviour
             followTransform = players[0].transform;
             this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, followTransform.position.z);
         }
-    } */
+    }
 }
