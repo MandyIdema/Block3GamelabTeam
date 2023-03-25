@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (players.Length>0)
         {
@@ -27,11 +27,10 @@ public class CameraFollow : MonoBehaviour
                 if (i.name=="Local")
                 {
                     followTransform = i.transform;
-                    Debug.Log("Found it");
                 }
             }
             //followTransform = players[0].transform;
             this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, followTransform.position.z-10);
         }
-    }
+    }*/
 }

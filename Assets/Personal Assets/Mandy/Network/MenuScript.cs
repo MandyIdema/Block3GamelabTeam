@@ -84,8 +84,6 @@ namespace Mirror.Discovery
         // Update is called once per frame
         void Update()
         {
-            if (gamePanel != null && menuPanel != null)
-            {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     paused = !paused;
@@ -108,7 +106,6 @@ namespace Mirror.Discovery
                     menuPanel.SetActive(true);
                     gamePanel.SetActive(false);
                 }
-            }
 
         }
     }

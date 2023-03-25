@@ -26,7 +26,7 @@ public class Questions : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Movement>() != null)
+        if (collision.gameObject.GetComponent<PlayerBehaviour>() != null)
         {
             InitializeQuestion(true);
         }
@@ -34,7 +34,7 @@ public class Questions : NetworkBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Movement>() != null)
+        if (collision.gameObject.GetComponent<PlayerBehaviour>() != null)
         {
             InitializeQuestion(false);
         }
@@ -46,7 +46,6 @@ public class Questions : NetworkBehaviour
         // Currently uses this structure to get the text object, might change later
         if (NetworkClient.active)
         {
-            Debug.Log("fsgsgs");
             questionText.text = questions[0].ToString();
             canvas.SetActive(activationStatus);
         }

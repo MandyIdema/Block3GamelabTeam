@@ -3,16 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : NetworkBehaviour
+public enum PlayerDomain
 {
+    Brainstorming,
+    Conceptualizing,
+    Communication,
+    Execution,
+    Logistics,
+    Leadership
+}
 
+public class PlayerBehaviour : NetworkBehaviour
+{
+    public static PlayerBehaviour Local;
+
+    [Header("Domains")]
+    public bool onDomain = false;
+    private GameObject currentDomain;
+    [HideInInspector] public int currentDomainNumber;
+    public List<GameObject> domainObjects = new();
+    protected internal PlayerDomain ChosenDomain;
+
+    [Space]
     public TextMesh playerNameText;
     public GameObject floatingInfo;
 
     [Space]
-    public int playerChosenDomain = 0;
-    public bool currentlyOnDomain = false;
-    public bool domainChosen = false;
+    private Camera _camera;
 
     private Material playerMaterialClone;
 
@@ -20,15 +37,23 @@ public class Movement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Pepe added whatever in desparation to get the camera moving
-/*         var _camera = GameObject.Find("Main Camera");
-        _camera.transform.SetParent(transform); */
+           if (isLocalPlayer)
+        {
+            Local = this;
+            _camera = Camera.main;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         movement();
+    }
+
+    private void LateUpdate()
+    {
+        if (!isLocalPlayer || !_camera) return;
+        _camera.transform.position = transform.position + 10 * Vector3.back;
     }
 
     void movement()
@@ -39,14 +64,6 @@ public class Movement : NetworkBehaviour
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
             this.transform.position = transform.position + movement;
-
-            if (currentlyOnDomain && !domainChosen)
-            {
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    domainChosen = true;
-                }
-            }
         }
 
     }
@@ -81,9 +98,34 @@ public class Movement : NetworkBehaviour
     {
         string name = "Player" + Random.Range(100, 999);
         Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        base.OnStartLocalPlayer();
-        gameObject.name = "Local";
         CmdSetupPlayer(name, color);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Domain") && isLocalPlayer)
+        {
+            for (int i = 0; i < domainObjects.Count; i++)
+            {
+                if (collision.gameObject == domainObjects[i])
+                {
+                    currentDomainNumber = i;
+                }
+            }
+            onDomain = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Domain"))
+        {
+            if (isLocalPlayer)
+            {
+                currentDomainNumber = 0;
+                onDomain = false;
+            }
+        }
     }
 }
 
