@@ -21,13 +21,13 @@ namespace Mirror.Discovery
 
         public NetworkManager networkManager;
         public GameObject menuPanel;
-        public GameObject gamePanel;
+   
         bool paused = false;
 
         public void Host()
         {
             menuPanel.SetActive(false);
-            gamePanel.SetActive(true);
+
             paused = false;
 
             discoveredServers.Clear();
@@ -50,63 +50,25 @@ namespace Mirror.Discovery
 
         public void Join()
         {
-            menuPanel.SetActive(false);
-            gamePanel.SetActive(true);
+   
+        
             paused = false;
 
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
         }
 
-        public void Stop()
-        {
-            if (networkManager.mode == NetworkManagerMode.Host)
-            {
-                NetworkManager.singleton.StopHost();
-                networkDiscovery.StopDiscovery();
-            }
-            if (networkManager.mode == NetworkManagerMode.ClientOnly)
-            {
-                NetworkManager.singleton.StopClient();
-                networkDiscovery.StopDiscovery();
-            }
-            paused = false;
-        }
+       
 
         // Start is called before the first frame update
         void Start()
         {
             menuPanel.SetActive(true);
-            gamePanel.SetActive(false);
+          
             paused = false;
         }
 
         // Update is called once per frame
-        void Update()
-        {
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    paused = !paused;
-                }
-                //are we connected
-                if (NetworkServer.active || NetworkClient.active)
-                {
-
-                    if (paused)
-                    {
-                        gamePanel.SetActive(true);
-                    }
-                    else
-                    {
-                        gamePanel.SetActive(false);
-                    }
-                }
-                else
-                {
-                    menuPanel.SetActive(true);
-                    gamePanel.SetActive(false);
-                }
-
-        }
+      
     }
 }
