@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -282,11 +282,14 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   onDomain: 0
+  finalDomain: 0
+  currentDomain: {fileID: 0}
   currentDomainNumber: 0
+  showMenu: 1
   domainObjects: []
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
-  playerName: Default name
+  playerName: PlayerName
   playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
 Rigidbody2D:

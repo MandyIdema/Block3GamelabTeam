@@ -1466,6 +1466,7 @@ GameObject:
   - component: {fileID: 456383611}
   - component: {fileID: 456383613}
   - component: {fileID: 456383614}
+  - component: {fileID: 456383615}
   m_Layer: 0
   m_Name: Domain 6
   m_TagString: Domain
@@ -1515,7 +1516,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.044202913, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1533,7 +1534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456383610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01, y: -0.02, z: 0}
+  m_LocalPosition: {x: 2.01, y: -0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1583,6 +1584,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &456383615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456383610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 6
+  currentStatus: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,6 +3109,7 @@ GameObject:
   - component: {fileID: 1049770796}
   - component: {fileID: 1049770798}
   - component: {fileID: 1049770800}
+  - component: {fileID: 1049770801}
   m_Layer: 0
   m_Name: Domain 1
   m_TagString: Domain
@@ -3140,7 +3159,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.07586002, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3208,6 +3227,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1049770801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049770795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 1
+  currentStatus: 0
 --- !u!1 &1055233636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,12 +3812,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   domainDescriptions:
   - None
-  - Brainstorming
-  - Conceptualizing
-  - Communicating
-  - Execution
-  - Logistics
-  - Leadership
+  - '[Space to Choose Brainstorming] If you''re good at throwing out ideas or coming
+    up with unique ways of solving problems, this one is for you.'
+  - '[Space to Choose Conceptualizing] If you like absorbing ideas from others and
+    figure out the best way to do things, this one is for you.'
+  - '[Space to Choose Communication] If you enjoy talking to others, connecting people
+    with each other or solving conflicts in a group, this is for you.'
+  - '[Space to Choose Execution] If you like to be busy or follow orders from others
+    to ensure that the task is done, this is your role.'
+  - '[Space to Choose Logistics] If you like to ensure that everybody has their own
+    tools and like to provide people with resources, this one is yours.'
+  - '[Space to Choose Leadership] If you like to be in charge of the group to make
+    sure that the job gets done, this is your domain.'
   domainMenu: {fileID: 1918200392}
   _player: {fileID: 0}
 --- !u!1 &1387681598
@@ -4265,6 +4307,7 @@ GameObject:
   - component: {fileID: 1639469255}
   - component: {fileID: 1639469257}
   - component: {fileID: 1639469258}
+  - component: {fileID: 1639469259}
   m_Layer: 0
   m_Name: Domain 3
   m_TagString: Domain
@@ -4314,7 +4357,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.67495245, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4382,6 +4425,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1639469259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639469254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 3
+  currentStatus: 0
 --- !u!1 &1684902023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4394,6 +4454,7 @@ GameObject:
   - component: {fileID: 1684902024}
   - component: {fileID: 1684902026}
   - component: {fileID: 1684902027}
+  - component: {fileID: 1684902028}
   m_Layer: 0
   m_Name: Domain 2
   m_TagString: Domain
@@ -4443,7 +4504,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.07792886, g: 0, b: 0.8962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4511,6 +4572,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1684902028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684902023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 2
+  currentStatus: 0
 --- !u!1 &1709468797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,6 +6021,7 @@ GameObject:
   - component: {fileID: 1965046646}
   - component: {fileID: 1965046648}
   - component: {fileID: 1965046649}
+  - component: {fileID: 1965046650}
   m_Layer: 0
   m_Name: Domain 4
   m_TagString: Domain
@@ -5992,7 +6071,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.69082355, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6010,7 +6089,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965046645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.84, y: -0.02, z: 0}
+  m_LocalPosition: {x: -4.84, y: -0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6060,6 +6139,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1965046650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965046645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 4
+  currentStatus: 0
 --- !u!1 &2001053214
 GameObject:
   m_ObjectHideFlags: 0
@@ -7009,6 +7105,7 @@ GameObject:
   - component: {fileID: 2129955380}
   - component: {fileID: 2129955382}
   - component: {fileID: 2129955383}
+  - component: {fileID: 2129955384}
   m_Layer: 0
   m_Name: Domain 5
   m_TagString: Domain
@@ -7058,7 +7155,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.90923214, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7076,7 +7173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129955379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.47, y: -2.8, z: 0}
+  m_LocalPosition: {x: -1.47, y: -0.90000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7126,6 +7223,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2129955384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129955379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4588f9cc5083ad0458e3939f52e8004a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  domainNumber: 5
+  currentStatus: 0
 --- !u!1001 &534890007923387208
 PrefabInstance:
   m_ObjectHideFlags: 0

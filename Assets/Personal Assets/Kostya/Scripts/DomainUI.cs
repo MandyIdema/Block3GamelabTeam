@@ -9,6 +9,7 @@ public class DomainUI : MonoBehaviour
     public List<string> domainDescriptions = new List<string>();
     public GameObject domainMenu;
     public PlayerBehaviour _player;
+
     void Update()
     {
         if (!_player)
@@ -19,10 +20,15 @@ public class DomainUI : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_player)
+        if (_player && _player.showMenu)
         {
             domainMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDescriptions[_player.currentDomainNumber];
             domainMenu.SetActive(_player.onDomain);
+        }
+
+        if (_player && _player.finalDomain != 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -18,11 +18,12 @@ public class PlayerBehaviour : NetworkBehaviour
     public static PlayerBehaviour Local;
 
     [Header("Domains")]
-    public bool onDomain = false;
-    private GameObject currentDomain;
+    [SyncVar] public bool onDomain = false;
+    [SyncVar] public int finalDomain = 0;
+    public GameObject currentDomain;
     [HideInInspector] public int currentDomainNumber;
-    public List<GameObject> domainObjects = new();
-    protected internal PlayerDomain ChosenDomain;
+    [HideInInspector] public bool showMenu = true;
+    [HideInInspector] public List<GameObject> domainObjects = new();
 
     [Space]
     public TextMesh playerNameText;
@@ -41,6 +42,40 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             Local = this;
             _camera = Camera.main;
+        }
+    }
+
+    private void Update()
+    {
+
+        // if (!isLocalPlayer) return;
+
+
+        if (currentDomain != null)
+        {
+            if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
+            {
+                return;
+            }
+        }
+
+        if (isLocalPlayer)
+        {
+            if (onDomain && finalDomain == 0)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    ChoosingDomain();
+                }
+            }
+        }
+
+            if (currentDomain != null)
+        {
+            if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
+            {
+                Local.showMenu = false;
+            }
         }
     }
 
@@ -78,7 +113,6 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         playerNameText.text = playerName;
     }
-
     void OnColorChanged(Color _Old, Color _New)
     {
         playerNameText.color = _New;
@@ -97,35 +131,62 @@ public class PlayerBehaviour : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         string name = "Player" + Random.Range(100, 999);
-        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        Color color = new Color(1, 1, 1, 1/*Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)*/);
         CmdSetupPlayer(name, color);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Domain") && isLocalPlayer)
+        if (collision.gameObject.CompareTag("Domain"))
         {
-            for (int i = 0; i < domainObjects.Count; i++)
-            {
-                if (collision.gameObject == domainObjects[i])
+            //if (isLocalPlayer)
+            //{
+                for (int i = 0; i < domainObjects.Count; i++)
                 {
-                    currentDomainNumber = i;
+                    if (collision.gameObject == domainObjects[i])
+                    {
+                        if (domainObjects.Contains(collision.gameObject))
+                        {
+                            currentDomainNumber = i;
+                            currentDomain = collision.gameObject;
+                        }
+                    }
                 }
-            }
+            //}
             onDomain = true;
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Domain"))
         {
-            if (isLocalPlayer)
-            {
+            //if (isLocalPlayer)
+            //{
                 currentDomainNumber = 0;
-                onDomain = false;
-            }
+                currentDomain = null;
+            //}
+            onDomain = false;
         }
+    }
+
+    [Command]
+    public void ChoosingDomain()
+    {
+        if (currentDomain != null)
+        {
+            finalDomain = currentDomainNumber;
+            playerColor = currentDomain.GetComponent<SpriteRenderer>().color;
+            currentDomain.GetComponent<DomainInformation>().currentStatus = DomainInformation.DomainStatus.Chosen;
+            onDomain = false;
+        }
+    }
+
+    [ClientRpc]
+    public void LocalStuff()
+    {
+        OnColorChanged(Color.white, currentDomain.GetComponent<SpriteRenderer>().color);
     }
 }
 
