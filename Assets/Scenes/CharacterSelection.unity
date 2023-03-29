@@ -1136,8 +1136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 38.285004, y: -178.29501}
-  m_SizeDelta: {x: -360.0645, y: -356.59}
+  m_AnchoredPosition: {x: 38.285034, y: -474.76138}
+  m_SizeDelta: {x: -360.0645, y: -949.5227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891238094
 MonoBehaviour:
@@ -2864,8 +2864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -339.3651, y: 2.6983948}
-  m_SizeDelta: {x: -678.7201, y: -69.9427}
+  m_AnchoredPosition: {x: -710.65, y: 41}
+  m_SizeDelta: {x: -1421.2976, y: -394.6439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1712898365
 MonoBehaviour:
@@ -3859,10 +3859,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d52c24ba1134943911785689c6e921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   Prefab1: {fileID: 1024371210}
   Prefab2: {fileID: 1885432704}
   Prefab3: {fileID: 1105521275}
   Prefab4: {fileID: 1025880002}
+  spriteRenderer: {fileID: 8432335774314543103, guid: 4ff69f709b3449d4f8f443151472b2e6, type: 3}
+  newSpritePlayer1: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
+  newSpritePlayer2: {fileID: 21300000, guid: 0b20104aa33dc2f44a3d4141a525171f, type: 3}
+  newSpritePlayer3: {fileID: 0}
+  newSpritePlayer4: {fileID: 0}
 --- !u!114 &1998486564
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1811,9 +1811,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  solutionNumber1: 1
-  solutionNumber2: 2
-  solutionNumber3: 3
 --- !u!212 &549936474
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2244,8 +2241,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
+      - m_Target: {fileID: 1861271421}
+        m_TargetAssemblyTypeName: Mirror.Discovery.Pause, Assembly-CSharp
         m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
@@ -5141,9 +5138,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  solutionNumber1: 4
-  solutionNumber2: 5
-  solutionNumber3: 6
 --- !u!212 &1755263410
 SpriteRenderer:
   m_ObjectHideFlags: 0

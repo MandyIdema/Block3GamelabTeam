@@ -692,6 +692,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4146311993461529105, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
+      propertyPath: onlineScene
+      value: Assets/Scenes/CharacterSelection.unity
+      objectReference: {fileID: 0}
     - target: {fileID: 4146311993461529116, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
       propertyPath: m_Name
       value: NetworkManager
