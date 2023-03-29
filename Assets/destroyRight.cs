@@ -5,12 +5,23 @@ using Mirror;
 
 public class destroyRight : NetworkBehaviour
 {
-    private void OnCollisionStay2D(Collision2D collision)
+
+    public void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            Destroy(this.gameObject);
-            print("Destroyed");
-        }
+
+    }
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                CmdDestroyingObject();
+            }
+
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdDestroyingObject()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }
