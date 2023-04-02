@@ -21,6 +21,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [SyncVar] public bool onDomain = false;
     [SyncVar] public int finalDomain = 0;
     public GameObject currentDomain;
+    private Sprite defaultSprite;
     [HideInInspector] public int currentDomainNumber;
     [HideInInspector] public bool showMenu = true;
     [HideInInspector] public List<GameObject> domainObjects = new();
@@ -38,7 +39,8 @@ public class PlayerBehaviour : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-           if (isLocalPlayer)
+        defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
+        if (isLocalPlayer)
         {
             Local = this;
             _camera = Camera.main;
@@ -149,6 +151,11 @@ public class PlayerBehaviour : NetworkBehaviour
                         {
                             currentDomainNumber = i;
                             currentDomain = collision.gameObject;
+                        if (finalDomain == 0)
+                        {
+                            this.gameObject.GetComponent<SpriteRenderer>().sprite =
+                            collision.gameObject.GetComponent<DomainInformation>().characterModel;
+                        }
                         }
                     }
                 }
@@ -166,6 +173,10 @@ public class PlayerBehaviour : NetworkBehaviour
             //{
                 currentDomainNumber = 0;
                 currentDomain = null;
+            if (finalDomain == 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultSprite;
+            }
             //}
             onDomain = false;
         }

@@ -7,6 +7,7 @@ public class DomainInformation : NetworkBehaviour
 {
     public int domainNumber;
     private int playersBrowsing;
+    public Sprite characterModel;
     public enum DomainStatus
     {
         Free,

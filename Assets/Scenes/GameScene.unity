@@ -1600,6 +1600,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 6
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1 &519420028
 GameObject:
@@ -3389,6 +3390,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 1
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1 &1055233636
 GameObject:
@@ -4761,6 +4763,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 3
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1 &1684902023
 GameObject:
@@ -4908,6 +4911,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 2
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1 &1709468797
 GameObject:
@@ -6648,6 +6652,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 4
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1 &2001053214
 GameObject:
@@ -7732,6 +7737,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   domainNumber: 5
+  characterModel: {fileID: 21300000, guid: 39ead8150b598604db087772cc424526, type: 3}
   currentStatus: 0
 --- !u!1001 &534890007923387208
 PrefabInstance:
