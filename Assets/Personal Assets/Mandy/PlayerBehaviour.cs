@@ -95,6 +95,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void movement()
     {
+        //Don't run the code if it is not the local player
         if(isLocalPlayer)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
@@ -113,10 +114,12 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void OnNameChanged(string _Old, string _New)
     {
+        //Change the name of the player from the text above its head
         playerNameText.text = playerName;
     }
     void OnColorChanged(Color _Old, Color _New)
     {
+        //Change the material of the player 
         playerNameText.color = _New;
         playerMaterialClone = new Material(GetComponent<Renderer>().material);
         playerMaterialClone.color = _New;
@@ -132,6 +135,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
+        //On start of the game, choose a random color for the player to assign
+
         string name = "Player" + Random.Range(100, 999);
         Color color = new Color(1, 1, 1, 1/*Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)*/);
         CmdSetupPlayer(name, color);
