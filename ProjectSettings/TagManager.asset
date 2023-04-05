@@ -42,6 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tiles
+    uniqueID: 2838044005
+    locked: 0
+  - name: Objects
+    uniqueID: 3950892741
+    locked: 0
   - name: Player
     uniqueID: 577857905
+    locked: 0
+  - name: Walls
+    uniqueID: 2699420867
     locked: 0
