@@ -48,9 +48,12 @@ TagManager:
   - name: Objects
     uniqueID: 3950892741
     locked: 0
+  - name: 'Walls Behind '
+    uniqueID: 1549007335
+    locked: 0
   - name: Player
     uniqueID: 577857905
     locked: 0
-  - name: Walls
+  - name: Walls In Front
     uniqueID: 2699420867
     locked: 0
