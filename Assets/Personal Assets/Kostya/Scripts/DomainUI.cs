@@ -26,7 +26,7 @@ public class DomainUI : MonoBehaviour
             domainMenu.SetActive(_player.onDomain);
         }
 
-        if (_player && _player.finalDomain != 0)
+        if (_player && _player.currentStatus == PlayerBehaviour.PlayerStatus.Ready)
         {
             Destroy(gameObject);
         }

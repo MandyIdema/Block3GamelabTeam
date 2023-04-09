@@ -17,14 +17,31 @@ public class PlayerBehaviour : NetworkBehaviour
 {
     public static PlayerBehaviour Local;
 
+    [Header("Main Properties")]
+
+    private Sprite defaultSprite;
+    public enum PlayerStatus
+    {
+        Joined,
+        Ready,
+        Playing
+    }
+
+    [Space]
+
     [Header("Domains")]
-    [SyncVar] public bool onDomain = false;
+    [SyncVar] [HideInInspector] public bool onDomain = false;
     [SyncVar] public int finalDomain = 0;
     public GameObject currentDomain;
-    private Sprite defaultSprite;
     [HideInInspector] public int currentDomainNumber;
     [HideInInspector] public bool showMenu = true;
     [HideInInspector] public List<GameObject> domainObjects = new();
+
+    [Space]
+
+    [Header("Player Stats")]
+    [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
+    [SyncVar] public int starsCollected = 0;
 
     [Space]
     public TextMesh playerNameText;
@@ -78,6 +95,11 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 Local.showMenu = false;
             }
+        }
+
+            if(finalDomain != 0)
+        {
+            currentStatus = PlayerStatus.Ready;
         }
     }
 
@@ -144,46 +166,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Domain"))
+        if (collision.gameObject.CompareTag("AvatarChoice"))
         {
-            //if (isLocalPlayer)
-            //{
-                for (int i = 0; i < domainObjects.Count; i++)
-                {
-                    if (collision.gameObject == domainObjects[i])
-                    {
-                        if (domainObjects.Contains(collision.gameObject))
-                        {
-                            currentDomainNumber = i;
-                            currentDomain = collision.gameObject;
-                        if (finalDomain == 0)
-                        {
-                            this.gameObject.GetComponent<SpriteRenderer>().sprite =
-                            collision.gameObject.GetComponent<DomainInformation>().characterModel;
-                        }
-                        }
-                    }
-                }
-            //}
-            onDomain = true;
+            EnteringAvatarChoice(collision);
         }
-
     }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Domain"))
+        if (collision.gameObject.CompareTag("AvatarChoice"))
         {
-            //if (isLocalPlayer)
-            //{
-                currentDomainNumber = 0;
-                currentDomain = null;
-            if (finalDomain == 0)
-            {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultSprite;
-            }
-            //}
-            onDomain = false;
+            ExitingAvatarChoice(collision);
         }
     }
 
@@ -199,10 +191,36 @@ public class PlayerBehaviour : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    public void LocalStuff()
+    public void EnteringAvatarChoice(Collider2D colAvatar)
     {
-        OnColorChanged(Color.white, currentDomain.GetComponent<SpriteRenderer>().color);
+        for (int i = 0; i < domainObjects.Count; i++)
+        {
+            if (colAvatar.gameObject == domainObjects[i])
+            {
+                if (domainObjects.Contains(colAvatar.gameObject))
+                {
+                    currentDomainNumber = i;
+                    currentDomain = colAvatar.gameObject;
+                    if (finalDomain == 0)
+                    {
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite =
+                            colAvatar.gameObject.GetComponent<DomainInformation>().characterModel;
+                    }
+                }
+            }
+            onDomain = true;
+        }
+    }
+
+    public void ExitingAvatarChoice(Collider2D colAvatar)
+    {
+        currentDomainNumber = 0;
+        currentDomain = null;
+        if (finalDomain == 0)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultSprite;
+        }
+        onDomain = false;
     }
 }
 

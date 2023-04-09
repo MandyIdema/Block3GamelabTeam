@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CharacterOverviews : MonoBehaviour
 {
-    [SerializeField] private GameObject[] players;
-    [SerializeField] private GameObject[] puzzles;
+    [SerializeField] private GameObject[] players; // That stays
+// [K] Add a script to collect the info from all the player objects regarding how many stars (int starsCollected
+// in the PlayerBehaviour script) they have collected in total (basically loop through all of the objects and add
+// the stars from every player object script)
+    [SerializeField] private GameObject[] puzzles; // not needed
     [SerializeField] private GameObject domainInfo;
     private bool allPlayersAppeared = false;
-    [SerializeField] private Transform[] spawnPoints;
-    public List<int>activatedDomains;
+    [SerializeField] private Transform[] spawnPoints; // not needed
+    public List<int>activatedDomains; // not needed
     private bool thatsAll = false;
 
     void Update()
@@ -36,18 +39,15 @@ public class CharacterOverviews : MonoBehaviour
             {
                 if(domains[i].GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
                 {
-                    //Debug.Log("FSFDSGSG");
                     domainCount++;
-                    activatedDomains.Add(i);
+                   // activatedDomains.Add(i);
                 }
             }if(players.Length == domainCount && !thatsAll)
             {
-                //Debug.Log("MUHAHAHA");
-                ActivatePuzzles(activatedDomains);
+               // ActivatePuzzles(activatedDomains);
                 thatsAll = true;
             }
     }
-
     public void ActivatePuzzles(List<int>domainsToActivate)
     {
         var takenSpawns = 0;
