@@ -58,3 +58,6 @@ TagManager:
   - name: Walls In Front
     uniqueID: 2699420867
     locked: 0
+  - name: Side Walls
+    uniqueID: 2395677075
+    locked: 0
