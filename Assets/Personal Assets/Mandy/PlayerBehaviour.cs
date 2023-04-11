@@ -2,6 +2,8 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum PlayerDomain
 {
@@ -15,6 +17,9 @@ public enum PlayerDomain
 
 public class PlayerBehaviour : NetworkBehaviour
 {
+
+
+
     public static PlayerBehaviour Local;
 
     [Header("Main Properties")]
