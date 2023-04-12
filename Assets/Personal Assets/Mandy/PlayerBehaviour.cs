@@ -175,6 +175,10 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             EnteringAvatarChoice(collision);
         }
+        if (collision.gameObject.CompareTag("Star"))
+        {
+            CollectingStar(collision, collision.gameObject.GetComponent<NetworkIdentity>());
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -226,6 +230,19 @@ public class PlayerBehaviour : NetworkBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultSprite;
         }
         onDomain = false;
+    }
+
+ 
+    public void CollectingStar(Collider2D starPrefab, NetworkIdentity item)
+    {
+        item.AssignClientAuthority(connectionToClient);
+        starPrefab.gameObject.SetActive(false);
+        starsCollected++;
+    }
+
+    public void CheckingStuff(Collider2D item)
+    {
+        item.gameObject.GetComponent<NetworkIdentity>().RemoveClientAuthority();
     }
 }
 
