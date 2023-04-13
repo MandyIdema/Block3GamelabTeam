@@ -9,11 +9,22 @@ public class QuestionScript : MonoBehaviour
     //The text for feedback
     public TMP_Text awnserText;
 
+    public bool isEnabled;
+
 
     private void Start()
     {
         //The text will be disabled if nothing is clicked yet
         awnserText.enabled = false;
+        isEnabled = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (this.gameObject)
+        {
+            isEnabled = true;
+        }
     }
 
     public void wrongAwnser()
@@ -40,8 +51,9 @@ public class QuestionScript : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         this.gameObject.SetActive(false);
+        QuestionRandomizer.isActive = false;
     }
-
+    
 
 
 }
