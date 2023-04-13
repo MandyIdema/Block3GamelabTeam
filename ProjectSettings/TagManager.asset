@@ -8,6 +8,8 @@ TagManager:
   - AvatarChoice
   - Star
   - Question
+  - GameManager
+  - StarManager
   layers:
   - Default
   - TransparentFX

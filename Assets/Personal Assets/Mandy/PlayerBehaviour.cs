@@ -235,9 +235,9 @@ public class PlayerBehaviour : NetworkBehaviour
  
     public void CollectingStar(Collider2D starPrefab, NetworkIdentity item)
     {
-        item.AssignClientAuthority(connectionToClient);
-        starPrefab.gameObject.SetActive(false);
-        starsCollected++;
+        // item.AssignClientAuthority(connectionToClient);
+        // starsCollected++;
+        // This might have to be replaced into the Star Property script
     }
 
     public void CheckingStuff(Collider2D item)
