@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
+public enum GameStatus
+{
+    Pending,
+    Started,
+    Finished
+}
 public class CharacterOverviews : MonoBehaviour
 {
     [SerializeField] private GameObject[] players; // That stays
 // [K] Add a script to collect the info from all the player objects regarding how many stars (int starsCollected
 // in the PlayerBehaviour script) they have collected in total (basically loop through all of the objects and add
 // the stars from every player object script)
-    [SerializeField] private GameObject[] puzzles; // not needed
     [SerializeField] private GameObject domainInfo;
+    [SerializeField] private TextMeshProUGUI _starsCollected;
+    [SerializeField] private GameObject barriers;
     private bool allPlayersAppeared = false;
-    [SerializeField] private Transform[] spawnPoints; // not needed
-    public List<int>activatedDomains; // not needed
-    private bool thatsAll = false;
+    private GameStatus currentStatus = GameStatus.Pending;
 
     void Update()
     {
@@ -21,10 +28,15 @@ public class CharacterOverviews : MonoBehaviour
         {
             players = GameObject.FindGameObjectsWithTag("Player");
         }
+        if(currentStatus==GameStatus.Started)
+        {
+            StarsScore();
+        }
+
     }
     void LateUpdate()
     {
-        if(players.Length>1)
+        if(players.Length>1 && currentStatus==GameStatus.Pending)
         {
             CheckingDomains();
         }
@@ -40,29 +52,19 @@ public class CharacterOverviews : MonoBehaviour
                 if(domains[i].GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
                 {
                     domainCount++;
-                   // activatedDomains.Add(i);
                 }
-            }if(players.Length == domainCount && !thatsAll)
+            }if(players.Length == domainCount)
             {
-               // ActivatePuzzles(activatedDomains);
-                thatsAll = true;
+                currentStatus = GameStatus.Started;
+                Destroy(barriers);
             }
     }
-    public void ActivatePuzzles(List<int>domainsToActivate)
-    {
-        var takenSpawns = 0;
-        for(var i = 0; i< domainsToActivate.Count; i++)
-        {
-            foreach(GameObject j in puzzles)
-            {
 
-                if(j.GetComponent<Puzzles>().puzzleNumber == domainsToActivate[i] && takenSpawns<2)
-                {
-                    Instantiate(j,spawnPoints[i]);
-                    takenSpawns++;
-                    Debug.Log("SPAWNED");
-                }
-            }
+    private void StarsScore()
+    {
+        for(int i=0; i<=players.Length+1; i++)
+        {
+            _starsCollected.GetComponent<TextMeshProUGUI>().text = players[i].GetComponent<PlayerBehaviour>().playerNameText+":"+ players[i].GetComponent<PlayerBehaviour>().starsCollected;
         }
     }
 }
