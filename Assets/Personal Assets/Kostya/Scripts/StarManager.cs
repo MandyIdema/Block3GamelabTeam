@@ -27,10 +27,7 @@ namespace GM
         private void FixedUpdate()
         {
             // Disables the door if the players have collected enough stars
-            if (starsTaken >= starsNeeded)
-            {
-                exitDoor.SetActive(false);
-            }
+            RpcDestroyDoor();
         }
 
         // Checks how many stars the players have collected in total
@@ -43,6 +40,15 @@ namespace GM
                 {
                     starsTaken++;
                 }
+            }
+        }
+
+        [ClientRpc]
+        void RpcDestroyDoor()
+        {
+            if (starsTaken >= starsNeeded)
+            {
+                exitDoor.SetActive(false);
             }
         }
 

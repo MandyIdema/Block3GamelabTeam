@@ -32,7 +32,7 @@ namespace GM
             }
             else
             {
-                displayMessage = "You have collected enough stars to exit!";
+                displayMessage = "Your team has finished the task, you can leave!";
             }
         }
 
