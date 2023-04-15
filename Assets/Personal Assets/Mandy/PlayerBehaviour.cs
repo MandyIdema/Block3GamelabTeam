@@ -72,9 +72,6 @@ public class PlayerBehaviour : NetworkBehaviour
     private void Update()
     {
 
-        // if (!isLocalPlayer) return;
-
-
         if (currentDomain != null)
         {
             if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)

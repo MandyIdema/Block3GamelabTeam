@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class DomainUI : MonoBehaviour
 { 
@@ -20,6 +19,8 @@ public class DomainUI : MonoBehaviour
 
     private void LateUpdate()
     {
+
+        // This part should be separated into the server side and the client side later
         if (_player && _player.showMenu)
         {
             domainMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDescriptions[_player.currentDomainNumber];

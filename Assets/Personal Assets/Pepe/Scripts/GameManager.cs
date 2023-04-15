@@ -7,66 +7,80 @@ using Mirror;
 
 namespace GM
 {
-    public enum GameStatus
-    {
-        Pending,
-        Started,
-        Finished
-    }
+
     public class GameManager : NetworkBehaviour
     {
-        [SerializeField] private GameObject[] players; // That stays
-                                                       // [K] Add a script to collect the info from all the player objects regarding how many stars (int starsCollected
-                                                       // in the PlayerBehaviour script) they have collected in total (basically loop through all of the objects and add
-                                                       // the stars from every player object script)
-        public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
-        [SerializeField] private GameObject domainInfo;
-        [SyncVar] public int starsCollectedInTotal = 0;
-        [SerializeField] private TextMeshProUGUI _starsCollected;
-        [SerializeField] private GameObject barriers;
+        [Header("Players")]
+        [SerializeField] private List<GameObject> players = new List<GameObject>(); 
+        // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
         [SyncVar] public bool allPlayersAppeared = false;
+        public enum GameStatus
+        {
+            Pending,
+            Started,
+            Finished
+        }
         private GameStatus currentStatus = GameStatus.Pending;
+
+        [Space]
+
+        [Header("Domains")]
+        [SerializeField] private GameObject domainInfo;
+        // [SyncVar] public int starsCollectedInTotal = 0;
+        // [SerializeField] private TextMeshProUGUI _starsCollected;
+        [SerializeField] private GameObject barriers;
 
         void Update()
         {
 
-            if (players.Length < 2 && !allPlayersAppeared)
+            if (players.Count < 4 && !allPlayersAppeared)
             {
-                players = GameObject.FindGameObjectsWithTag("Player");
-                for(int i = 0; i < players.Length - 1; i++)
+                // Awkward code but I do not currently see a way around it
+                // All player objects are returned in an array via the FindGameObjectsWithTag function
+                // But players have to be in a list, since it has to be resizeable
+                GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
+                if (playerObjects.Length != players.Count + 1)
                 {
-                    starsCollected.Add(players[i], 0);
+                    players.Clear();
+                    players.AddRange(playerObjects);
+                }
+                // Using dictionaries is impossible because empty players remain in them and the star stats do not update
+                for (int i = 0; i < players.Count - 1; i++)
+                {
+                    if(players[i] == null)
+                    {
+                        players.RemoveAt(i);
+                    }
                 }
             }
             if (currentStatus == GameStatus.Started)
             {
-                StarsScore();
+               // StarsScore();
             }
 
 
-            // THIS PART OF THE CODE IS REDUNDANT, CHECK THE STAR MANAGER FOR THE ACTUAL TRACKER
-            starsCollectedInTotal = 0;
-            foreach (int value in starsCollected.Values)
-            {
-                //foreach (GameObject objects in starsCollected.Keys)
-               // {
-                    //if (objects != null)
-                    //{
-                        starsCollectedInTotal += value;
-                    //}
-                //}
+            //THIS PART OF THE CODE IS REDUNDANT, CHECK THE STAR MANAGER FOR THE ACTUAL TRACKER
+            //starsCollectedInTotal = 0;
+            //foreach (int value in starsCollected.Values)
+            //{
+            //    foreach (GameObject objects in starsCollected.Keys)
+            //    {
+            //        if (objects != null)
+            //        {
+            //            starsCollectedInTotal += value;
+            //        }
+            //    }
 
-            }
+            //}
 
         }
         void LateUpdate()
         {
-            if (players.Length > 1 && currentStatus == GameStatus.Pending)
+            if (players.Count > 1 && currentStatus == GameStatus.Pending)
             {
                 CheckingDomains();
             }
         }
-
 
         public void CheckingDomains()
         {
@@ -79,20 +93,20 @@ namespace GM
                     domainCount++;
                 }
             }
-            if (players.Length == domainCount)
+            if (players.Count == domainCount)
             {
                 currentStatus = GameStatus.Started;
                 Destroy(barriers);
             }
         }
 
-        private void StarsScore()
-        {
-            for (int i = 0; i <= players.Length + 1; i++)
-            {
-                _starsCollected.GetComponent<TextMeshProUGUI>().text = players[i].GetComponent<PlayerBehaviour>().playerNameText + ":" + players[i].GetComponent<PlayerBehaviour>().starsCollected;
-            }
-        }
+        //private void StarsScore()
+        //{
+        //    for (int i = 0; i <= players.Count + 1; i++)
+        //    {
+        //        _starsCollected.GetComponent<TextMeshProUGUI>().text = players[i].GetComponent<PlayerBehaviour>().playerNameText + ":" + players[i].GetComponent<PlayerBehaviour>().starsCollected;
+        //    }
+        //}
     }
 }
 

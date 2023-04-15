@@ -7,15 +7,33 @@ namespace GM
 {
     public class StarManager : NetworkBehaviour
     {
-
+        [Header("Prefabs")]
         public GameObject starPrefab;
-        public List<GameObject> stars = new List<GameObject>();
-        public int starsTaken;
+        public GameObject exitDoor;
+
+        [Space]
+
+        [Header("Stars")]
+        [SyncVar] public int starsTaken; // Current number of stars possessed by all the players in total
+        public int starsNeeded = 5; // Number of stars required to finish the game
+        public int starsSpawned = 10; // Number of stars spawned
+        public List<GameObject> stars = new List<GameObject>(); // All of the star objects
 
         private void Start()
         {
             RpcSpawnStars();
         }
+
+        private void FixedUpdate()
+        {
+            // Disables the door if the players have collected enough stars
+            if (starsTaken >= starsNeeded)
+            {
+                exitDoor.SetActive(false);
+            }
+        }
+
+        // Checks how many stars the players have collected in total
         public void CheckStars()
         {
             starsTaken = 0;
@@ -28,13 +46,14 @@ namespace GM
             }
         }
 
+        // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]
         void RpcSpawnStars()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < starsSpawned; i++)
 
             {
-                int spawnPointX = Random.Range(-5, 5);
+                int spawnPointX = Random.Range(2, 12);
                 int spawnPointY = Random.Range(-5, 5);
                 Vector2 spawnPosition = new Vector2(spawnPointX, spawnPointY);
                 GameObject star = Instantiate(starPrefab, spawnPosition, transform.rotation);
