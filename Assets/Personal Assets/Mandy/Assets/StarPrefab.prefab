@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5743888868990298940}
   - component: {fileID: 4833918364913629227}
   - component: {fileID: 7544660375308710181}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StarPrefab
   m_TagString: Star
   m_Icon: {fileID: 0}
@@ -167,3 +167,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  currentStatus: 0
+  playerOwner: {fileID: 0}
+  _gm: {fileID: 0}
+  _sm: {fileID: 0}

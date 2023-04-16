@@ -11,20 +11,77 @@ namespace GM
         public GameObject starPrefab;
         public GameObject exitDoor;
 
+        public GameObject enemy;
+        public float distanceBetweenObjects = 2f;
+        public List<Vector2> points = new List<Vector2>();
+
         [Space]
 
         [Header("Stars")]
+        public int starsNeeded = 1; // Number of stars required to finish the game
+        [SyncVar] private int starsSpawnedTotal = 0; // Total number of stars spawned
         [SyncVar] public int starsTaken; // Current number of stars possessed by all the players in total
-        public int starsNeeded = 5; // Number of stars required to finish the game
-        public int starsSpawned = 10; // Number of stars spawned
-        public List<GameObject> stars = new List<GameObject>(); // All of the star objects
+        public List<GameObject> starObjects = new List<GameObject>(); // All of the star objects
+
+        [Space]
+
+        [Header("Spawn Areas")]
+        public List<GameObject> spawnAreas = new List<GameObject>(); // All of the areas where the stars should spawn
+        public List<int> starsWithinAnArea = new List<int>(); // Number of stars within the specific area
 
         private void Start()
         {
+            // Templates for later implementation
+            // ObjectPositioning();
+            // ObjectSpawning();
+
+            RpcPositionPoints();
             RpcSpawnStars();
         }
 
-        private void FixedUpdate()
+        //void ObjectPositioning()
+        //{
+        //    int count = Random.Range(2, 6);
+
+        //    for (int i = 0; i < count;)
+        //    {
+        //        float x = Random.Range(-2.0f, 2.0f);
+        //        float y = Random.Range(-4.0f, 4.0f);
+        //        Vector2 point = new Vector2(x, y);
+
+        //        if (points.Count == 0)
+        //        {
+        //            points.Add(point);
+        //            i++;
+        //            continue;
+        //        }
+
+        //        for (int j = 0; j < points.Count; j++)
+        //        {
+
+        //            if ((point - points[j]).sqrMagnitude > distanceBetweenObjects * distanceBetweenObjects)
+        //            {
+        //                if (j == points.Count - 1)
+        //                {
+        //                    points.Add(point);
+        //                    i++;
+        //                }
+        //                continue;
+        //            }
+        //            break;
+        //        }
+        //    }
+        //}
+
+        //void ObjectSpawning()
+        //{
+        //    for (int i = 0; i < points.Count; i++)
+        //    {
+        //        Instantiate(enemy, points[i], Quaternion.identity);
+        //    }
+        //}
+
+    private void FixedUpdate()
         {
             // Disables the door if the players have collected enough stars
             RpcDestroyDoor();
@@ -34,14 +91,16 @@ namespace GM
         public void CheckStars()
         {
             starsTaken = 0;
-            for (int j = 0; j < stars.Count; j++)
+            for (int j = 0; j < starObjects.Count; j++)
             {
-                if (stars[j].GetComponent<StarProperty>().currentStatus == StarProperty.StarStatus.Taken)
+                if (starObjects[j].GetComponent<StarProperty>().currentStatus == StarProperty.StarStatus.Taken)
                 {
                     starsTaken++;
                 }
             }
         }
+
+
 
         [ClientRpc]
         void RpcDestroyDoor()
@@ -52,21 +111,33 @@ namespace GM
             }
         }
 
+        [ClientRpc]
+        void RpcPositionPoints()
+        {
+
+        }
         // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]
         void RpcSpawnStars()
         {
-            for (int i = 0; i < starsSpawned; i++)
-
+            for (int i = 0; i < spawnAreas.Count; i++)
             {
-                int spawnPointX = Random.Range(2, 12);
-                int spawnPointY = Random.Range(-5, 5);
-                Vector2 spawnPosition = new Vector2(spawnPointX, spawnPointY);
-                GameObject star = Instantiate(starPrefab, spawnPosition, transform.rotation);
-                star.name = "Star " + i;
-                NetworkServer.Spawn(star);
-                stars.Add(star);
+                for (int j = 0; j < starsWithinAnArea[i]; j++)
+                {
+                    Vector2 spawnPosition = new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.8f, 0.8f));
+                    spawnPosition = spawnAreas[i].transform.TransformPoint(spawnPosition * .5f);
+                    GameObject star = Instantiate(starPrefab, spawnPosition, transform.rotation); 
+                    // This has to be done BEFORE the loop because bounds.extents.x does NOT work unless the game object is instantiated already
+                    // For some reason OverlapCircle works in a VERY questionable manner and I cannot understand why
+
+                    star.name = "Star " + (starsSpawnedTotal + j + 1);
+
+                    NetworkServer.Spawn(star);
+                    starObjects.Add(star);
+                }
+                starsSpawnedTotal += starsWithinAnArea[i];
             }
+            starsNeeded = starsSpawnedTotal - 15;
         }
     }
 }
