@@ -12,6 +12,7 @@ namespace GM
     {
         [Header("Players")]
         [SerializeField] private List<GameObject> players = new List<GameObject>(); 
+        private int playersEntered;
         // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
         [SyncVar] public bool allPlayersAppeared = false;
         public enum GameStatus
@@ -57,6 +58,9 @@ namespace GM
             {
                // StarsScore();
             }
+            if(currentStatus == GameStatus.Finished){
+                Debug.Log("GAME FINISHED");
+            }
 
 
             //THIS PART OF THE CODE IS REDUNDANT, CHECK THE STAR MANAGER FOR THE ACTUAL TRACKER
@@ -79,6 +83,19 @@ namespace GM
             if (players.Count > 1 && currentStatus == GameStatus.Pending)
             {
                 CheckingDomains();
+            }
+        }
+
+        void OnTriggerEnter2D(Collider2D collider2D)
+        {   
+            if(collider2D.tag == "Player" && currentStatus == GameStatus.Started){
+                if(!collider2D.GetComponent<PlayerBehaviour>().gameFinished){
+                    playersEntered++;
+                    collider2D.GetComponent<PlayerBehaviour>().gameFinished = true;
+                }
+            }
+            if(playersEntered==players.Count){
+                currentStatus = GameStatus.Finished;
             }
         }
 

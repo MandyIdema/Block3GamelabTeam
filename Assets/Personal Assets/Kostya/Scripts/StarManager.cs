@@ -107,7 +107,9 @@ namespace GM
         {
             if (starsTaken >= starsNeeded)
             {
-                exitDoor.SetActive(false);
+                Destroy(exitDoor);
+                //set active only dissappears for one person 
+                //exitDoor.SetActive(false);
             }
         }
 

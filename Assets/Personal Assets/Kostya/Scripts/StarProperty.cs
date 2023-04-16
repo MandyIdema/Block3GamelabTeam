@@ -26,12 +26,12 @@ namespace GM
         private void Update()
         {
 
-            // Searches for Game and Star Manager
+/*             // Searches for Game and Star Manager
             if (_gm == null)
             {
                 // _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
                 _gm = FindObjectOfType<GameManager>();
-            }
+            } */
             if (_sm == null)
             {
                 // _sm = GameObject.FindGameObjectWithTag("StarManager").GetComponent<StarManager>();
