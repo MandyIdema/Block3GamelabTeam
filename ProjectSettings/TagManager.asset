@@ -10,6 +10,8 @@ TagManager:
   - Question
   - GameManager
   - StarManager
+  - Door
+  - Teleportation
   layers:
   - Default
   - TransparentFX

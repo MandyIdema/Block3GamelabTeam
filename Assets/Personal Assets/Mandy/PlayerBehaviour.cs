@@ -59,7 +59,14 @@ public class PlayerBehaviour : NetworkBehaviour
     private Material playerMaterialClone;
 
     float speed = 0.1f;
-    // Start is called before the first frame update
+
+    //===== TELEPORTATION ============
+
+    public GameObject[] TeleportationDoor;
+    public GameObject[] TeleportationDestination;
+
+    public float DoorTouched;
+
     void Start()
     {
         defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -68,10 +75,13 @@ public class PlayerBehaviour : NetworkBehaviour
             Local = this;
             _camera = Camera.main;
         }
+
     }
 
     private void Update()
     {
+
+        
 
         if (currentDomain != null)
         {
@@ -165,6 +175,15 @@ public class PlayerBehaviour : NetworkBehaviour
         string name = "Player" + Random.Range(100, 999);
         Color color = new Color(1, 1, 1, 1/*Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)*/);
         CmdSetupPlayer(name, color);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (QuestionScript.QuestionAwnsered)
+        {
+   
+        }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

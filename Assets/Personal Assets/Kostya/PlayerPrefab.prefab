@@ -289,9 +289,14 @@ MonoBehaviour:
   domainObjects: []
   currentStatus: 0
   starsCollected: 0
-  starsCollectedDisplay: {fileID: 4179970014500267850, guid: 1790dc206ae53e442885a0f8a05e4fa4, type: 3}
+  gameFinished: 0
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
+  TeleportationDoor:
+  - {fileID: 0}
+  TeleportationDestination:
+  - {fileID: 4878837308957753084, guid: 92d5e4de686499e41844541f75b8f9d2, type: 3}
+  DoorTouched: 0
   playerName: PlayerName
   playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
