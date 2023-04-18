@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 2538572638088422175}
   - component: {fileID: 4350626630278782181}
   - component: {fileID: 8484394086087375690}
+  - component: {fileID: 8938317476443352461}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -290,6 +291,7 @@ MonoBehaviour:
   currentStatus: 0
   starsCollected: 0
   gameFinished: 0
+  canMove: 0
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
   TeleportationDoor:
@@ -362,3 +364,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8263817, y: 3.7894115}
   m_EdgeRadius: 0
+--- !u!114 &8938317476443352461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432335774314543091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e21fb706500bbf4294d9280a01828b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CharacterSelection.unity
     guid: 78c788cc57a29464d835fcdb1a4ee044
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 2fc76b063b113bd4ab8bdc8fe5042f18
   m_configObjects: {}

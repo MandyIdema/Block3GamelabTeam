@@ -119,7 +119,9 @@ public class PlayerBehaviour : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        movement();
+        if(!QuestionScript.isEnabled){
+            movement();
+        }
     }
 
     private void LateUpdate()

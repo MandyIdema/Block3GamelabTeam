@@ -9,6 +9,7 @@ public class QuestionRandomizer : NetworkBehaviour
     public int RandomObjectSetActive;
     public static bool isActive;
     public GameObject localPlayer;
+    public bool enteredDoors;
 
     private void Start()
     {
@@ -26,13 +27,13 @@ public class QuestionRandomizer : NetworkBehaviour
     {
         if (!isActive)
         {
-
             if (collision.gameObject == localPlayer)
             {
                 RandomObjectSetActive = Random.Range(0, QuestionList.Count);
                 QuestionList[RandomObjectSetActive].SetActive(true);
                 QuestionList.Remove(QuestionList[RandomObjectSetActive]);
                 isActive = true;
+                enteredDoors=true;
             }
         }
 

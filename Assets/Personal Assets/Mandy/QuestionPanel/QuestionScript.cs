@@ -9,8 +9,8 @@ public class QuestionScript : MonoBehaviour
     //The text for feedback
     public TMP_Text awnserText;
 
-    public bool isEnabled;
-    public static bool QuestionAwnsered;
+    public static bool isEnabled;
+    public static bool QuestionAwnsered;   
 
 
     private void Start()
@@ -27,6 +27,7 @@ public class QuestionScript : MonoBehaviour
         {
             isEnabled = true;
         }
+        
     }
 
     public void wrongAwnser()

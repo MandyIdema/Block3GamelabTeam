@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 namespace GM
 {
-
     public class GameManager : NetworkBehaviour
     {
         [Header("Players")]
@@ -60,6 +60,7 @@ namespace GM
             }
             if(currentStatus == GameStatus.Finished){
                 Debug.Log("GAME FINISHED");
+                SceneManager.LoadScene(2);
             }
 
 
