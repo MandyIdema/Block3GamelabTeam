@@ -22,15 +22,18 @@ public class TeleportationScript : NetworkBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (QuestionScript.QuestionAwnsered)
+        if (localPlayer)
         {
-            if (collision.gameObject == localPlayer)
+            if (QuestionScript.QuestionAwnsered)
             {
-                localPlayer.transform.position = teleportationDestination.transform.position;
-                DestroyObject();
+                if (collision.gameObject == localPlayer)
+                {
+                    localPlayer.transform.position = teleportationDestination.transform.position;
+                    DestroyObject();
+                }
             }
         }
-  
+
     }
 
     // This allows to disable the door for everyone

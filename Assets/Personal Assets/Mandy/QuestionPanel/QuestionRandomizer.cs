@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class QuestionRandomizer : MonoBehaviour
+public class QuestionRandomizer : NetworkBehaviour
 {
     public List<GameObject> QuestionList = new List<GameObject>();
     public int RandomObjectSetActive;
     public static bool isActive;
+    public GameObject localPlayer;
 
     private void Start()
     {
@@ -16,6 +18,8 @@ public class QuestionRandomizer : MonoBehaviour
 
             QuestionList.Add(question);
         }
+
+        localPlayer = NetworkClient.localPlayer.gameObject;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,7 +27,7 @@ public class QuestionRandomizer : MonoBehaviour
         if (!isActive)
         {
 
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject == localPlayer)
             {
                 RandomObjectSetActive = Random.Range(0, QuestionList.Count);
                 QuestionList[RandomObjectSetActive].SetActive(true);
