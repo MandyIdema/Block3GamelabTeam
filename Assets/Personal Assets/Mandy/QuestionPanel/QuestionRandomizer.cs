@@ -11,7 +11,6 @@ public class QuestionRandomizer : MonoBehaviour
     private void Start()
     {
         isActive = false;
-
         foreach (GameObject question in GameObject.FindGameObjectsWithTag("Question"))
         {
 
@@ -24,16 +23,13 @@ public class QuestionRandomizer : MonoBehaviour
         if (!isActive)
         {
 
-        
-        if (collision.gameObject.tag == "Player")
-        {
-            RandomObjectSetActive = Random.Range(0, QuestionList.Count);
-          
-            QuestionList[RandomObjectSetActive].SetActive(true);
-            QuestionList.Remove(QuestionList[RandomObjectSetActive]);
+            if (collision.gameObject.tag == "Player")
+            {
+                RandomObjectSetActive = Random.Range(0, QuestionList.Count);
+                QuestionList[RandomObjectSetActive].SetActive(true);
+                QuestionList.Remove(QuestionList[RandomObjectSetActive]);
                 isActive = true;
-        }
-
+            }
         }
 
     }

@@ -52,9 +52,9 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("Closed window");
 
         yield return new WaitForSeconds(2);
-        this.gameObject.SetActive(false);
         QuestionRandomizer.isActive = false;
         QuestionAwnsered = true;
+        this.gameObject.SetActive(false);
     }
     
 

@@ -113,7 +113,7 @@ namespace GM
             if (players.Count == domainCount)
             {
                 currentStatus = GameStatus.Started;
-                Destroy(barriers);
+                barriers.SetActive(false);
             }
         }
 

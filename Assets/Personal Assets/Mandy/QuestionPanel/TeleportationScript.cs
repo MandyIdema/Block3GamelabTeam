@@ -6,8 +6,6 @@ using Mirror;
 public class TeleportationScript : NetworkBehaviour
 {
     public GameObject teleportationDestination;
-
-    
     public GameObject localPlayer;
 
     // Start is called before the first frame update
@@ -19,7 +17,7 @@ public class TeleportationScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -28,10 +26,17 @@ public class TeleportationScript : NetworkBehaviour
         {
             if (collision.gameObject == localPlayer)
             {
-                Debug.Log("Collided with local player");
                 localPlayer.transform.position = teleportationDestination.transform.position;
+                DestroyObject();
             }
         }
   
+    }
+
+    // This allows to disable the door for everyone
+    [Command(requiresAuthority = false)]
+    void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

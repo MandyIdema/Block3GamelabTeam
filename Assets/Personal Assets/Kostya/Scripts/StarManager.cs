@@ -10,6 +10,7 @@ namespace GM
         [Header("Prefabs")]
         public GameObject starPrefab;
         public GameObject exitDoor;
+        public Transform parentStarObject;
 
         public GameObject enemy;
         public float distanceBetweenObjects = 2f;
@@ -34,7 +35,6 @@ namespace GM
             // Templates for later implementation
             // ObjectPositioning();
             // ObjectSpawning();
-
             RpcPositionPoints();
             RpcSpawnStars();
         }
@@ -133,7 +133,7 @@ namespace GM
                     // For some reason OverlapCircle works in a VERY questionable manner and I cannot understand why
 
                     star.name = "Star " + (starsSpawnedTotal + j + 1);
-
+                    star.transform.SetParent(parentStarObject);
                     NetworkServer.Spawn(star);
                     starObjects.Add(star);
                 }
