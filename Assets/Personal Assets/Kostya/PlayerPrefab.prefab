@@ -209,7 +209,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 577857905
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0b20104aa33dc2f44a3d4141a525171f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -291,7 +291,6 @@ MonoBehaviour:
   currentStatus: 0
   starsCollected: 0
   gameFinished: 0
-  canMove: 0
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
   TeleportationDoor:
@@ -351,7 +350,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00001168251, y: -1.045418}
+  m_Offset: {x: -0.11081591, y: -1.045418}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -362,7 +361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8263817, y: 3.7894115}
+  m_Size: {x: 1.6555786, y: 3.7894115}
   m_EdgeRadius: 0
 --- !u!114 &8938317476443352461
 MonoBehaviour:
