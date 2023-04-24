@@ -21,6 +21,7 @@ namespace Mirror.Discovery
 
         public NetworkManager networkManager;
         public GameObject menuPanel;
+        public GameObject discoveryPanel;
    
         bool paused = false;
 
@@ -56,6 +57,17 @@ namespace Mirror.Discovery
 
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
+            menuPanel.SetActive(false);
+            discoveryPanel.SetActive(true);
+        }
+
+        public void Back()
+        {
+            paused = false;
+
+            menuPanel.SetActive(true);
+            discoveryPanel.SetActive(false);
+
         }
 
        
@@ -64,6 +76,7 @@ namespace Mirror.Discovery
         void Start()
         {
             menuPanel.SetActive(true);
+            discoveryPanel.SetActive(false);
           
             paused = false;
         }
