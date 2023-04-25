@@ -21,9 +21,28 @@ namespace Mirror.Discovery
 
         public NetworkManager networkManager;
         public GameObject menuPanel;
+        public GameObject pausePanel;
         public GameObject discoveryPanel;
    
         bool paused = false;
+
+        public void Stop()
+        {
+            if (networkManager.mode == NetworkManagerMode.Host)
+            {
+                NetworkManager.singleton.StopHost();
+                networkDiscovery.StopDiscovery();
+                Debug.Log("Stopped game");
+            }
+            if (networkManager.mode == NetworkManagerMode.ClientOnly)
+            {
+                NetworkManager.singleton.StopClient();
+                networkDiscovery.StopDiscovery();
+                Debug.Log("Stopped game");
+            }
+            paused = false;
+        }
+        
 
         public void Host()
         {
@@ -76,6 +95,7 @@ namespace Mirror.Discovery
         void Start()
         {
             menuPanel.SetActive(true);
+            pausePanel.SetActive(false);
             discoveryPanel.SetActive(false);
           
             paused = false;

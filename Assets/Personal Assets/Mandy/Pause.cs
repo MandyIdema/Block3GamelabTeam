@@ -27,11 +27,13 @@ namespace Mirror.Discovery
             {
                 NetworkManager.singleton.StopHost();
                 networkDiscovery.StopDiscovery();
+                Debug.Log("Stopped game");
             }
             if (networkManager.mode == NetworkManagerMode.ClientOnly)
             {
                 NetworkManager.singleton.StopClient();
                 networkDiscovery.StopDiscovery();
+                Debug.Log("Stopped game");
             }
             paused = false;
         }

@@ -12,6 +12,7 @@ TagManager:
   - StarManager
   - Door
   - Teleportation
+  - Menupanel
   layers:
   - Default
   - TransparentFX

@@ -85,7 +85,7 @@ namespace Mirror.Discovery
 
             // show list of found server
 
-            GUILayout.Label($"Discovered Servers [{discoveredServers.Count}]:");
+            //GUILayout.Label($"Discovered Servers [{discoveredServers.Count}]:");
 
             // servers
             scrollViewPos = GUILayout.BeginScrollView(scrollViewPos);
