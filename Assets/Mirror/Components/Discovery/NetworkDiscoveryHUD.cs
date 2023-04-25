@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mirror.Discovery
 {
@@ -13,6 +14,9 @@ namespace Mirror.Discovery
         Vector2 scrollViewPos = Vector2.zero;
 
         public NetworkDiscovery networkDiscovery;
+
+        public GUIStyle customButton;
+       
 
         private void Start()
         {
@@ -47,10 +51,12 @@ namespace Mirror.Discovery
         {
             int windowWidth = 200;
             int windowHeight = 200;
+            var screenMiddle = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
             int x = (Screen.width - windowWidth) / 2;
             int y = (Screen.height - windowHeight) / 2;
+            
 
-            GUILayout.BeginArea(new Rect(x, y, 300, 600));
+            GUILayout.BeginArea(new Rect(Screen.width / 4, Screen.height / 4, 600,800),customButton);
             GUILayout.BeginHorizontal();
 
             //if (GUILayout.Button("Find Servers"))
@@ -79,13 +85,18 @@ namespace Mirror.Discovery
 
             // show list of found server
 
-            //GUILayout.Label($"Discovered Servers [{discoveredServers.Count}]:");
+            GUILayout.Label($"Discovered Servers [{discoveredServers.Count}]:");
 
             // servers
             scrollViewPos = GUILayout.BeginScrollView(scrollViewPos);
 
             foreach (ServerResponse info in discoveredServers.Values)
-                if (GUILayout.Button(info.EndPoint.Address.ToString()))
+                if (GUILayout.Button(info.EndPoint.Address.ToString(),customButton))
+                    Connect(info);
+
+            foreach (ServerResponse info in discoveredServers.Values)
+
+                if (GUILayout.Button(info.EndPoint.Address.ToString(),customButton))
                     Connect(info);
 
             GUILayout.EndScrollView();
@@ -94,7 +105,7 @@ namespace Mirror.Discovery
 
         void StopButtons()
         {
-            GUILayout.BeginArea(new Rect(10, 40, 100, 25));
+            //GUILayout.BeginArea(new Rect(10, 40, 100, 25));
 
             // stop host if host mode
             if (NetworkServer.active && NetworkClient.isConnected)
