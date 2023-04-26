@@ -41,7 +41,7 @@ namespace Mirror.Discovery
         // Start is called before the first frame update
         void Start()
         {
-
+            gamePanel = GameObject.FindGameObjectWithTag("GamePanel");
         }
 
         // Update is called once per frame
