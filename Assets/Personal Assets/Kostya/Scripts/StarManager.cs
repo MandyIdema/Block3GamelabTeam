@@ -26,7 +26,7 @@ namespace GM
 
         [Space]
 
-        [Header("Spawn Areas")]
+        [Header("Spawning Areas")]
         public List<GameObject> spawnAreas = new List<GameObject>(); // All of the areas where the stars should spawn
         public List<int> starsWithinAnArea = new List<int>(); // Number of stars within the specific area
 

@@ -21,7 +21,7 @@ public class DomainUI : MonoBehaviour
     {
 
         // This part should be separated into the server side and the client side later
-        if (_player && _player.showMenu)
+        if (_player && _player.showDomainMenu)
         {
             domainMenu.GetComponentInChildren<TextMeshProUGUI>().text = domainDescriptions[_player.currentDomainNumber];
             domainMenu.SetActive(_player.onDomain);

@@ -11,11 +11,11 @@ namespace Mirror.Discovery
     [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-discovery")]
     [RequireComponent(typeof(NetworkDiscovery))]
 
-    public class MenuScript : MonoBehaviour
+    public class MainMenuScript : MonoBehaviour
     {
 
         readonly Dictionary<long, ServerResponse> discoveredServers = new Dictionary<long, ServerResponse>();
-        Vector2 scrollViewPos = Vector2.zero;
+        // Vector2 scrollViewPos = Vector2.zero;
 
         public NetworkDiscovery networkDiscovery;
 
@@ -24,7 +24,7 @@ namespace Mirror.Discovery
         public GameObject pausePanel;
         public GameObject discoveryPanel;
    
-        bool paused = false;
+        // bool paused = false;
 
         public void Stop()
         {
@@ -40,7 +40,7 @@ namespace Mirror.Discovery
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
             }
-            paused = false;
+            // paused = false;
         }
         
 
@@ -48,7 +48,7 @@ namespace Mirror.Discovery
         {
             menuPanel.SetActive(false);
 
-            paused = false;
+            // paused = false;
 
             discoveredServers.Clear();
             NetworkManager.singleton.StartHost();
@@ -70,19 +70,21 @@ namespace Mirror.Discovery
 
         public void Join()
         {
-   
         
-            paused = false;
+            // paused = false;
 
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
-            menuPanel.SetActive(false);
-            discoveryPanel.SetActive(true);
+            menuPanel.SetActive(true);
+            discoveryPanel.SetActive(false);
+            // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
+            // And enable the line below if you want to return to the way it was before
+            // discoveryPanel.SetActive(true);
         }
 
         public void Back()
         {
-            paused = false;
+            // paused = false;
 
             menuPanel.SetActive(true);
             discoveryPanel.SetActive(false);
@@ -95,10 +97,12 @@ namespace Mirror.Discovery
         void Start()
         {
             menuPanel.SetActive(true);
-            pausePanel.SetActive(false);
+            // [K] Disabled since I found a workaround that I put in PlayerBehaviour
+            // It is by no means optimal, especially with slower devices
+            // pausePanel.SetActive(false);
             discoveryPanel.SetActive(false);
           
-            paused = false;
+            // paused = false;
         }
 
         // Update is called once per frame

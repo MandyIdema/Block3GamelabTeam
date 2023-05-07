@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 736689717}
   - component: {fileID: 736689716}
   m_Layer: 5
-  m_Name: GamePanel
+  m_Name: Exit Game Panel
   m_TagString: GamePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1220,7 +1220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2247}
   m_SizeDelta: {x: 1114, y: 481}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &736689716

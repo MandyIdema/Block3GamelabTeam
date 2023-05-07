@@ -29,12 +29,21 @@ public class QuestionRandomizer : NetworkBehaviour
         {
             if (collision.gameObject == localPlayer)
             {
-                RandomObjectSetActive = Random.Range(0, QuestionList.Count);
-                QuestionList[RandomObjectSetActive].SetActive(true);
-                QuestionList.Remove(QuestionList[RandomObjectSetActive]);
-                isActive = true;
-                enteredDoors=true;
+                // ActivateQuestion();
             }
+        }
+
+    }
+
+    public void ActivateQuestion()
+    {
+        if (!isActive)
+        {
+            RandomObjectSetActive = Random.Range(0, QuestionList.Count);
+            QuestionList[RandomObjectSetActive].SetActive(true);
+            QuestionList.Remove(QuestionList[RandomObjectSetActive]);
+            isActive = true;
+            enteredDoors = true;
         }
 
     }

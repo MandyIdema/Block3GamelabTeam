@@ -2,8 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using System.Linq;
 
 public enum PlayerDomain
 {
@@ -39,7 +38,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [SyncVar] public int finalDomain = 0;
     public GameObject currentDomain;
     [HideInInspector] public int currentDomainNumber;
-    [HideInInspector] public bool showMenu = true;
+    [HideInInspector] public bool showDomainMenu = true;
     [HideInInspector] public List<GameObject> domainObjects = new();
 
     [Space]
@@ -48,6 +47,17 @@ public class PlayerBehaviour : NetworkBehaviour
     [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
     [SyncVar] public int starsCollected = 0;
     [SyncVar] public bool gameFinished = false;
+
+    [Space]
+
+    [Header("Questions")]
+    [SyncVar] [HideInInspector] public bool inQuestionRange = false;
+    [HideInInspector] public GameObject currentQuestion;
+
+    [Space]
+
+    [Header("UI")]
+    public GameObject exitMenuPanel;
 
     [Space]
     public TextMesh playerNameText;
@@ -65,8 +75,6 @@ public class PlayerBehaviour : NetworkBehaviour
     public GameObject[] TeleportationDoor;
     public GameObject[] TeleportationDestination;
 
-    public float DoorTouched;
-
     void Start()
     {
         defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -79,9 +87,19 @@ public class PlayerBehaviour : NetworkBehaviour
     }
 
     private void Update()
-    {
+    {  
 
-        
+        if (exitMenuPanel == null)
+        {
+            exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
+        }
+
+        if (exitMenuPanel != null && 
+            exitMenuPanel.transform.position != exitMenuPanel.transform.parent.position)
+        {
+            exitMenuPanel.SetActive(false);
+            exitMenuPanel.transform.position = exitMenuPanel.transform.parent.position;
+        }
 
         if (currentDomain != null)
         {
@@ -100,13 +118,29 @@ public class PlayerBehaviour : NetworkBehaviour
                     ChoosingDomain();
                 }
             }
+
+            if (inQuestionRange)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    QuestionPrompted();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (exitMenuPanel != null)
+                {
+                    exitMenuPanel.SetActive(!exitMenuPanel.activeSelf);
+                }
+            }
         }
 
             if (currentDomain != null)
         {
             if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
             {
-                Local.showMenu = false;
+                Local.showDomainMenu = false;
             }
         }
 
@@ -179,13 +213,21 @@ public class PlayerBehaviour : NetworkBehaviour
         CmdSetupPlayer(name, color);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentQuestion = collision.gameObject;
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (QuestionScript.QuestionAwnsered)
+        if (collision.gameObject.CompareTag("Door"))
         {
-   
+            inQuestionRange = true;
         }
-       
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        currentQuestion = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -216,6 +258,14 @@ public class PlayerBehaviour : NetworkBehaviour
             playerColor = currentDomain.GetComponent<SpriteRenderer>().color;
             currentDomain.GetComponent<DomainInformation>().currentStatus = DomainInformation.DomainStatus.Chosen;
             onDomain = false;
+        }
+    }
+
+    public void QuestionPrompted()
+    {
+        if (isLocalPlayer)
+        {
+            currentQuestion.GetComponent<QuestionRandomizer>().ActivateQuestion();
         }
     }
 

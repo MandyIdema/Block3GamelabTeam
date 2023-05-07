@@ -9,7 +9,7 @@ public class QuestionScript : MonoBehaviour
     //The text for feedback
     public TMP_Text awnserText;
 
-    public static bool isEnabled;
+    // public static bool isEnabled;
     public static bool QuestionAwnsered;   
 
 
@@ -17,7 +17,7 @@ public class QuestionScript : MonoBehaviour
     {
         //The text will be disabled if nothing is clicked yet
         awnserText.enabled = false;
-        isEnabled = false;
+        // isEnabled = false;
         QuestionAwnsered = false;
     }
 
@@ -25,7 +25,7 @@ public class QuestionScript : MonoBehaviour
     {
         if (this.gameObject)
         {
-            isEnabled = true;
+           // isEnabled = true;
         }
         
     }
@@ -51,10 +51,9 @@ public class QuestionScript : MonoBehaviour
     {
         //After two seconds, close the panel
         Debug.Log("Closed window");
-
-        yield return new WaitForSeconds(2);
         QuestionRandomizer.isActive = false;
         QuestionAwnsered = true;
+        yield return new WaitForSeconds(0.5f);
         this.gameObject.SetActive(false);
     }
     

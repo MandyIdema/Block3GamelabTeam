@@ -7,6 +7,7 @@ public class TeleportationScript : NetworkBehaviour
 {
     public GameObject teleportationDestination;
     public GameObject localPlayer;
+    private bool teleported = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +18,9 @@ public class TeleportationScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(QuestionScript.QuestionAwnsered && GetComponent<QuestionRandomizer>().enteredDoors){
+        if(QuestionScript.QuestionAwnsered && GetComponent<QuestionRandomizer>().enteredDoors && !teleported){
             Teleport(localPlayer);
-            QuestionScript.isEnabled = false;
+            // QuestionScript.isEnabled = false;
         }
     }
 
@@ -44,6 +45,7 @@ public class TeleportationScript : NetworkBehaviour
         {
             if (QuestionScript.QuestionAwnsered)
             {
+                teleported = true;
                 localPlayer.transform.position = teleportationDestination.transform.position;
                 DestroyObject();
             }
@@ -54,6 +56,6 @@ public class TeleportationScript : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void DestroyObject()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, 5.0f);
     }
 }

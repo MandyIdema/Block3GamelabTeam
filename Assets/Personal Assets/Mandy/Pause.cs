@@ -44,8 +44,9 @@ namespace Mirror.Discovery
             gamePanel = GameObject.FindGameObjectWithTag("GamePanel");
         }
 
-        // Update is called once per frame
-        void Update()
+        // [K] I think that this did not work at all so I switched it in favour of using Player Behaviour
+        // We can always return this part back later
+        /*void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -69,6 +70,6 @@ namespace Mirror.Discovery
                 gamePanel.SetActive(false);
             }
 
-        }
+        }*/
     }
 }
