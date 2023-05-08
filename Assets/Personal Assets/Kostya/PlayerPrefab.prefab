@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 4350626630278782181}
   - component: {fileID: 8484394086087375690}
   - component: {fileID: 8938317476443352461}
+  - component: {fileID: 3732968277159558847}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -162,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 8432335774314543091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 342.52686, y: 268.46088, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8432335774262698842}
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_SortingLayerID: 577857905
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0b20104aa33dc2f44a3d4141a525171f, type: 3}
+  m_Sprite: {fileID: 1152729840, guid: b8fac17a41a521d4fbbd8a1b405fb5da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -282,22 +283,25 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  anim: {fileID: 0}
   onDomain: 0
   finalDomain: 0
   currentDomain: {fileID: 0}
   currentDomainNumber: 0
-  showMenu: 1
+  showDomainMenu: 1
   domainObjects: []
   currentStatus: 0
   starsCollected: 0
   gameFinished: 0
+  inQuestionRange: 0
+  currentQuestion: {fileID: 0}
+  exitMenuPanel: {fileID: 0}
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
   TeleportationDoor:
   - {fileID: 0}
   TeleportationDestination:
   - {fileID: 4878837308957753084, guid: 92d5e4de686499e41844541f75b8f9d2, type: 3}
-  DoorTouched: 0
   playerName: PlayerName
   playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
@@ -354,7 +358,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.26, y: 6.1613564}
+    oldSize: {x: 6.1, y: 7.1491528}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -375,3 +379,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e21fb706500bbf4294d9280a01828b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3732968277159558847
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432335774314543091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 38b49695fc0a4418bbc350f2366660c5, type: 3}
+  m_Controller: {fileID: 9100000, guid: e72a28315f2a17147b10cd4a15bc8cd8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

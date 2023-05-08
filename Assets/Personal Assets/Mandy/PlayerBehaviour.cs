@@ -17,7 +17,7 @@ public enum PlayerDomain
 public class PlayerBehaviour : NetworkBehaviour
 {
 
-
+    public Animator anim;
 
     public static PlayerBehaviour Local;
 
@@ -58,6 +58,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("UI")]
     public GameObject exitMenuPanel;
+    public GameObject settingsMenuPanel;
 
     [Space]
     public TextMesh playerNameText;
@@ -69,6 +70,8 @@ public class PlayerBehaviour : NetworkBehaviour
     private Material playerMaterialClone;
 
     float speed = 0.1f;
+
+    private Rigidbody2D rb;
 
     //===== TELEPORTATION ============
 
@@ -84,10 +87,14 @@ public class PlayerBehaviour : NetworkBehaviour
             _camera = Camera.main;
         }
 
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Update()
-    {  
+    {
+
 
         if (exitMenuPanel == null)
         {
@@ -111,6 +118,26 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+            {
+                anim.SetBool("WalkTrigger", true);
+            }
+            else
+            {
+                anim.SetBool("WalkTrigger", false);
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+
+
             if (onDomain && finalDomain == 0)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -133,6 +160,8 @@ public class PlayerBehaviour : NetworkBehaviour
                 {
                     exitMenuPanel.SetActive(!exitMenuPanel.activeSelf);
                 }
+
+     
             }
         }
 
@@ -148,9 +177,17 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             currentStatus = PlayerStatus.Ready;
         }
+        
     }
 
-   
+
+    public void BackExitButton()
+    {
+        exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
+        exitMenuPanel.gameObject.SetActive(false);
+    }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -171,10 +208,14 @@ public class PlayerBehaviour : NetworkBehaviour
         //Don't run the code if it is not the local player
         if(isLocalPlayer)
         {
+            
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
             this.transform.position = transform.position + movement;
+            
+           
+
         }
 
     }
