@@ -15,6 +15,7 @@ TagManager:
   - Menupanel
   - GamePanel
   - SettingsPanel
+  - QuestionPrompt
   layers:
   - Default
   - TransparentFX

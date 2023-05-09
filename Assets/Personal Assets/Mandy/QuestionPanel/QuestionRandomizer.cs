@@ -10,6 +10,7 @@ public class QuestionRandomizer : NetworkBehaviour
     public static bool isActive;
     public GameObject localPlayer;
     public bool enteredDoors;
+    public GameObject questionPromptUI;
 
     private void Start()
     {
@@ -22,19 +23,6 @@ public class QuestionRandomizer : NetworkBehaviour
 
         localPlayer = NetworkClient.localPlayer.gameObject;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!isActive)
-        {
-            if (collision.gameObject == localPlayer)
-            {
-                // ActivateQuestion();
-            }
-        }
-
-    }
-
     public void ActivateQuestion()
     {
         if (!isActive)

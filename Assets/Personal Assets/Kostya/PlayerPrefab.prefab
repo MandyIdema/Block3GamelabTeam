@@ -295,7 +295,9 @@ MonoBehaviour:
   gameFinished: 0
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
+  questionPrompt: {fileID: 6530319077584106883, guid: 346156ffb99563d4db2e6d099db841b4, type: 3}
   exitMenuPanel: {fileID: 0}
+  settingsMenuPanel: {fileID: 0}
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
   TeleportationDoor:

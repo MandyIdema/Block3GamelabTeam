@@ -2,7 +2,6 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public enum PlayerDomain
 {
@@ -51,7 +50,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Space]
 
     [Header("Questions")]
-    [SyncVar] [HideInInspector] public bool inQuestionRange = false;
+    public bool inQuestionRange = false;
     [HideInInspector] public GameObject currentQuestion;
 
     [Space]
@@ -94,7 +93,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void Update()
     {
-
 
         if (exitMenuPanel == null)
         {
@@ -177,7 +175,7 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             currentStatus = PlayerStatus.Ready;
         }
-        
+
     }
 
 
@@ -258,19 +256,34 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        currentQuestion = collision.gameObject;
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            currentQuestion = collision.gameObject;
+        }
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Door"))
         {
             inQuestionRange = true;
+            if (isLocalPlayer)
+            {
+                currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        currentQuestion = null;
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            inQuestionRange = false;
+            if (isLocalPlayer)
+            {
+                currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+            }
+            currentQuestion = null;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
