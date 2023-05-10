@@ -96,7 +96,7 @@ namespace GM
                 }
             }
             if(playersEntered==players.Count){
-                currentStatus = GameStatus.Finished;
+              //  currentStatus = GameStatus.Finished;
             }
         }
 

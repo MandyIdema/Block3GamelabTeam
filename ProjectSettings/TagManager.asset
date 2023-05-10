@@ -56,11 +56,11 @@ TagManager:
   - name: Tiles
     uniqueID: 2838044005
     locked: 0
-  - name: Objects
-    uniqueID: 3950892741
-    locked: 0
   - name: 'Walls Behind '
     uniqueID: 1549007335
+    locked: 0
+  - name: Objects
+    uniqueID: 3950892741
     locked: 0
   - name: Player
     uniqueID: 577857905
@@ -73,4 +73,7 @@ TagManager:
     locked: 0
   - name: Top Overview
     uniqueID: 2307253045
+    locked: 0
+  - name: 
+    uniqueID: 2141531123
     locked: 0
