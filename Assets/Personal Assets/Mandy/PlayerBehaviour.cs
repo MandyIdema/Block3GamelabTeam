@@ -135,6 +135,10 @@ public class PlayerBehaviour : NetworkBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                XMLManager.instance.SaveStarScore();
+            }
 
             if (onDomain && finalDomain == 0)
             {
