@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
 using System.IO;
@@ -6,30 +8,53 @@ public class XMLManager : MonoBehaviour
 {
 
     public static XMLManager instance;
-    public UserGlobalStats ugStats;
-    public int currentPlayerStars;
+    [HideInInspector] public UserGlobalStats ugStats;
 
     private void Awake()
     {
         instance = this;
-        if (!Directory.Exists(Application.persistentDataPath + "/HighScores/"))
+        if (!Directory.Exists(Application.persistentDataPath + "/UserStats/"))
         {
-            Directory.CreateDirectory(Application.persistentDataPath + "/HighScores/");
+            Directory.CreateDirectory(Application.persistentDataPath + "/UserStats/");
         }
+        LoadStarScore();
     }
 
+    // Updates the player's XML file
     public void SaveStarScore()
     {
-        currentPlayerStars += PlayerBehaviour.Local.starsCollected;
+        ugStats.starsCollectedInTotal += PlayerBehaviour.Local.starsCollected;
         XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/userinfo.xml", FileMode.Create);
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
         serializer.Serialize(stream, ugStats);
         stream.Close();
+    }
+
+    // Resets the player's XML file
+    public void NullifyStarScore()
+    {
+        ugStats.starsCollectedInTotal = 0;
+        XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
+        serializer.Serialize(stream, ugStats);
+        stream.Close();
+    }
+
+    // Loads the player's XML file for any in-game use
+    public int LoadStarScore()
+    {
+        if (File.Exists(Application.persistentDataPath + "/UserStats/userinfo.xml"))
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
+            FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Open);
+            ugStats = serializer.Deserialize(stream) as UserGlobalStats;
+        }
+        return ugStats.starsCollectedInTotal;
     }
 
     [System.Serializable]
     public class UserGlobalStats
     {
-
+        public int starsCollectedInTotal;
     }
 }

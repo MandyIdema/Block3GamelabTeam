@@ -11229,16 +11229,7 @@ MonoBehaviour:
   starPrefab: {fileID: 5743888868990299079, guid: 2357ba0bc94984d46b531c528ef15ac5, type: 3}
   exitDoor: {fileID: 569332163}
   parentStarObject: {fileID: 897265984}
-  enemy: {fileID: 5743888868990299079, guid: 2357ba0bc94984d46b531c528ef15ac5, type: 3}
-  distanceBetweenObjects: 2
-  points:
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  - {x: 0, y: 0}
-  starsNeeded: 5
+  starsNeeded: 1
   starsTaken: 0
   starObjects: []
   spawnAreas:
@@ -11262,6 +11253,7 @@ MonoBehaviour:
   - {fileID: 371085880}
   - {fileID: 367294756}
   starsWithinAnArea: 0300000003000000030000000300000003000000030000000300000002000000050000000600000005000000060000000600000009000000050000000500000005000000050000000500000005000000
+  _gm: {fileID: 0}
 --- !u!4 &1167526877
 Transform:
   m_ObjectHideFlags: 0
@@ -14422,7 +14414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638369111}
-  - component: {fileID: 1638369110}
+  - component: {fileID: 1638369112}
   m_Layer: 0
   m_Name: Save System
   m_TagString: Untagged
@@ -14430,19 +14422,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1638369110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638369109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e57060cdad6ce247bf1d6b0979939dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPlayerStars: 0
 --- !u!4 &1638369111
 Transform:
   m_ObjectHideFlags: 0
@@ -14458,6 +14437,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1638369112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638369109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e57060cdad6ce247bf1d6b0979939dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ugStats:
+    starsCollectedInTotal: 0
 --- !u!1 &1639469254
 GameObject:
   m_ObjectHideFlags: 0
@@ -16724,8 +16717,10 @@ MonoBehaviour:
   syncInterval: 0.1
   players: []
   allPlayersAppeared: 0
+  currentStatus: 0
   domainInfo: {fileID: 634701991}
   barriers: {fileID: 0}
+  _sm: {fileID: 0}
 --- !u!4 &1856964805
 Transform:
   m_ObjectHideFlags: 0
@@ -16734,7 +16729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856964801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.57, y: 12.71, z: -0.4344418}
+  m_LocalPosition: {x: -31.36, y: 4.55, z: -0.4344418}
   m_LocalScale: {x: 16.65672, y: 16.575, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34373,7 +34368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 534890006745561675, guid: d893126daa8ed584eb7d34837cd28a3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5446204
+      value: -1.78
       objectReference: {fileID: 0}
     - target: {fileID: 534890006745561675, guid: d893126daa8ed584eb7d34837cd28a3e, type: 3}
       propertyPath: m_LocalPosition.z

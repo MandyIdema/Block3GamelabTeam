@@ -12,16 +12,16 @@ namespace GM
         public GameObject exitDoor;
         public Transform parentStarObject;
 
-        public GameObject enemy;
-        public float distanceBetweenObjects = 2f;
-        public List<Vector2> points = new List<Vector2>();
+        //[HideInInspector] public GameObject enemy;
+        //[HideInInspector] public float distanceBetweenObjects = 2f;
+        //[HideInInspector] public List<Vector2> points = new List<Vector2>();
 
         [Space]
 
         [Header("Stars")]
         public int starsNeeded = 1; // Number of stars required to finish the game
         [SyncVar] private int starsSpawnedTotal = 0; // Total number of stars spawned
-        [SyncVar] public int starsTaken; // Current number of stars possessed by all the players in total
+        [SyncVar] public int starsTaken = 0; // Current number of stars possessed by all the players in total
         public List<GameObject> starObjects = new List<GameObject>(); // All of the star objects
 
         [Space]
@@ -30,12 +30,20 @@ namespace GM
         public List<GameObject> spawnAreas = new List<GameObject>(); // All of the areas where the stars should spawn
         public List<int> starsWithinAnArea = new List<int>(); // Number of stars within the specific area
 
-        private void Start()
+        [Space]
+
+        [Header("Other Stuff")]
+        public GameManager _gm;
+        private void Awake()
         {
+            _gm = FindObjectOfType<GameManager>();
+        }
+    private void Start()
+        {
+
             // Templates for later implementation
             // ObjectPositioning();
             // ObjectSpawning();
-            RpcPositionPoints();
             RpcSpawnStars();
         }
 
@@ -113,11 +121,6 @@ namespace GM
             }
         }
 
-        [ClientRpc]
-        void RpcPositionPoints()
-        {
-
-        }
         // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]
         void RpcSpawnStars()

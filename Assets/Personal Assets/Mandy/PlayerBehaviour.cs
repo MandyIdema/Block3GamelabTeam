@@ -135,9 +135,23 @@ public class PlayerBehaviour : NetworkBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
+            // [K] These can be used to test the save system
+
             if (Input.GetKeyDown(KeyCode.J))
             {
                 XMLManager.instance.SaveStarScore();
+                Debug.Log("Score is saved");
+            }
+
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                XMLManager.instance.NullifyStarScore();
+                Debug.Log("Score is reset");
             }
 
             if (onDomain && finalDomain == 0)
@@ -315,7 +329,8 @@ public class PlayerBehaviour : NetworkBehaviour
         if (currentDomain != null)
         {
             finalDomain = currentDomainNumber;
-            playerColor = currentDomain.GetComponent<SpriteRenderer>().color;
+            // [K] Commented that part for later so that the cats do not get any colour, may be useful for testing
+            // playerColor = currentDomain.GetComponent<SpriteRenderer>().color;
             currentDomain.GetComponent<DomainInformation>().currentStatus = DomainInformation.DomainStatus.Chosen;
             onDomain = false;
         }

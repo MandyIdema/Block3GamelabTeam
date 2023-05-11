@@ -1,4 +1,4 @@
-Library: C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+Library: C:\Users\kosty\Desktop\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --platform=Windows
 --backend=burst-llvm-14
 --target=AVX2
@@ -118,15 +118,15 @@ Library: C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam
 --compilation-defines=MIRROR_70_0_OR_NEWER
 --compilation-defines=MIRROR_71_0_OR_NEWER
 --compilation-defines=MIRROR_73_OR_NEWER
+--compilation-defines=ENABLE_VR_MODULE
+--compilation-defines=ENABLE_XR_MODULE
+--compilation-defines=CSHARP_7_OR_LATER
+--compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
 --compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=PACKAGE_UITOOLKIT
---compilation-defines=CSHARP_7_OR_LATER
---compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=ENABLE_VR_MODULE
---compilation-defines=ENABLE_XR_MODULE
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
@@ -141,8 +141,8 @@ Library: C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam
 --compilation-defines=ENABLE_URP
 --linker-options=PdbAltPath="GamelabTeam_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam\Temp\Burst
---output=C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\kosty\Desktop\Block3GamelabTeam\Temp\Burst
+--output=C:\Users\kosty\Desktop\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 --pdb-search-paths=Temp/ManagedSymbols/
 
@@ -280,15 +280,15 @@ Library: C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam
 --compilation-defines=MIRROR_70_0_OR_NEWER
 --compilation-defines=MIRROR_71_0_OR_NEWER
 --compilation-defines=MIRROR_73_OR_NEWER
+--compilation-defines=ENABLE_VR_MODULE
+--compilation-defines=ENABLE_XR_MODULE
+--compilation-defines=CSHARP_7_OR_LATER
+--compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
 --compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=PACKAGE_UITOOLKIT
---compilation-defines=CSHARP_7_OR_LATER
---compilation-defines=CSHARP_7_3_OR_NEWER
---compilation-defines=ENABLE_VR_MODULE
---compilation-defines=ENABLE_XR_MODULE
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
@@ -303,8 +303,8 @@ Library: C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam
 --compilation-defines=ENABLE_URP
 --linker-options=PdbAltPath="GamelabTeam_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam\Temp\Burst
---output=C:\Users\mandy\Documents\CMGT Y2\Github\CreativeMedia\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=C:\Users\kosty\Desktop\Block3GamelabTeam\Temp\Burst
+--output=C:\Users\kosty\Desktop\Block3GamelabTeam\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 --pdb-search-paths=Temp/ManagedSymbols/
 

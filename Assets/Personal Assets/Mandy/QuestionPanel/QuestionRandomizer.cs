@@ -9,8 +9,8 @@ public class QuestionRandomizer : NetworkBehaviour
     public int RandomObjectSetActive;
     public static bool isActive;
     public GameObject localPlayer;
-    public bool enteredDoors;
     public GameObject questionPromptUI;
+    public bool enteredDoors;
 
     private void Start()
     {

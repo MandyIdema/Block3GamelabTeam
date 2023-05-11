@@ -12,16 +12,15 @@ namespace GM
     {
         [Header("Players")]
         [SerializeField] private List<GameObject> players = new List<GameObject>(); 
-        private int playersEntered;
         // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
-        [SyncVar] public bool allPlayersAppeared = false;
+        [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
         public enum GameStatus
         {
             Pending,
             Started,
             Finished
         }
-        private GameStatus currentStatus = GameStatus.Pending;
+        public GameStatus currentStatus = GameStatus.Pending;
 
         [Space]
 
@@ -31,6 +30,15 @@ namespace GM
         // [SerializeField] private TextMeshProUGUI _starsCollected;
         [SerializeField] private GameObject barriers;
 
+        [Space]
+
+        [Header("Other stuff")]
+        public StarManager _sm;
+
+        private void Awake()
+        {
+            _sm = FindObjectOfType<StarManager>();
+        }
         void Update()
         {
 
@@ -59,25 +67,9 @@ namespace GM
                // StarsScore();
             }
             if(currentStatus == GameStatus.Finished){
-                Debug.Log("GAME FINISHED");
-                SceneManager.LoadScene(2);
+                // [K] Temporarily disabled because I'm figuring out the save shenanigans
+                // SceneManager.LoadScene(2);
             }
-
-
-            //THIS PART OF THE CODE IS REDUNDANT, CHECK THE STAR MANAGER FOR THE ACTUAL TRACKER
-            //starsCollectedInTotal = 0;
-            //foreach (int value in starsCollected.Values)
-            //{
-            //    foreach (GameObject objects in starsCollected.Keys)
-            //    {
-            //        if (objects != null)
-            //        {
-            //            starsCollectedInTotal += value;
-            //        }
-            //    }
-
-            //}
-
         }
         void LateUpdate()
         {
@@ -89,14 +81,16 @@ namespace GM
 
         void OnTriggerEnter2D(Collider2D collider2D)
         {   
-            if(collider2D.tag == "Player" && currentStatus == GameStatus.Started){
-                if(!collider2D.GetComponent<PlayerBehaviour>().gameFinished){
-                    playersEntered++;
-                    collider2D.GetComponent<PlayerBehaviour>().gameFinished = true;
-                }
-            }
-            if(playersEntered==players.Count){
-              //  currentStatus = GameStatus.Finished;
+            //if(collider2D.tag == "Player" && currentStatus == GameStatus.Started){
+            //    if(!collider2D.GetComponent<PlayerBehaviour>().gameFinished){
+            //        collider2D.GetComponent<PlayerBehaviour>().gameFinished = true;
+            //    }
+            //}
+
+            if(_sm.starsTaken >= _sm.starsNeeded){
+              currentStatus = GameStatus.Finished;
+              XMLManager.instance.SaveStarScore();
+              Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
             }
         }
 

@@ -6,7 +6,8 @@ using Mirror;
 public class TeleportationScript : NetworkBehaviour
 {
     public GameObject teleportationDestination;
-    public GameObject localPlayer;
+    public float destructionTime = 3.0f;
+    private GameObject localPlayer;
     private bool teleported = false;
 
     // Start is called before the first frame update
@@ -56,6 +57,6 @@ public class TeleportationScript : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void DestroyObject()
     {
-        Destroy(gameObject, 5.0f);
+        Destroy(gameObject, destructionTime);
     }
 }
