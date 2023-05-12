@@ -55,6 +55,21 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Space]
 
+    [Header("Power-ups")]
+    [SyncVar] public bool possessesAPowerUp = false;
+    public enum PowerUpTypes
+    {
+        None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
+        SelfAcceleration,
+        GeneralLaziness,
+        Swapping,
+        Type4 // Has to be swapped for an actual spell
+    }
+
+    [SyncVar] public PowerUpTypes currentPowerUpType = PowerUpTypes.None;
+
+    [Space]
+
     [Header("UI")]
     public GameObject exitMenuPanel;
     public GameObject settingsMenuPanel;
@@ -68,7 +83,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Material playerMaterialClone;
 
-    float speed = 0.1f;
+    [HideInInspector] public float speed = 0.1f;
 
     private Rigidbody2D rb;
 
@@ -116,7 +131,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-
+            #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 anim.SetBool("WalkTrigger", true);
@@ -134,7 +149,9 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+            #endregion
 
+            #region Experimenting with Save System
             // [K] These can be used to test the save system
 
             if (Input.GetKeyDown(KeyCode.J))
@@ -154,6 +171,8 @@ public class PlayerBehaviour : NetworkBehaviour
                 Debug.Log("Score is reset");
             }
 
+            #endregion
+
             if (onDomain && finalDomain == 0)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -170,14 +189,20 @@ public class PlayerBehaviour : NetworkBehaviour
                 }
             }
 
+            if (possessesAPowerUp)
+            {
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    UsingAPowerUp();
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (exitMenuPanel != null)
                 {
                     exitMenuPanel.SetActive(!exitMenuPanel.activeSelf);
                 }
-
-     
             }
         }
 
@@ -236,6 +261,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     }
 
+    #region Default functions
+
     [SyncVar(hook = nameof(OnNameChanged))]
     public string playerName;
 
@@ -271,6 +298,7 @@ public class PlayerBehaviour : NetworkBehaviour
         Color color = new Color(1, 1, 1, 1/*Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)*/);
         CmdSetupPlayer(name, color);
     }
+    #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -309,10 +337,6 @@ public class PlayerBehaviour : NetworkBehaviour
         if (collision.gameObject.CompareTag("AvatarChoice"))
         {
             EnteringAvatarChoice(collision);
-        }
-        if (collision.gameObject.CompareTag("Star"))
-        {
-            CollectingStar(collision, collision.gameObject.GetComponent<NetworkIdentity>());
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -376,17 +400,40 @@ public class PlayerBehaviour : NetworkBehaviour
         onDomain = false;
     }
 
- 
-    public void CollectingStar(Collider2D starPrefab, NetworkIdentity item)
+    // [K] Set-up for Pepe
+    public void UsingAPowerUp()
     {
-        // item.AssignClientAuthority(connectionToClient);
-        // starsCollected++;
-        // This might have to be replaced into the Star Property script
-    }
+        switch (currentPowerUpType)
+        {
+            case PowerUpTypes.SelfAcceleration:
+                // Supposed to increase player's own speed for X seconds
+                // Should be restricted to this script alone
+                break;
 
-    public void CheckingStuff(Collider2D item)
-    {
-        item.gameObject.GetComponent<NetworkIdentity>().RemoveClientAuthority();
+            case PowerUpTypes.GeneralLaziness:
+                // Decreases the speed of everyone else for X seconds
+                // Access the Game Manager to get the list of all players
+                break;
+
+            case PowerUpTypes.Swapping:
+                // Randomly swaps the player with one of others
+                // Access the Game Manager to get a player other than the one using this, swap their transforms
+                // Will probably cause a fuck ton of bugs in combination with Puzzles for now but that's okay
+                break;
+
+            case PowerUpTypes.Type4:
+                // Placeholder, your suggestions are welcome
+                // I backtracked on the stealing other's stars idea because
+                // it would require revamping a lot of scripts AGAIN
+                break;
+
+            case PowerUpTypes.None:
+                // Default option, not sure if it is needed considering the
+                // possessesAPowerUp boolean but decided to keep it
+                break;
+        }
+        possessesAPowerUp = false;
+        currentPowerUpType = PowerUpTypes.None;
     }
 }
 

@@ -2,15 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEditor;
+
+
 
 public class TeleportationScript : NetworkBehaviour
 {
+    [Header("Teleportation")]
     public GameObject teleportationDestination;
-    public float destructionTime = 3.0f;
     private GameObject localPlayer;
     private bool teleported = false;
 
-    // Start is called before the first frame update
+    [Space]
+
+    [Header("Door Destruction")]
+    public float destructionTime = 3.0f;
+
+    [Space]
+
+    public bool destroyAnotherDoor = false;
+    [HideInInspector] public Object otherDoor;
+
+#if UNITY_EDITOR
+    // [K] This part allows you to drag the door to be destroyed ONLY if you need it
+    // It's mostly for portfolio experimentation
+    [CustomEditor(typeof(TeleportationScript))]
+    public class MyScriptEditor: Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            TeleportationScript script = (TeleportationScript)target;
+
+            if (script.destroyAnotherDoor)
+            {
+                EditorGUILayout.BeginHorizontal();
+
+                EditorGUILayout.LabelField("Chosen Door", GUILayout.MaxWidth(120));
+
+                script.otherDoor = EditorGUILayout.ObjectField(script.otherDoor, typeof(GameObject), true);
+
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+    }
+#endif
     void Start()
     {
         localPlayer = NetworkClient.localPlayer.gameObject;
@@ -57,6 +94,10 @@ public class TeleportationScript : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void DestroyObject()
     {
+        if (destroyAnotherDoor)
+        {
+            Destroy(otherDoor, destructionTime);
+        }
         Destroy(gameObject, destructionTime);
     }
 }

@@ -507,7 +507,7 @@ Transform:
   - {fileID: 1639469256}
   - {fileID: 1965046647}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32438990
 GameObject:
@@ -2419,7 +2419,7 @@ Transform:
   - {fileID: 868224528}
   - {fileID: 2109927584}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98185866
 GameObject:
@@ -2452,7 +2452,38 @@ Transform:
   - {fileID: 1316089689}
   - {fileID: 1504490914}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &116481107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116481108}
+  m_Layer: 0
+  m_Name: Power-up SP 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &116481108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116481107}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -33.3998, y: -6.9718866, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118167772
 GameObject:
@@ -2618,6 +2649,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.181131, y: 7.73}
   m_EdgeRadius: 0
+--- !u!1 &136058090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136058091}
+  m_Layer: 0
+  m_Name: Power-up SP 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &136058091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136058090}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9398003, y: -19.321884, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143850529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,7 +3126,7 @@ GameObject:
   - component: {fileID: 162174000}
   - component: {fileID: 162174001}
   m_Layer: 0
-  m_Name: Spawn Area 5
+  m_Name: General Spawn Area 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3140,7 +3202,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &164690630
 GameObject:
@@ -3195,7 +3257,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 686271892}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 1785039278}
 --- !u!114 &164690633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3245,8 +3309,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &164690634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,7 +3727,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 460941701}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &246583285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3713,8 +3779,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &246583286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,7 +4164,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 723757076}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 624219908}
 --- !u!114 &260526937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4148,8 +4216,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &260526938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4267,7 +4335,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 273262274}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &273262277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4317,8 +4387,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &273262278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4685,7 +4755,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1357668144}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &374713392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4735,8 +4807,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &374713393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,6 +5038,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1046554870}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &440454066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440454067}
+  m_Layer: 0
+  m_Name: Power-up SP 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440454067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440454066}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20.4502, y: 0.2881136, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441794978
 GameObject:
@@ -6316,7 +6419,7 @@ Transform:
   m_Children:
   - {fileID: 1470247771}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &569332167
 MonoBehaviour:
@@ -6717,7 +6820,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 723757076}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 260526934}
 --- !u!114 &624219911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6767,8 +6872,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &624219912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6994,6 +7099,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &664962919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664962920}
+  m_Layer: 0
+  m_Name: Power-up SP 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664962920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664962919}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.2101994, y: -11.491885, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686271892
 GameObject:
   m_ObjectHideFlags: 0
@@ -8116,7 +8252,7 @@ Transform:
   - {fileID: 1617460827}
   - {fileID: 1363176732}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &796880090
 GameObject:
@@ -9423,7 +9559,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1498442455}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 2143789283}
 --- !u!114 &895521839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9473,8 +9611,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &895521840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9550,12 +9688,12 @@ GameObject:
   - component: {fileID: 897265984}
   - component: {fileID: 897265985}
   m_Layer: 0
-  m_Name: Star Container // CURRENTLY UNUSED
+  m_Name: Star Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &897265984
 Transform:
   m_ObjectHideFlags: 0
@@ -9569,7 +9707,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &897265985
 MonoBehaviour:
@@ -9641,7 +9779,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1101378996}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &900305527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9691,8 +9831,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &900305528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10424,7 +10564,7 @@ Transform:
   - {fileID: 921036993}
   - {fileID: 963194807}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048924335
 GameObject:
@@ -10933,7 +11073,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1088519458
 GameObject:
@@ -11019,6 +11159,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1091158162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091158163}
+  m_Layer: 0
+  m_Name: Power-up SP 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091158163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091158162}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.289801, y: 5.568114, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101378996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11077,6 +11248,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1109391373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1109391374}
+  m_Layer: 0
+  m_Name: Power-up Spawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1109391374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109391373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1091158163}
+  - {fileID: 1923348511}
+  - {fileID: 1856152356}
+  - {fileID: 116481108}
+  - {fileID: 664962920}
+  - {fileID: 440454067}
+  - {fileID: 136058091}
+  - {fileID: 1868154222}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1110437401
 GameObject:
   m_ObjectHideFlags: 0
@@ -11203,7 +11413,6 @@ GameObject:
   - component: {fileID: 1167526877}
   - component: {fileID: 1167526876}
   - component: {fileID: 1167526878}
-  - component: {fileID: 1167526880}
   m_Layer: 0
   m_Name: Star Manager
   m_TagString: StarManager
@@ -11262,7 +11471,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167526875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.57, y: 12.71, z: -0.4344418}
+  m_LocalPosition: {x: 29.35, y: 12.71, z: -0.4344418}
   m_LocalScale: {x: 16.65672, y: 16.575, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11286,32 +11495,6 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!61 &1167526880
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167526875}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1177400706
 GameObject:
   m_ObjectHideFlags: 0
@@ -11486,7 +11669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190740603}
   m_Layer: 0
-  m_Name: Spawn Areas
+  m_Name: Star Spawn Areas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11525,7 +11708,7 @@ Transform:
   - {fileID: 371085882}
   - {fileID: 367294758}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1271791972
 GameObject:
@@ -11702,7 +11885,7 @@ GameObject:
   - component: {fileID: 1306928145}
   - component: {fileID: 1306928146}
   m_Layer: 0
-  m_Name: Spawn Area 3
+  m_Name: General Spawn Area 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11935,7 +12118,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 367294756}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &1319338538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11985,8 +12170,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &1319338539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12221,8 +12406,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &1319639547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12303,7 +12488,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 757862902}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!1 &1323308437
 GameObject:
   m_ObjectHideFlags: 0
@@ -12881,7 +13068,7 @@ GameObject:
   - component: {fileID: 1433998019}
   - component: {fileID: 1433998020}
   m_Layer: 0
-  m_Name: Spawn Area 4
+  m_Name: General Spawn Area 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13699,7 +13886,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 371085880}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 1991874761}
 --- !u!114 &1610714513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13749,8 +13938,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &1610714514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14358,7 +14547,7 @@ GameObject:
   - component: {fileID: 1626679173}
   - component: {fileID: 1626679174}
   m_Layer: 0
-  m_Name: Spawn Area 6
+  m_Name: General Spawn Area 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14435,7 +14624,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1638369112
 MonoBehaviour:
@@ -14743,7 +14932,7 @@ GameObject:
   - component: {fileID: 1656788235}
   - component: {fileID: 1656788236}
   m_Layer: 0
-  m_Name: Spawn Area 7
+  m_Name: General Spawn Area 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14863,6 +15052,85 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
+--- !u!1 &1681720177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681720180}
+  - component: {fileID: 1681720179}
+  - component: {fileID: 1681720178}
+  m_Layer: 0
+  m_Name: Power-Up Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1681720178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681720177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3702167670
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
+--- !u!114 &1681720179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681720177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b53316a44dc1c4ca47df9c67f057ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  powerUpSpawns:
+  - {fileID: 1091158163}
+  - {fileID: 1923348511}
+  - {fileID: 1856152356}
+  - {fileID: 116481108}
+  - {fileID: 664962920}
+  - {fileID: 440454067}
+  - {fileID: 136058091}
+  - {fileID: 1868154222}
+  powerUpPrefabs:
+  - {fileID: 6099586060066013055, guid: 700ee66fb49e3da488327e9b22f9564b, type: 3}
+  - {fileID: 6099586060066013055, guid: ce37bc9bb11b4e341bfada7ddd9a2f21, type: 3}
+  - {fileID: 6099586060066013055, guid: 1d67b8c9317fb484f9ab8c091c75594d, type: 3}
+  - {fileID: 6099586060066013055, guid: 47074c2c4ae70854abb1a22e690db3e8, type: 3}
+--- !u!4 &1681720180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681720177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.32, y: 13.788627, z: -0.067084394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1682954743
 GameObject:
   m_ObjectHideFlags: 0
@@ -15882,7 +16150,7 @@ GameObject:
   - component: {fileID: 1777682564}
   - component: {fileID: 1777682565}
   m_Layer: 0
-  m_Name: Spawn Area 2
+  m_Name: General Spawn Area 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15982,7 +16250,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 686271892}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 164690630}
 --- !u!114 &1785039281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16032,8 +16302,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &1785039282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16174,7 +16444,7 @@ Transform:
   - {fileID: 1319338536}
   - {fileID: 848150320}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1794942599 stripped
 MonoBehaviour:
@@ -16638,6 +16908,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc1355bdb9c2a834ab1d98e10b542345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1856152355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856152356}
+  m_Layer: 0
+  m_Name: Power-up SP 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856152356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856152355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.8101997, y: 5.788114, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1856964801
 GameObject:
   m_ObjectHideFlags: 0
@@ -17028,6 +17329,37 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
+--- !u!1 &1868154221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1868154222}
+  m_Layer: 0
+  m_Name: Power-up SP 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1868154222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868154221}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.8398, y: -10.6318865, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875643467
 GameObject:
   m_ObjectHideFlags: 0
@@ -17039,7 +17371,7 @@ GameObject:
   - component: {fileID: 1875643468}
   - component: {fileID: 1875643469}
   m_Layer: 0
-  m_Name: Spawn Area 1
+  m_Name: General Spawn Area 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17429,6 +17761,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918200392}
   m_CullTransparentMesh: 1
+--- !u!1 &1923348510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1923348511}
+  m_Layer: 0
+  m_Name: Power-up SP 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1923348511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923348510}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.3598003, y: 18.158113, z: -0.46648526}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1109391374}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1924306032
 GameObject:
   m_ObjectHideFlags: 0
@@ -17705,7 +18068,7 @@ Transform:
   - {fileID: 1924306033}
   - {fileID: 118167773}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965046645
 GameObject:
@@ -17992,7 +18355,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 371085880}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 1610714510}
 --- !u!114 &1991874764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18042,8 +18407,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &1991874765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34057,7 +34422,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1557770273}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 0
+  otherDoor: {fileID: 0}
 --- !u!114 &2122882935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34107,8 +34474,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &2122882936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34226,7 +34593,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1498442455}
-  localPlayer: {fileID: 0}
+  destructionTime: 3
+  destroyAnotherDoor: 1
+  otherDoor: {fileID: 895521836}
 --- !u!114 &2143789286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34276,8 +34645,8 @@ MonoBehaviour:
   - {fileID: 48698487}
   RandomObjectSetActive: 0
   localPlayer: {fileID: 0}
-  enteredDoors: 0
   questionPromptUI: {fileID: 1931830126}
+  enteredDoors: 0
 --- !u!114 &2143789287
 MonoBehaviour:
   m_ObjectHideFlags: 0
