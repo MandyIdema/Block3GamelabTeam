@@ -11,7 +11,7 @@ namespace GM
     public class GameManager : NetworkBehaviour
     {
         [Header("Players")]
-        [SerializeField] private List<GameObject> players = new List<GameObject>(); 
+        [SerializeField] public List<GameObject> players = new List<GameObject>(); 
         // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
         [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
         public enum GameStatus
@@ -48,7 +48,7 @@ namespace GM
                 // All player objects are returned in an array via the FindGameObjectsWithTag function
                 // But players have to be in a list, since it has to be resizeable
                 GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
-                if (playerObjects.Length != players.Count + 1)
+                if (playerObjects.Length != players.Count)
                 {
                     players.Clear();
                     players.AddRange(playerObjects);

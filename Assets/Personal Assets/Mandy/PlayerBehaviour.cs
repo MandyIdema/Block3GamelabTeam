@@ -1,7 +1,9 @@
+using GM;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public enum PlayerDomain
 {
@@ -57,6 +59,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
+    [SyncVar] public bool turnOffSpeed = false;
+    [SerializeField] private GameObject gm;
     public enum PowerUpTypes
     {
         None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
@@ -104,6 +108,7 @@ public class PlayerBehaviour : NetworkBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
+        gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
     }
 
     private void Update()
@@ -193,7 +198,7 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    UsingAPowerUp();
+                    StartCoroutine(UsingAPowerUp());
                 }
             }
 
@@ -234,7 +239,9 @@ public class PlayerBehaviour : NetworkBehaviour
     void FixedUpdate()
     {
         //if(!QuestionScript.isEnabled){
+        if(!turnOffSpeed){
             movement();
+        }
         //}
     }
 
@@ -249,14 +256,10 @@ public class PlayerBehaviour : NetworkBehaviour
         //Don't run the code if it is not the local player
         if(isLocalPlayer)
         {
-            
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
             Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
             this.transform.position = transform.position + movement;
-            
-           
-
         }
 
     }
@@ -401,35 +404,62 @@ public class PlayerBehaviour : NetworkBehaviour
     }
 
     // [K] Set-up for Pepe
-    public void UsingAPowerUp()
+    IEnumerator UsingAPowerUp()
     {
+        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        int _countPlayers = _Players.Count;
         switch (currentPowerUpType)
         {
             case PowerUpTypes.SelfAcceleration:
                 // Supposed to increase player's own speed for X seconds
                 // Should be restricted to this script alone
+                speed+=0.3f;
+                yield return new WaitForSeconds(3);
+                speed-=0.3f;
                 break;
 
             case PowerUpTypes.GeneralLaziness:
                 // Decreases the speed of everyone else for X seconds
                 // Access the Game Manager to get the list of all players
+                Debug.Log(_countPlayers);
+                for (int i = 0; i<_countPlayers;i++){
+                    if(_Players[i].name != gameObject.name){
+
+                        _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = true;
+                    }
+                }     
+                yield return new WaitForSeconds(3);
+                if(_countPlayers>1){
+                    for(int i=0;i<_countPlayers;i++){
+                        _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = false;
+                    }
+                }
                 break;
 
             case PowerUpTypes.Swapping:
                 // Randomly swaps the player with one of others
                 // Access the Game Manager to get a player other than the one using this, swap their transforms
                 // Will probably cause a fuck ton of bugs in combination with Puzzles for now but that's okay
+                if(_countPlayers>1){
+                    Vector3 _tempPos = gameObject.transform.position;
+                    int _randNum = UnityEngine.Random.Range(0,_countPlayers-1);
+                    _Players[_randNum].transform.position = _tempPos;
+                }
+
+                yield return new WaitForSeconds(3);
                 break;
 
             case PowerUpTypes.Type4:
                 // Placeholder, your suggestions are welcome
                 // I backtracked on the stealing other's stars idea because
                 // it would require revamping a lot of scripts AGAIN
+                yield return new WaitForSeconds(3);
                 break;
 
             case PowerUpTypes.None:
                 // Default option, not sure if it is needed considering the
                 // possessesAPowerUp boolean but decided to keep it
+                yield return new WaitForSeconds(3);
                 break;
         }
         possessesAPowerUp = false;
