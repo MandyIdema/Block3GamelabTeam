@@ -14,6 +14,7 @@ public class PowerUpManager : NetworkBehaviour
     }
 
     // [K] This has to be swapped for (probably) ClientRpc later on
+    [ClientRpc]
     void RpcSpawnPowerUps()
     {
         for (int i = 0; i < powerUpSpawns.Count; i++)

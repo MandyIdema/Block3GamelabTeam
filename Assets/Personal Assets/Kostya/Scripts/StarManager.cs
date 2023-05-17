@@ -134,7 +134,6 @@ namespace GM
                     GameObject star = Instantiate(starPrefab, spawnPosition, transform.rotation); 
                     // This has to be done BEFORE the loop because bounds.extents.x does NOT work unless the game object is instantiated already
                     // For some reason OverlapCircle works in a VERY questionable manner and I cannot understand why
-
                     star.name = "Star " + (starsSpawnedTotal + j + 1);
                     star.transform.SetParent(parentStarObject);
                     NetworkServer.Spawn(star);
