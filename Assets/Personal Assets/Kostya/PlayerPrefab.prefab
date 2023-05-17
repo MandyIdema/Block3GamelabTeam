@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 8484394086087375690}
   - component: {fileID: 8938317476443352461}
   - component: {fileID: 3732968277159558847}
+  - component: {fileID: -5830964331877000392}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -379,10 +380,15 @@ MonoBehaviour:
   gameFinished: 0
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
+  possessesAPowerUp: 0
+  turnOffSpeed: 0
+  gm: {fileID: 0}
+  currentPowerUpType: 0
   exitMenuPanel: {fileID: 0}
   settingsMenuPanel: {fileID: 0}
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
+  speed: 0.1
   TeleportationDoor:
   - {fileID: 0}
   TeleportationDestination:
@@ -485,3 +491,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5830964331877000392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432335774314543091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160b757df54a6154da4f6451ea31e5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 0
+  runOnlyOnce: 1
