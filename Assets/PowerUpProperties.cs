@@ -14,11 +14,14 @@ public class PowerUpProperties : NetworkBehaviour
     }
 
     public PowerUpTypes powerUpType;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            if (collision.gameObject.GetComponent<PlayerBehaviour>().possessesAPowerUp)
+            {
+                return;
+            }
             collision.gameObject.GetComponent<PlayerBehaviour>().possessesAPowerUp = true;
             switch (powerUpType)
             {
@@ -36,9 +39,9 @@ public class PowerUpProperties : NetworkBehaviour
                     break;
             }
 
-            gameObject.GetComponent<Renderer>().enabled = false;
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            gameObject.GetComponent<Collider>().enabled = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

@@ -408,21 +408,24 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         List<GameObject> _Players = gm.GetComponent<GameManager>().players;
         int _countPlayers = _Players.Count;
+
+        possessesAPowerUp = false;
+
         switch (currentPowerUpType)
         {
             case PowerUpTypes.SelfAcceleration:
                 // Supposed to increase player's own speed for X seconds
                 // Should be restricted to this script alone
-                speed+=0.3f;
+                speed *= 2;
                 yield return new WaitForSeconds(3);
-                speed-=0.3f;
+                speed /= 2;
                 break;
 
             case PowerUpTypes.GeneralLaziness:
                 // Decreases the speed of everyone else for X seconds
                 // Access the Game Manager to get the list of all players
                 Debug.Log(_countPlayers);
-                for (int i = 0; i<_countPlayers;i++){
+                for (int i = 0; i < _countPlayers; i++){
                     if(_Players[i].name != gameObject.name){
 
                         _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = true;
@@ -430,7 +433,7 @@ public class PlayerBehaviour : NetworkBehaviour
                 }     
                 yield return new WaitForSeconds(3);
                 if(_countPlayers>1){
-                    for(int i=0;i<_countPlayers;i++){
+                    for(int i = 0;i < _countPlayers; i++){
                         _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = false;
                     }
                 }
