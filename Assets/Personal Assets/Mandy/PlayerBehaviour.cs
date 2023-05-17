@@ -87,7 +87,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Material playerMaterialClone;
 
-    [HideInInspector] public float speed = 0.1f;
+    public float speed;
 
     private Rigidbody2D rb;
 
