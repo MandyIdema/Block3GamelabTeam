@@ -135,7 +135,8 @@ namespace Mirror.Discovery
                 }
             }
 
-            GUILayout.EndArea();
+            // [K] Seems to fix the stack issue
+           // GUILayout.EndArea();
         }
 
         void Connect(ServerResponse info)
