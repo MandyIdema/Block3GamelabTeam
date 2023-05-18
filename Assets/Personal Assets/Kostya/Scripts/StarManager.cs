@@ -44,7 +44,10 @@ namespace GM
             // Templates for later implementation
             // ObjectPositioning();
             // ObjectSpawning();
-            RpcSpawnStars();
+            if (isServer)
+            {
+                RpcSpawnStars();
+            }
         }
 
         //void ObjectPositioning()
@@ -91,8 +94,7 @@ namespace GM
 
     private void FixedUpdate()
         {
-            // Disables the door if the players have collected enough stars
-            RpcDestroyDoor();
+            //RpcDestroyDoor();
         }
 
         // Checks how many stars the players have collected in total
@@ -110,7 +112,7 @@ namespace GM
 
 
 
-        [ClientRpc]
+       /* [ClientRpc]
         void RpcDestroyDoor()
         {
             if (starsTaken >= starsNeeded)
@@ -119,7 +121,7 @@ namespace GM
                 //set active only dissappears for one person 
                 //exitDoor.SetActive(false);
             }
-        }
+        }*/
 
         // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]

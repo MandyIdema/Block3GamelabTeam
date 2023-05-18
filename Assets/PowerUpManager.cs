@@ -10,10 +10,12 @@ public class PowerUpManager : NetworkBehaviour
     public List<GameObject> readyPowerUps;
     private void Start()
     {
-        RpcSpawnPowerUps();
+        if (isServer)
+        {
+            RpcSpawnPowerUps();
+        }
     }
 
-    // [K] This has to be swapped for (probably) ClientRpc later on
     [ClientRpc]
     void RpcSpawnPowerUps()
     {

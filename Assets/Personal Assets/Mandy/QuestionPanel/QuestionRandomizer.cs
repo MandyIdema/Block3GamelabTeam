@@ -28,7 +28,9 @@ public class QuestionRandomizer : NetworkBehaviour
         if (!isActive)
         {
             RandomObjectSetActive = Random.Range(0, QuestionList.Count);
-            QuestionList[RandomObjectSetActive].SetActive(true);
+            GameObject activatedQuestion = QuestionList[RandomObjectSetActive];
+            activatedQuestion.SetActive(true);
+            activatedQuestion.GetComponent<QuestionScript>()._tsObject = gameObject.GetComponent<TeleportationScript>();
             QuestionList.Remove(QuestionList[RandomObjectSetActive]);
             isActive = true;
             enteredDoors = true;

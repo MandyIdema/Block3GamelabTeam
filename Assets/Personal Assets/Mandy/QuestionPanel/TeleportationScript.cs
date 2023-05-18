@@ -10,8 +10,15 @@ public class TeleportationScript : NetworkBehaviour
 {
     [Header("Teleportation")]
     public GameObject teleportationDestination;
+    public enum puzzleStatus
+    {
+        Unsolved,
+        Solved
+    }
+    [SyncVar] public puzzleStatus currentPuzzleStatus;
+    [SyncVar] public GameObject solverUser;
     private GameObject localPlayer;
-    private bool teleported = false;
+    //private bool teleported = false;
 
     [Space]
 
@@ -56,34 +63,23 @@ public class TeleportationScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(QuestionScript.QuestionAwnsered && GetComponent<QuestionRandomizer>().enteredDoors && !teleported){
-            Teleport(localPlayer);
-            // QuestionScript.isEnabled = false;
+        if (QuestionScript.QuestionAwnsered && GetComponent<QuestionRandomizer>().enteredDoors /*&& !teleported*/)
+        {
+            if (currentPuzzleStatus == puzzleStatus.Unsolved)
+            {
+                solverUser = localPlayer;
+                currentPuzzleStatus = puzzleStatus.Solved;
+                Teleport(localPlayer);
+            }
+
         }
     }
-
-/*     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (localPlayer)
-        {
-            if (QuestionScript.QuestionAwnsered)
-            {
-                if (collision.gameObject == localPlayer)
-                {
-                    localPlayer.transform.position = teleportationDestination.transform.position;
-                    DestroyObject();
-                }
-            }
-        }
-
-    } */
-
     private void Teleport(GameObject _player){
         if (_player == localPlayer)
         {
             if (QuestionScript.QuestionAwnsered)
             {
-                teleported = true;
+                //teleported = true;
                 localPlayer.transform.position = teleportationDestination.transform.position;
                 DestroyObject();
             }

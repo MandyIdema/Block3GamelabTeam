@@ -10,8 +10,8 @@ public class QuestionScript : MonoBehaviour
     public TMP_Text awnserText;
 
     // public static bool isEnabled;
-    public static bool QuestionAwnsered;   
-
+    public static bool QuestionAwnsered;
+    public TeleportationScript _tsObject;
 
     private void Start()
     {
@@ -42,7 +42,14 @@ public class QuestionScript : MonoBehaviour
     {
         //If the awnser is right, state in the feedback that it is right and close the panel
         awnserText.enabled = true;
-        awnserText.GetComponent<TextMeshProUGUI>().text = "Goed!";
+        if (_tsObject.currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+        {
+            awnserText.GetComponent<TextMeshProUGUI>().text = "Goed!";
+        }
+        else
+        {
+            awnserText.GetComponent<TextMeshProUGUI>().text = "Goed! Maar te laat!";
+        }
         Debug.Log("This is the right awnser");
         StartCoroutine(closeWindow());
     }
@@ -53,7 +60,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("Closed window");
         QuestionRandomizer.isActive = false;
         QuestionAwnsered = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         this.gameObject.SetActive(false);
     }
     

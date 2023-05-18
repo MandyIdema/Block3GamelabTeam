@@ -7540,6 +7540,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 686271892}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 1785039278}
@@ -9703,6 +9705,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 460941701}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -10604,6 +10608,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 723757076}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 624219908}
@@ -11234,6 +11240,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 273262274}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -13934,7 +13942,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1357668144}
-  destructionTime: 3
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
+  destructionTime: 10
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
 --- !u!114 &374713392
@@ -22166,6 +22176,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 723757076}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 260526934}
@@ -31141,6 +31153,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1498442455}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 2143789283}
@@ -31445,6 +31459,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1101378996}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -36476,9 +36492,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -344074555
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 1, b: 0.07586002, a: 1}
   m_FlipX: 0
@@ -45151,6 +45167,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 367294756}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -45521,6 +45539,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 757862902}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -54494,6 +54514,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 371085880}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 1991874761}
@@ -56091,9 +56113,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -344074555
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.67495245, b: 0, a: 1}
   m_FlipX: 0
@@ -58194,9 +58216,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -344074555
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.07792886, g: 0, b: 0.8962264, a: 1}
   m_FlipX: 0
@@ -61804,6 +61826,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 686271892}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 164690630}
@@ -68372,9 +68396,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -344074555
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.69082355, a: 1}
   m_FlipX: 0
@@ -69743,6 +69767,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 371085880}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 1610714510}
@@ -89580,6 +89606,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1557770273}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
@@ -90757,6 +90785,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   teleportationDestination: {fileID: 1498442455}
+  currentPuzzleStatus: 0
+  solverUser: {fileID: 0}
   destructionTime: 3
   destroyAnotherDoor: 1
   otherDoor: {fileID: 895521836}

@@ -18,8 +18,12 @@ namespace GM
         }
         private void Update()
         {
-            StarsCalculation();
-            RpcStarsUpdate();
+            if (isServer)
+            {
+                StarsCalculation();
+                RpcStarsUpdate();
+            }
+
         }
 
         [Server]
