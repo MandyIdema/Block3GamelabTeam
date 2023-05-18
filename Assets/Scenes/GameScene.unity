@@ -13944,7 +13944,7 @@ MonoBehaviour:
   teleportationDestination: {fileID: 1357668144}
   currentPuzzleStatus: 0
   solverUser: {fileID: 0}
-  destructionTime: 10
+  destructionTime: 2
   destroyAnotherDoor: 0
   otherDoor: {fileID: 0}
 --- !u!114 &374713392
