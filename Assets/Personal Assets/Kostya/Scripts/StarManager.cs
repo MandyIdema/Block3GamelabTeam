@@ -34,67 +34,44 @@ namespace GM
 
         [Header("Other Stuff")]
         public GameManager _gm;
+        [SyncVar] public bool positionUpdate = false;
         private void Awake()
         {
             _gm = FindObjectOfType<GameManager>();
         }
     private void Start()
         {
-
-            // Templates for later implementation
-            // ObjectPositioning();
-            // ObjectSpawning();
             if (isServer)
             {
                 RpcSpawnStars();
             }
+            if (!positionUpdate)
+            {
+                StartCoroutine(BeginningUpdate(0.5f));
+            }
+        }
+        // [K] A sorting mechanism to reposition all of the stars for the player
+        IEnumerator UpdateStarPosition()
+        {
+            foreach (GameObject starObject in starObjects)
+            {
+                while (CheckStarOverlap(starObject))
+                {
+                    starObject.transform.position = DetermineSpawnPosition(starObject.GetComponent<StarProperty>().spawnArea);
+                    Debug.Log($"The position of the {starObject.name} was changed");
+                    CheckStarOverlap(starObject);
+                    yield return null;
+                }
+                starObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+           
         }
 
-        //void ObjectPositioning()
-        //{
-        //    int count = Random.Range(2, 6);
-
-        //    for (int i = 0; i < count;)
-        //    {
-        //        float x = Random.Range(-2.0f, 2.0f);
-        //        float y = Random.Range(-4.0f, 4.0f);
-        //        Vector2 point = new Vector2(x, y);
-
-        //        if (points.Count == 0)
-        //        {
-        //            points.Add(point);
-        //            i++;
-        //            continue;
-        //        }
-
-        //        for (int j = 0; j < points.Count; j++)
-        //        {
-
-        //            if ((point - points[j]).sqrMagnitude > distanceBetweenObjects * distanceBetweenObjects)
-        //            {
-        //                if (j == points.Count - 1)
-        //                {
-        //                    points.Add(point);
-        //                    i++;
-        //                }
-        //                continue;
-        //            }
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //void ObjectSpawning()
-        //{
-        //    for (int i = 0; i < points.Count; i++)
-        //    {
-        //        Instantiate(enemy, points[i], Quaternion.identity);
-        //    }
-        //}
-
-    private void FixedUpdate()
+        IEnumerator BeginningUpdate(float waitTime)
         {
-            //RpcDestroyDoor();
+            positionUpdate = true;
+            yield return new WaitForSeconds(waitTime);
+            StartCoroutine(UpdateStarPosition());
         }
 
         // Checks how many stars the players have collected in total
@@ -110,19 +87,6 @@ namespace GM
             }
         }
 
-
-
-       /* [ClientRpc]
-        void RpcDestroyDoor()
-        {
-            if (starsTaken >= starsNeeded)
-            {
-                Destroy(exitDoor);
-                //set active only dissappears for one person 
-                //exitDoor.SetActive(false);
-            }
-        }*/
-
         // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]
         void RpcSpawnStars()
@@ -131,19 +95,39 @@ namespace GM
             {
                 for (int j = 0; j < starsWithinAnArea[i]; j++)
                 {
-                    Vector2 spawnPosition = new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.8f, 0.8f));
-                    spawnPosition = spawnAreas[i].transform.TransformPoint(spawnPosition * .5f);
-                    GameObject star = Instantiate(starPrefab, spawnPosition, transform.rotation); 
-                    // This has to be done BEFORE the loop because bounds.extents.x does NOT work unless the game object is instantiated already
-                    // For some reason OverlapCircle works in a VERY questionable manner and I cannot understand why
+                    Vector2 spawningPosition = DetermineSpawnPosition(i);
+                    GameObject star = Instantiate(starPrefab, spawningPosition, transform.rotation);
+                    star.GetComponent<StarProperty>().spawnArea = i;
                     star.name = "Star " + (starsSpawnedTotal + j + 1);
                     star.transform.SetParent(parentStarObject);
-                    NetworkServer.Spawn(star);
                     starObjects.Add(star);
+                    NetworkServer.Spawn(star);
                 }
                 starsSpawnedTotal += starsWithinAnArea[i];
             }
             starsNeeded = starsSpawnedTotal - 15;
+        }
+
+        // [K] Function to determine a random positioning within the spawn area
+        Vector2 DetermineSpawnPosition(int currentArea)
+        {
+            Vector2 spawnPosition = new(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+            spawnPosition = spawnAreas[currentArea].transform.TransformPoint(spawnPosition * .5f);
+            return spawnPosition;
+        }
+
+        // [K] Checks if the star overlaps with another star or an environmental object
+         bool CheckStarOverlap(GameObject starObject)
+        {
+            if (Physics2D.IsTouchingLayers(starObject.GetComponent<Collider2D>(), LayerMask.GetMask("Stars"))
+                || Physics2D.IsTouchingLayers(starObject.GetComponent<Collider2D>(), LayerMask.GetMask("Objects")))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

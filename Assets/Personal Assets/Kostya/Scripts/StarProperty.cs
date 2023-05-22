@@ -16,8 +16,9 @@ namespace GM
 
         [SyncVar] public StarStatus currentStatus;
         [SerializeField] private GameObject playerOwner;
-        public GameManager _gm;
-        public StarManager _sm;
+        [HideInInspector] public int spawnArea;
+        [HideInInspector] public GameManager _gm;
+        [HideInInspector] public StarManager _sm;
         public void Start()
         {
             
