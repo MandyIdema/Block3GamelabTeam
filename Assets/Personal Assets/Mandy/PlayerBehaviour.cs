@@ -159,6 +159,16 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                anim.SetBool("InteractionTrigger", true);
+                //activated
+            }
+            else
+            {
+                anim.SetBool("InteractionTrigger", false);
+            }
             #endregion
 
             #region Experimenting with Save System
@@ -191,6 +201,8 @@ public class PlayerBehaviour : NetworkBehaviour
                 }
             }
 
+            
+
             if (inQuestionRange)
             {
                 AlertSprite.SetActive(true);
@@ -198,6 +210,11 @@ public class PlayerBehaviour : NetworkBehaviour
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     QuestionPrompted();
+                    anim.SetBool("InteractionTrigger", true);
+                }
+                else
+                {
+                    anim.SetBool("InteractionTrigger", false);
                 }
             }
             else
