@@ -96,6 +96,9 @@ public class PlayerBehaviour : NetworkBehaviour
     //public GameObject[] TeleportationDoor;
     //public GameObject[] TeleportationDestination;
 
+    // ===== Alert =========
+    public GameObject AlertSprite;
+
     void Start()
     {
         defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -136,8 +139,9 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+            //If these inputs are made, trigger the animation bool
             #region Movement
-            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             {
                 anim.SetBool("WalkTrigger", true);
             }
@@ -146,11 +150,12 @@ public class PlayerBehaviour : NetworkBehaviour
                 anim.SetBool("WalkTrigger", false);
             }
 
-            if (Input.GetKey(KeyCode.A))
+            //If the player moves from left to right, mirror the character (look into direction
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
@@ -188,10 +193,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
             if (inQuestionRange)
             {
+                AlertSprite.SetActive(true);
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     QuestionPrompted();
                 }
+            }
+            else
+            {
+                AlertSprite.SetActive(false);
             }
 
             if (possessesAPowerUp)
