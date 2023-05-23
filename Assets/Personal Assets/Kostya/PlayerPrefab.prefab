@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6438851221894903260
 Transform:
   m_ObjectHideFlags: 0
@@ -388,10 +388,6 @@ MonoBehaviour:
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
   speed: 0.08
-  TeleportationDoor:
-  - {fileID: 0}
-  TeleportationDestination:
-  - {fileID: 4878837308957753084, guid: 92d5e4de686499e41844541f75b8f9d2, type: 3}
   playerName: PlayerName
   playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
