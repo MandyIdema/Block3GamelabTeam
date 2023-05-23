@@ -19,7 +19,7 @@ namespace GM
         [Space]
 
         [Header("Stars")]
-        public int starsNeeded = 1; // Number of stars required to finish the game
+        [SyncVar] public int starsNeeded = 100; // Number of stars required to finish the game
         [SyncVar] private int starsSpawnedTotal = 0; // Total number of stars spawned
         [SyncVar] public int starsTaken = 0; // Current number of stars possessed by all the players in total
         public List<GameObject> starObjects = new List<GameObject>(); // All of the star objects
@@ -44,10 +44,11 @@ namespace GM
             if (isServer)
             {
                 RpcSpawnStars();
-            }
-            if (!positionUpdate)
-            {
-                StartCoroutine(BeginningUpdate(0.5f));
+
+                if (!positionUpdate)
+                {
+                    RpcClientStarSpawn();
+                }
             }
         }
         // [K] A sorting mechanism to reposition all of the stars for the player
@@ -62,7 +63,9 @@ namespace GM
                     CheckStarOverlap(starObject);
                     yield return null;
                 }
+                NetworkServer.Spawn(starObject);
                 starObject.GetComponent<SpriteRenderer>().enabled = true;
+
             }
            
         }
@@ -72,6 +75,12 @@ namespace GM
             positionUpdate = true;
             yield return new WaitForSeconds(waitTime);
             StartCoroutine(UpdateStarPosition());
+        }
+
+        [ClientRpc]
+        void RpcClientStarSpawn()
+        {
+            StartCoroutine(BeginningUpdate(0.5f));
         }
 
         // Checks how many stars the players have collected in total
@@ -97,11 +106,11 @@ namespace GM
                 {
                     Vector2 spawningPosition = DetermineSpawnPosition(i);
                     GameObject star = Instantiate(starPrefab, spawningPosition, transform.rotation);
+                    // NetworkServer.Spawn(star);
                     star.GetComponent<StarProperty>().spawnArea = i;
                     star.name = "Star " + (starsSpawnedTotal + j + 1);
                     star.transform.SetParent(parentStarObject);
                     starObjects.Add(star);
-                    NetworkServer.Spawn(star);
                 }
                 starsSpawnedTotal += starsWithinAnArea[i];
             }

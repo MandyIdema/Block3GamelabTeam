@@ -29,6 +29,7 @@ public class TeleportationScript : NetworkBehaviour
 
     public bool destroyAnotherDoor = false;
     [HideInInspector] public Object otherDoor;
+    [HideInInspector] public GameObject otherDoorConvert;
 
 #if UNITY_EDITOR
     // [K] This part allows you to drag the door to be destroyed ONLY if you need it
@@ -58,6 +59,10 @@ public class TeleportationScript : NetworkBehaviour
     void Start()
     {
         localPlayer = NetworkClient.localPlayer.gameObject;
+        if (otherDoor != null)
+        {
+            otherDoorConvert = (GameObject)otherDoor;
+        }
     }
 
     // Update is called once per frame
@@ -65,7 +70,8 @@ public class TeleportationScript : NetworkBehaviour
     {
         if (QuestionScript.QuestionAwnsered && GetComponent<QuestionRandomizer>().enteredDoors /*&& !teleported*/)
         {
-            if (currentPuzzleStatus == puzzleStatus.Unsolved)
+            if (currentPuzzleStatus == puzzleStatus.Unsolved && 
+                (otherDoorConvert == null || otherDoorConvert.GetComponent<TeleportationScript>().currentPuzzleStatus == puzzleStatus.Unsolved))
             {
                 solverUser = localPlayer;
                 currentPuzzleStatus = puzzleStatus.Solved;
@@ -92,7 +98,7 @@ public class TeleportationScript : NetworkBehaviour
     {
         if (destroyAnotherDoor)
         {
-            Destroy(otherDoor, destructionTime);
+            Destroy(otherDoorConvert, destructionTime);
         }
         Destroy(gameObject, destructionTime);
     }

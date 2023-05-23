@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using Mirror;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +8,7 @@ namespace GM
 {
     public class GameManager : NetworkBehaviour
     {
-        [Header("Players")]
+        [Header("Game Info")]
         [SerializeField] public List<GameObject> players = new List<GameObject>(); 
         // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
         [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
@@ -20,7 +18,7 @@ namespace GM
             Started,
             Finished
         }
-        public GameStatus currentStatus = GameStatus.Pending;
+        [SyncVar] public GameStatus currentStatus = GameStatus.Pending;
 
         [Space]
 
@@ -64,11 +62,12 @@ namespace GM
             }
             if (currentStatus == GameStatus.Started)
             {
-               // StarsScore();
+
             }
-            if(currentStatus == GameStatus.Finished){
-                // [K] Temporarily disabled because I'm figuring out the save shenanigans
-                // SceneManager.LoadScene(2);
+
+            if (_sm.starsTaken >= _sm.starsNeeded)
+            {
+                EndGame();
             }
         }
         void LateUpdate()
@@ -79,21 +78,16 @@ namespace GM
             }
         }
 
-        void OnTriggerEnter2D(Collider2D collider2D)
-        {   
-            //if(collider2D.tag == "Player" && currentStatus == GameStatus.Started){
-            //    if(!collider2D.GetComponent<PlayerBehaviour>().gameFinished){
-            //        collider2D.GetComponent<PlayerBehaviour>().gameFinished = true;
-            //    }
-            //}
-
-            if(_sm.starsTaken >= _sm.starsNeeded){
-              currentStatus = GameStatus.Finished;
-              XMLManager.instance.SaveStarScore();
-              Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+        public void EndGame()
+        {
+            currentStatus = GameStatus.Finished;
+            XMLManager.instance.SaveStarScore();
+            Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+            if (currentStatus == GameStatus.Finished)
+            {
+                SceneManager.LoadScene(2);
             }
         }
-
         public void CheckingDomains()
         {
             var domainCount = 0;
@@ -111,14 +105,6 @@ namespace GM
                 barriers.SetActive(false);
             }
         }
-
-        //private void StarsScore()
-        //{
-        //    for (int i = 0; i <= players.Count + 1; i++)
-        //    {
-        //        _starsCollected.GetComponent<TextMeshProUGUI>().text = players[i].GetComponent<PlayerBehaviour>().playerNameText + ":" + players[i].GetComponent<PlayerBehaviour>().starsCollected;
-        //    }
-        //}
     }
 }
 

@@ -91,10 +91,10 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Rigidbody2D rb;
 
-    //===== TELEPORTATION ============
+    ////===== TELEPORTATION ============
 
-    public GameObject[] TeleportationDoor;
-    public GameObject[] TeleportationDestination;
+    //public GameObject[] TeleportationDoor;
+    //public GameObject[] TeleportationDestination;
 
     void Start()
     {
@@ -317,7 +317,10 @@ public class PlayerBehaviour : NetworkBehaviour
             inQuestionRange = true;
             if (isLocalPlayer)
             {
-                currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                if (currentQuestion.GetComponent<TeleportationScript>().currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+                {
+                    currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                }
             }
         }
     }

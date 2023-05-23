@@ -42,7 +42,10 @@ public class QuestionScript : MonoBehaviour
     {
         //If the awnser is right, state in the feedback that it is right and close the panel
         awnserText.enabled = true;
-        if (_tsObject.currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+        if (_tsObject.currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved && 
+            (_tsObject.otherDoorConvert == null || 
+            _tsObject.otherDoorConvert.GetComponent<TeleportationScript>().currentPuzzleStatus 
+            == TeleportationScript.puzzleStatus.Unsolved))
         {
             awnserText.GetComponent<TextMeshProUGUI>().text = "Goed!";
         }
@@ -60,7 +63,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("Closed window");
         QuestionRandomizer.isActive = false;
         QuestionAwnsered = true;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         this.gameObject.SetActive(false);
     }
     
