@@ -112,7 +112,9 @@ namespace Mirror.Discovery
             // It is by no means optimal, especially with slower devices
             // ExitGamePanel.SetActive(false);
             discoveryPanel.SetActive(false);
-          
+
+            ExitGamePanel = GameObject.FindGameObjectWithTag("GamePanel");
+
             // paused = false;
         }
 
