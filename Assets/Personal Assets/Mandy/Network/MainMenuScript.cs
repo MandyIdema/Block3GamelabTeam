@@ -21,6 +21,7 @@ namespace Mirror.Discovery
 
         public NetworkManager networkManager;
         public GameObject menuPanel;
+        public GameObject canvas;
         public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
@@ -34,22 +35,29 @@ namespace Mirror.Discovery
             if (networkManager.mode == NetworkManagerMode.Host)
             {
                 Destroy(ExitGamePanel);
+                Destroy(canvas);
                 NetworkManager.singleton.StopHost();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
-                
+
                 //If this computer is a host, stop the host server
                 //Automatically stops clients connected to the server as well
             }
-            if (networkManager.mode == NetworkManagerMode.ClientOnly)
+            else if (NetworkClient.isConnected)
             {
-                Destroy(ExitGamePanel);
-                NetworkManager.singleton.StopClient();
-                networkDiscovery.StopDiscovery();
-                Debug.Log("Stopped game");
-                
-                //If this computer is a client, stop the client connected to the host
+                if (networkManager.mode == NetworkManagerMode.ClientOnly)
+                {
+                    Destroy(ExitGamePanel);
+                    Destroy(canvas);
+                    NetworkManager.singleton.StopClient();
+                    networkDiscovery.StopDiscovery();
+                    Debug.Log("Stopped game");
+
+                    //If this computer is a client, stop the client connected to the host
+                }
             }
+
+            
         }
         
 
