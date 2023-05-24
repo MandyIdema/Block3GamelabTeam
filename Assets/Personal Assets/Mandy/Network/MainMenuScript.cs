@@ -33,19 +33,21 @@ namespace Mirror.Discovery
 
             if (networkManager.mode == NetworkManagerMode.Host)
             {
+                Destroy(pausePanel);
                 NetworkManager.singleton.StopHost();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
-                Destroy(pausePanel);
+                
                 //If this computer is a host, stop the host server
                 //Automatically stops clients connected to the server as well
             }
             if (networkManager.mode == NetworkManagerMode.ClientOnly)
             {
+                Destroy(pausePanel);
                 NetworkManager.singleton.StopClient();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
-                Destroy(pausePanel);
+                
                 //If this computer is a client, stop the client connected to the host
             }
         }

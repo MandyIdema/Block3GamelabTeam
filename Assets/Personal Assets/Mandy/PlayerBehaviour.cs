@@ -125,7 +125,17 @@ public class PlayerBehaviour : NetworkBehaviour
     private void Update()
     {
 
-       
+        if (exitMenuPanel == null)
+        {
+            exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
+        }
+
+        if (exitMenuPanel != null && 
+            exitMenuPanel.transform.position != exitMenuPanel.transform.parent.position)
+        {
+            exitMenuPanel.SetActive(false);
+            exitMenuPanel.transform.position = exitMenuPanel.transform.parent.position;
+        }
 
         if (currentDomain != null)
         {
@@ -137,18 +147,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            if (exitMenuPanel == null)
-            {
-                exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
-            }
-
-            if (exitMenuPanel != null &&
-                exitMenuPanel.transform.position != exitMenuPanel.transform.parent.position)
-            {
-                exitMenuPanel.SetActive(false);
-                exitMenuPanel.transform.position = exitMenuPanel.transform.parent.position;
-            }
-
             //If these inputs are made, trigger the animation bool
             #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
