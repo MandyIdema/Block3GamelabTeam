@@ -21,7 +21,7 @@ namespace Mirror.Discovery
 
         public NetworkManager networkManager;
         public GameObject menuPanel;
-        public GameObject pausePanel;
+        public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
    
@@ -33,7 +33,7 @@ namespace Mirror.Discovery
 
             if (networkManager.mode == NetworkManagerMode.Host)
             {
-                Destroy(pausePanel);
+                Destroy(ExitGamePanel);
                 NetworkManager.singleton.StopHost();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
@@ -43,7 +43,7 @@ namespace Mirror.Discovery
             }
             if (networkManager.mode == NetworkManagerMode.ClientOnly)
             {
-                Destroy(pausePanel);
+                Destroy(ExitGamePanel);
                 NetworkManager.singleton.StopClient();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
@@ -110,7 +110,7 @@ namespace Mirror.Discovery
             background.SetActive(true);
             // [K] Disabled since I found a workaround that I put in PlayerBehaviour
             // It is by no means optimal, especially with slower devices
-            // pausePanel.SetActive(false);
+            // ExitGamePanel.SetActive(false);
             discoveryPanel.SetActive(false);
           
             // paused = false;

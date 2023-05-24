@@ -102,13 +102,6 @@ public class PlayerBehaviour : NetworkBehaviour
     void Start()
     {
 
-        if (exitMenuPanel == null)
-        {
-            exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
-        }
-
-        exitMenuPanel.SetActive(false);
-
         defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
         if (isLocalPlayer)
         {
@@ -116,26 +109,21 @@ public class PlayerBehaviour : NetworkBehaviour
             _camera = Camera.main;
         }
 
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-
+        exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
         gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
     }
 
     private void Update()
     {
-
-        if (exitMenuPanel == null)
+        if (anim == null)
         {
-            exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
+            anim = GetComponent<Animator>();
+        }
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
         }
 
-        if (exitMenuPanel != null && 
-            exitMenuPanel.transform.position != exitMenuPanel.transform.parent.position)
-        {
-            exitMenuPanel.SetActive(false);
-            exitMenuPanel.transform.position = exitMenuPanel.transform.parent.position;
-        }
 
         if (currentDomain != null)
         {
@@ -147,6 +135,13 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+
+            if (exitMenuPanel != null &&
+                exitMenuPanel.transform.position != exitMenuPanel.transform.parent.position)
+            {
+                exitMenuPanel.SetActive(false);
+                exitMenuPanel.transform.position = exitMenuPanel.transform.parent.position;
+            }
             //If these inputs are made, trigger the animation bool
             #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
