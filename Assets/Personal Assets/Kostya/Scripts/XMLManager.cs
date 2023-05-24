@@ -48,6 +48,7 @@ public class XMLManager : MonoBehaviour
             XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
             FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Open);
             ugStats = serializer.Deserialize(stream) as UserGlobalStats;
+            stream.Close();
         }
         return ugStats.starsCollectedInTotal;
     }
