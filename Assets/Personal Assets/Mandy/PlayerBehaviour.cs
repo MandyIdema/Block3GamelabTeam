@@ -53,7 +53,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Questions")]
     public bool inQuestionRange = false;
-    [HideInInspector] public GameObject currentQuestion;
+    public GameObject currentQuestion;
 
     [Space]
 
@@ -336,6 +336,8 @@ public class PlayerBehaviour : NetworkBehaviour
                 {
                     currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
                 }
+
+                
             }
         }
     }
