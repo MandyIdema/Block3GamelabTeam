@@ -36,6 +36,7 @@ namespace Mirror.Discovery
                 NetworkManager.singleton.StopHost();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
+                Destroy(pausePanel);
                 //If this computer is a host, stop the host server
                 //Automatically stops clients connected to the server as well
             }
@@ -44,6 +45,7 @@ namespace Mirror.Discovery
                 NetworkManager.singleton.StopClient();
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
+                Destroy(pausePanel);
                 //If this computer is a client, stop the client connected to the host
             }
         }
@@ -82,7 +84,6 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
             menuPanel.SetActive(false);
-            background.SetActive(false);
             //discoveryPanel.SetActive(false);
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
