@@ -30,19 +30,22 @@ namespace Mirror.Discovery
         public void Stop()
         {
             //If this button is pressed the game stops and goes back to mainmenu
+           if (networkManager.mode != NetworkManagerMode.ClientOnly){
+                if (networkManager.mode == NetworkManagerMode.Host)
+                {
+                    Destroy(ExitGamePanel);
+                    NetworkManager.singleton.StopHost();
+                    networkDiscovery.StopDiscovery();
+                    Debug.Log("Stopped game");
 
-            if (networkManager.mode == NetworkManagerMode.Host)
-            {
-                Destroy(ExitGamePanel);
-                NetworkManager.singleton.StopHost();
-                networkDiscovery.StopDiscovery();
-                Debug.Log("Stopped game");
-
-                //If this computer is a host, stop the host server
-                //Automatically stops clients connected to the server as well
+                    //If this computer is a host, stop the host server
+                    //Automatically stops clients connected to the server as well
+                }
             }
-            else if (NetworkClient.isConnected)
+
+            if (networkManager.mode != NetworkManagerMode.Host)
             {
+
                 if (networkManager.mode == NetworkManagerMode.ClientOnly)
                 {
                     Destroy(ExitGamePanel);
@@ -53,7 +56,6 @@ namespace Mirror.Discovery
                     //If this computer is a client, stop the client connected to the host
                 }
             }
-
             
         }
         
