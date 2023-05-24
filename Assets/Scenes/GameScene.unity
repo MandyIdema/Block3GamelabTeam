@@ -4851,8 +4851,8 @@ Transform:
   - {fileID: 332056928}
   - {fileID: 1322489276}
   - {fileID: 1982432750}
-  - {fileID: 457051286}
   - {fileID: 1742793871}
+  - {fileID: 457051286}
   - {fileID: 311028144}
   - {fileID: 501527776}
   - {fileID: 943009187}
@@ -4867,10 +4867,10 @@ Transform:
   - {fileID: 246650523}
   - {fileID: 1646589351}
   - {fileID: 1111650027}
+  - {fileID: 1734242590}
   - {fileID: 141523358}
   - {fileID: 474793285}
   - {fileID: 249136452}
-  - {fileID: 1734242590}
   - {fileID: 190641389}
   - {fileID: 1118588226}
   - {fileID: 1164712631}
@@ -4883,9 +4883,9 @@ Transform:
   - {fileID: 1126816275}
   - {fileID: 1327492551}
   - {fileID: 1542757242}
+  - {fileID: 1425331953}
   - {fileID: 1937618052}
   - {fileID: 2114525211}
-  - {fileID: 1425331953}
   - {fileID: 1415253028}
   - {fileID: 1554586308}
   - {fileID: 1653452896}
@@ -4895,21 +4895,21 @@ Transform:
   - {fileID: 2009370449}
   - {fileID: 821258042}
   - {fileID: 122288819}
+  - {fileID: 535955816}
   - {fileID: 1349614333}
   - {fileID: 1264136855}
   - {fileID: 1045604290}
-  - {fileID: 535955816}
   - {fileID: 1506002554}
   - {fileID: 1001898905}
   - {fileID: 1335453339}
   - {fileID: 1339415058}
   - {fileID: 1972712944}
   - {fileID: 797035126}
-  - {fileID: 6173677380206213226}
   - {fileID: 433505386}
+  - {fileID: 6173677380206213226}
+  - {fileID: 1387645592}
   - {fileID: 8956986165789553240}
   - {fileID: 3475577330850241556}
-  - {fileID: 1387645592}
   - {fileID: 5979676386728281233}
   - {fileID: 1771430091}
   - {fileID: 903360838}
@@ -4938,6 +4938,7 @@ Transform:
   - {fileID: 1530192214}
   - {fileID: 1577514848}
   - {fileID: 1706068754}
+  - {fileID: 276611464}
   - {fileID: 182896877}
   - {fileID: 610548337}
   - {fileID: 832656774}
@@ -4972,7 +4973,7 @@ Transform:
   - {fileID: 1830995148}
   - {fileID: 1988568858}
   - {fileID: 1170069601}
-  - {fileID: 276611464}
+  - {fileID: 1982414861}
   - {fileID: 591636093}
   - {fileID: 1030019922}
   - {fileID: 1895333425}
@@ -4985,7 +4986,7 @@ Transform:
   - {fileID: 1813950696}
   - {fileID: 1318813269}
   - {fileID: 1458375042}
-  - {fileID: 1982414861}
+  - {fileID: 1646480895}
   - {fileID: 430399489}
   - {fileID: 238214028}
   - {fileID: 1173461550}
@@ -5011,14 +5012,14 @@ Transform:
   - {fileID: 515826989}
   - {fileID: 1380429598}
   - {fileID: 475395361}
-  - {fileID: 1646480895}
+  - {fileID: 942154237}
   - {fileID: 247042243}
   - {fileID: 614274317}
   - {fileID: 1123128755}
   - {fileID: 1307304624}
-  - {fileID: 942154237}
-  - {fileID: 720379859}
   - {fileID: 293093276}
+  - {fileID: 720379859}
+  - {fileID: 707254058}
   - {fileID: 178094835}
   - {fileID: 1913631564}
   - {fileID: 178105400}
@@ -5028,7 +5029,6 @@ Transform:
   - {fileID: 435299426}
   - {fileID: 2009466960}
   - {fileID: 184439079}
-  - {fileID: 707254058}
   - {fileID: 649092562}
   - {fileID: 371132591}
   - {fileID: 1063802300}
@@ -5062,6 +5062,7 @@ Transform:
   - {fileID: 1032208103}
   - {fileID: 1821308256}
   - {fileID: 681825793}
+  - {fileID: 458860124}
   - {fileID: 81543285}
   - {fileID: 1424009016}
   - {fileID: 1326542597}
@@ -5093,7 +5094,6 @@ Transform:
   - {fileID: 1002330805}
   - {fileID: 1749087298}
   - {fileID: 1594263061}
-  - {fileID: 458860124}
   - {fileID: 599365459}
   - {fileID: 60425956}
   - {fileID: 888168510}
@@ -5183,6 +5183,7 @@ Transform:
   - {fileID: 599112401}
   - {fileID: 1946554685}
   - {fileID: 1161775739}
+  - {fileID: 724682515}
   - {fileID: 157223036}
   - {fileID: 976075070}
   - {fileID: 2139400306}
@@ -5191,7 +5192,6 @@ Transform:
   - {fileID: 364785890}
   - {fileID: 197749528}
   - {fileID: 468582828}
-  - {fileID: 724682515}
   - {fileID: 1696651966}
   - {fileID: 1148144950}
   - {fileID: 1971986967}
@@ -11654,7 +11654,7 @@ Transform:
   - {fileID: 1738713460}
   - {fileID: 305605497}
   m_Father: {fileID: 98185867}
-  m_RootOrder: 450
+  m_RootOrder: 416
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &276611465
 Animator:
@@ -11876,7 +11876,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 496
+  m_RootOrder: 495
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &293093277
 Animator:
@@ -16089,6 +16089,8 @@ GameObject:
   - component: {fileID: 433505384}
   - component: {fileID: 433505383}
   - component: {fileID: 433505387}
+  - component: {fileID: 433505389}
+  - component: {fileID: 433505388}
   m_Layer: 7
   m_Name: UnAccGlassB
   m_TagString: Door
@@ -16208,7 +16210,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 384
+  m_RootOrder: 383
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &433505387
 MonoBehaviour:
@@ -16223,6 +16225,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSprite: {fileID: 21300000, guid: fa0765cad9a9fdc479b14fe81b1509bd, type: 3}
+--- !u!114 &433505388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e374de01a05a043953c0439d3b0e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  QuestionList:
+  - {fileID: 48698518}
+  - {fileID: 48698517}
+  - {fileID: 48698516}
+  - {fileID: 48698515}
+  - {fileID: 48698514}
+  - {fileID: 48698513}
+  - {fileID: 48698512}
+  - {fileID: 48698511}
+  - {fileID: 48698510}
+  - {fileID: 48698509}
+  - {fileID: 48698508}
+  - {fileID: 48698507}
+  - {fileID: 48698506}
+  - {fileID: 48698505}
+  - {fileID: 48698504}
+  - {fileID: 48698503}
+  - {fileID: 48698502}
+  - {fileID: 48698501}
+  - {fileID: 48698500}
+  - {fileID: 48698499}
+  - {fileID: 48698498}
+  - {fileID: 48698497}
+  - {fileID: 48698496}
+  - {fileID: 48698495}
+  - {fileID: 48698494}
+  - {fileID: 48698493}
+  - {fileID: 48698492}
+  - {fileID: 48698491}
+  - {fileID: 48698490}
+  - {fileID: 48698489}
+  - {fileID: 48698487}
+  RandomObjectSetActive: 0
+  localPlayer: {fileID: 0}
+  questionPromptUI: {fileID: 505952189}
+  enteredDoors: 0
+--- !u!114 &433505389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433505382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1784090525
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1001 &435299425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17003,6 +17073,8 @@ GameObject:
   - component: {fileID: 458860122}
   - component: {fileID: 458860121}
   - component: {fileID: 458860125}
+  - component: {fileID: 458860127}
+  - component: {fileID: 458860126}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Door
@@ -17122,7 +17194,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 571
+  m_RootOrder: 540
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &458860125
 MonoBehaviour:
@@ -17137,6 +17209,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSprite: {fileID: 0}
+--- !u!114 &458860126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458860120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e374de01a05a043953c0439d3b0e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  QuestionList:
+  - {fileID: 48698518}
+  - {fileID: 48698517}
+  - {fileID: 48698516}
+  - {fileID: 48698515}
+  - {fileID: 48698514}
+  - {fileID: 48698513}
+  - {fileID: 48698512}
+  - {fileID: 48698511}
+  - {fileID: 48698510}
+  - {fileID: 48698509}
+  - {fileID: 48698508}
+  - {fileID: 48698507}
+  - {fileID: 48698506}
+  - {fileID: 48698505}
+  - {fileID: 48698504}
+  - {fileID: 48698503}
+  - {fileID: 48698502}
+  - {fileID: 48698501}
+  - {fileID: 48698500}
+  - {fileID: 48698499}
+  - {fileID: 48698498}
+  - {fileID: 48698497}
+  - {fileID: 48698496}
+  - {fileID: 48698495}
+  - {fileID: 48698494}
+  - {fileID: 48698493}
+  - {fileID: 48698492}
+  - {fileID: 48698491}
+  - {fileID: 48698490}
+  - {fileID: 48698489}
+  - {fileID: 48698487}
+  RandomObjectSetActive: 0
+  localPlayer: {fileID: 0}
+  questionPromptUI: {fileID: 505952189}
+  enteredDoors: 0
+--- !u!114 &458860127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458860120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1999073006
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &460941701
 GameObject:
   m_ObjectHideFlags: 0
@@ -20325,7 +20465,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 376
+  m_RootOrder: 373
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -155.391}
 --- !u!212 &535955817
 SpriteRenderer:
@@ -26257,7 +26397,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 506
+  m_RootOrder: 497
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &707254059
 Animator:
@@ -26984,7 +27124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 669
+  m_RootOrder: 661
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &728509677
 PrefabInstance:
@@ -34804,7 +34944,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 494
+  m_RootOrder: 490
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &942154238
 Animator:
@@ -51805,7 +51945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1380469502
 Transform:
   m_ObjectHideFlags: 0
@@ -52199,7 +52339,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 387
+  m_RootOrder: 385
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 110.087}
 --- !u!212 &1387645593
 SpriteRenderer:
@@ -53214,7 +53354,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 363
+  m_RootOrder: 361
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -9.903}
 --- !u!212 &1425331954
 SpriteRenderer:
@@ -60629,7 +60769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 489
+  m_RootOrder: 464
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1646480896
 Animator:
@@ -64215,7 +64355,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 348
+  m_RootOrder: 345
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1734242591
 SpriteRenderer:
@@ -64888,7 +65028,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 330
+  m_RootOrder: 329
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1742793872
 SpriteRenderer:
@@ -74582,7 +74722,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 98185867}
-  m_RootOrder: 463
+  m_RootOrder: 451
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1982414862
 Animator:
