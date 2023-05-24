@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Mirror;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsMenu : NetworkBehaviour
 {
     [SerializeField] private Image blackScreen;
     [SerializeField] private Dropdown resolutionsDropDown;
+    [SerializeField] private Image[] avatarTransforms;
     Resolution[] resolutions;
 
     void Start(){
         //this is to set the setting in the dropdown to the available resolutions by unity
-        resolutions = Screen.resolutions;
+/*         resolutions = Screen.resolutions;
         resolutionsDropDown.ClearOptions();
         List<string> options = new List<string>();
         int currentResIndex = 0;
@@ -25,7 +27,7 @@ public class SettingsMenu : MonoBehaviour
         }
         resolutionsDropDown.AddOptions(options);
         resolutionsDropDown.value = currentResIndex;
-        resolutionsDropDown.RefreshShownValue();
+        resolutionsDropDown.RefreshShownValue(); */
     }
     public void SetVolume(float volume){
 
@@ -43,4 +45,41 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen);
     }
 
+    public void SetClothing(Image cloth){
+        switch(cloth.tag){
+            case "head":
+                avatarTransforms[0].sprite = cloth.sprite;
+                var _a = avatarTransforms[0].color;
+                _a.a = 255;
+                avatarTransforms[0].color = _a;
+
+            break;
+            case "body":
+                avatarTransforms[1].sprite = cloth.sprite;
+                var _b = avatarTransforms[1].color;
+                _b.a = 255;
+                avatarTransforms[1].color = _b;
+            break;
+            case "feet":
+                avatarTransforms[2].sprite = cloth.sprite;
+                var _c = avatarTransforms[2].color;
+                _c.a = 255;
+                avatarTransforms[2].color = _c;
+            break;
+        }
+    }
+
+    public void ApplyToPlayer(){
+        if(isLocalPlayer){
+            Debug.Log("FSDFDSFS");
+            Transform childTransform = transform.Find("head");
+            Transform childTransform2 = transform.Find("body");
+            Transform childTransform3 = transform.Find("feet");
+            childTransform.GetComponent<SpriteRenderer>().sprite = avatarTransforms[0].sprite;
+            childTransform2.GetComponent<SpriteRenderer>().sprite = avatarTransforms[1].sprite;
+            childTransform3.GetComponent<SpriteRenderer>().sprite = avatarTransforms[2].sprite;
+        }else{
+            Debug.Log("NNNNNNNNNNNNNNNN");
+        }
+    }
 }

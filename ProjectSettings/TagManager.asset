@@ -16,6 +16,9 @@ TagManager:
   - GamePanel
   - SettingsPanel
   - QuestionPrompt
+  - head
+  - body
+  - feet
   layers:
   - Default
   - TransparentFX
