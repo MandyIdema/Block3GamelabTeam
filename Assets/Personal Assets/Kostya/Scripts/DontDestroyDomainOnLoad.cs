@@ -5,7 +5,7 @@ using UnityEngine;
 public class DontDestroyDomainOnLoad : MonoBehaviour
 {
     // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
     }
