@@ -79,11 +79,11 @@ namespace Mirror.Discovery
 
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
-            menuPanel.SetActive(true);
-            discoveryPanel.SetActive(false);
+            menuPanel.SetActive(false);
+            //discoveryPanel.SetActive(false);
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
-            // discoveryPanel.SetActive(true);
+            discoveryPanel.SetActive(true);
         }
 
         public void Back()

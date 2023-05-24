@@ -16,6 +16,9 @@ namespace Mirror.Discovery
         public NetworkDiscovery networkDiscovery;
 
         public GUIStyle customButton;
+
+        public GameObject menuPanel;
+        public GameObject discoveryPanel;
        
 
         private void Start()
@@ -91,13 +94,14 @@ namespace Mirror.Discovery
             scrollViewPos = GUILayout.BeginScrollView(scrollViewPos);
 
             foreach (ServerResponse info in discoveredServers.Values)
-                if (GUILayout.Button(info.EndPoint.Address.ToString(),customButton))
-                    Connect(info);
 
-            foreach (ServerResponse info in discoveredServers.Values)
-
-                if (GUILayout.Button(info.EndPoint.Address.ToString(),customButton))
+                if (GUILayout.Button(info.EndPoint.Address.ToString(), customButton))
+                {
+                    menuPanel.SetActive(false);
+                    discoveryPanel.SetActive(false);
                     Connect(info);
+                }
+                   
 
             GUILayout.EndScrollView();
             GUILayout.EndArea();
