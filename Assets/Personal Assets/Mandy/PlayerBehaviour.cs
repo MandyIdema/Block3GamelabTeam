@@ -366,6 +366,14 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             EnteringAvatarChoice(collision);
         }
+
+        if (collision.gameObject.CompareTag("Star"))
+        {
+            if (isLocalPlayer)
+            {
+                FindObjectOfType<starAnimate>().canRotate = true;
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

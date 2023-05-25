@@ -709,7 +709,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   anim: {fileID: 0}
-  Staranim: {fileID: 3343249740657516626, guid: 0d005c394d1ddc246a88a97218d4b34a, type: 3}
   onDomain: 0
   finalDomain: 0
   currentDomain: {fileID: 0}
@@ -718,6 +717,7 @@ MonoBehaviour:
   domainObjects: []
   currentStatus: 0
   starsCollected: 0
+  starUI: {fileID: 3343249740657516638, guid: 0d005c394d1ddc246a88a97218d4b34a, type: 3}
   gameFinished: 0
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e21fb706500bbf4294d9280a01828b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DDOLType: 0
 --- !u!95 &3732968277159558847
 Animator:
   serializedVersion: 5
