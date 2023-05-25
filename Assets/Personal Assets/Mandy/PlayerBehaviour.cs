@@ -370,6 +370,7 @@ public class PlayerBehaviour : NetworkBehaviour
         }
     }
 
+
     [Command]
     public void ChoosingDomain()
     {
