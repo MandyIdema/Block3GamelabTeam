@@ -9,10 +9,14 @@ public class Sprite_changer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
 
+    public GameObject CurrentLight;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
+
+        CurrentLight.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -21,6 +25,7 @@ public class Sprite_changer : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;
             StartCoroutine(ChangeBackAfterDelay(3f));
+            CurrentLight.SetActive(true);
         }
     }
 
@@ -30,12 +35,14 @@ public class Sprite_changer : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;  
             StartCoroutine(ChangeBackAfterDelay(1f));
+            CurrentLight.SetActive(true);
         }
     }
 
     private System.Collections.IEnumerator ChangeBackAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        spriteRenderer.sprite = originalSprite; 
+        spriteRenderer.sprite = originalSprite;
+        CurrentLight.SetActive(false);
     }
 }
