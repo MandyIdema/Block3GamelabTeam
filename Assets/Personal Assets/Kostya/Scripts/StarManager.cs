@@ -104,6 +104,7 @@ namespace GM
         }
 
         // Checks how many stars the players have collected in total
+        [ClientRpc]
         public void CheckStars()
         {
             starsTaken = 0;
@@ -113,12 +114,12 @@ namespace GM
                 {
                     starsTaken++;
 
-                    Dictionary<string, object> parameters = new Dictionary<string, object>()
-{
-                    { "StarsCollected", starsTaken++ }
-};
-                    // The ‘myEvent’ event will get queued up and sent every minute
-                    AnalyticsService.Instance.CustomData("starsCollected", parameters);
+//                    Dictionary<string, object> parameters = new Dictionary<string, object>()
+//{
+//                    { "StarsCollected", starsTaken++ }
+//};
+//                    // The ‘myEvent’ event will get queued up and sent every minute
+//                    AnalyticsService.Instance.CustomData("starsCollected", parameters);
                 }
                 
             }

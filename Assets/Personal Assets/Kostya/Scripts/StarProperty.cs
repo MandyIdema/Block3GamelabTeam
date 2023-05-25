@@ -52,7 +52,10 @@ namespace GM
                 gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
 
-                _sm.CheckStars();  // !!! CRUCIAL TO UPDATING THE STATS
+                if (isServerOnly)
+                {
+                    _sm.CheckStars();  // !!! CRUCIAL TO UPDATING THE STATS
+                }
             }
         }
 
@@ -65,7 +68,6 @@ namespace GM
                 //If the star gets picked up, the star rotates (visual value)
             }
         }
-
         void PlayerEnter(Collider2D player)
         {
             // Updates player stats
@@ -79,7 +81,10 @@ namespace GM
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-            _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS
+            if (isServer)
+            {
+                _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS
+            }
 
             // _gm.starsCollected.TryGetValue(playerOwner, out int j);
             // _gm.starsCollected[playerOwner] = j + 1;
