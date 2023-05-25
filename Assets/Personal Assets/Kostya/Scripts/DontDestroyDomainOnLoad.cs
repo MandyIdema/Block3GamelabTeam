@@ -5,7 +5,39 @@ using UnityEngine;
 public class DontDestroyDomainOnLoad : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public enum DDOLTypes
+    {
+        Default,
+        Canvas
+    }
+
+    public DDOLTypes DDOLType = DDOLTypes.Default;
     private void Start()
+    {
+        switch (DDOLType)
+        {
+            case DDOLTypes.Default:
+                DefaultDDOL();
+                break;
+            case DDOLTypes.Canvas:
+                CanvasDDOL();
+                break;
+        }
+    }
+
+    void CanvasDDOL()
+    {
+
+        DontDestroyOnLoad(gameObject);
+
+        if (GameObject.Find(gameObject.name) && GameObject.Find(gameObject.name) != this.gameObject)
+        {
+            Destroy(GameObject.Find(gameObject.name));
+        }
+    }
+
+    void DefaultDDOL()
     {
         DontDestroyOnLoad(this.gameObject);
     }

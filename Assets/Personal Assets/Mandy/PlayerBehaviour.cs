@@ -108,6 +108,7 @@ public class PlayerBehaviour : NetworkBehaviour
             Local = this;
             _camera = Camera.main;
             exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
+            exitMenuPanel.transform.GetChild(0).gameObject.SetActive(false);
         }
         gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
     }

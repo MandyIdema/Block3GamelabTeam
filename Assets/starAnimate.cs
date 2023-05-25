@@ -19,7 +19,7 @@ namespace GM
         // Update is called once per frame
         void Update()
         {
-            anim.SetBool("starRotate", true);
+            // anim.SetBool("starRotate", true);
         }
     }
 

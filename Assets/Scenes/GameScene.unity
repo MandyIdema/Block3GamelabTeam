@@ -944,12 +944,12 @@ GameObject:
   m_Component:
   - component: {fileID: 28801861}
   m_Layer: 0
-  m_Name: ===== Domains =====
+  m_Name: Domains // CURRENTLY UNUSED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &28801861
 Transform:
   m_ObjectHideFlags: 0
@@ -968,7 +968,7 @@ Transform:
   - {fileID: 1639469256}
   - {fileID: 1965046647}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32438990
 GameObject:
@@ -4540,7 +4540,7 @@ Transform:
   - {fileID: 868224528}
   - {fileID: 2109927584}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &96558241
 GameObject:
@@ -29297,7 +29297,7 @@ Transform:
   - {fileID: 671780993}
   - {fileID: 937293665}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790536333
 GameObject:
@@ -33832,7 +33832,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &897265985
 MonoBehaviour:
