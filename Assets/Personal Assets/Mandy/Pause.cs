@@ -16,7 +16,6 @@ namespace Mirror.Discovery
 
 
         public GameObject gamePanel;
-        bool paused = false;
         public NetworkDiscovery networkDiscovery;
         public NetworkManager networkManager;
 
@@ -35,7 +34,6 @@ namespace Mirror.Discovery
                 networkDiscovery.StopDiscovery();
                 Debug.Log("Stopped game");
             }
-            paused = false;
         }
 
         // Start is called before the first frame update

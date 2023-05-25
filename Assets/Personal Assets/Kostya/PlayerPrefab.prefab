@@ -709,6 +709,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   anim: {fileID: 0}
+  Staranim: {fileID: 3343249740657516626, guid: 0d005c394d1ddc246a88a97218d4b34a, type: 3}
   onDomain: 0
   finalDomain: 0
   currentDomain: {fileID: 0}

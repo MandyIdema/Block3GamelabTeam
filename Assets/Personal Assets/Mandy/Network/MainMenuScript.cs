@@ -105,6 +105,7 @@ namespace Mirror.Discovery
 
             menuPanel.SetActive(true);
             discoveryPanel.SetActive(false);
+            discoveredServers.Clear();
 
         }
 

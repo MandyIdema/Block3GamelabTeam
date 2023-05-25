@@ -8,6 +8,9 @@ namespace GM
 {
     public class StarProperty : NetworkBehaviour
     {
+
+        
+
         public enum StarStatus
         {
             Free,
@@ -26,13 +29,14 @@ namespace GM
 
         private void Update()
         {
+ 
 
-/*             // Searches for Game and Star Manager
-            if (_gm == null)
-            {
-                // _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-                _gm = FindObjectOfType<GameManager>();
-            } */
+            /*             // Searches for Game and Star Manager
+                        if (_gm == null)
+                        {
+                            // _gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+                            _gm = FindObjectOfType<GameManager>();
+                        } */
             if (_sm == null)
             {
                 // _sm = GameObject.FindGameObjectWithTag("StarManager").GetComponent<StarManager>();
@@ -57,6 +61,8 @@ namespace GM
             if (collision.gameObject.CompareTag("Player"))
             {
                 PlayerEnter(collision);
+
+                //If the star gets picked up, the star rotates (visual value)
             }
         }
 

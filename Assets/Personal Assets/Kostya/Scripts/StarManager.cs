@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Core;
+using Unity.Services.Analytics;
 using UnityEngine;
 using Mirror;
 
@@ -7,6 +9,9 @@ namespace GM
 {
     public class StarManager : NetworkBehaviour
     {
+
+        public Animator anim;
+
         [Header("Prefabs")]
         public GameObject starPrefab;
         public GameObject exitDoor;
@@ -50,6 +55,21 @@ namespace GM
                     RpcClientStarSpawn();
                 }
             }
+
+            Analytics();
+        }
+
+        async void Analytics()
+        {
+            try
+            {
+                await UnityServices.InitializeAsync();
+                List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+            }
+            catch (ConsentCheckException e)
+            {
+                // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+            }
         }
         // [K] A sorting mechanism to reposition all of the stars for the player
         IEnumerator UpdateStarPosition()
@@ -92,7 +112,15 @@ namespace GM
                 if (starObjects[j].GetComponent<StarProperty>().currentStatus == StarProperty.StarStatus.Taken)
                 {
                     starsTaken++;
+
+                    Dictionary<string, object> parameters = new Dictionary<string, object>()
+{
+                    { "StarsCollected", starsTaken++ }
+};
+                    // The ‘myEvent’ event will get queued up and sent every minute
+                    AnalyticsService.Instance.CustomData("starsCollected", parameters);
                 }
+                
             }
         }
 
