@@ -18,10 +18,6 @@ namespace GM{
 
         private void Update()
         {
-
-            Debug.Log(sm);
-            Debug.Log(valueStars);
-
             valueStars = (float)sm.starsTaken / (float)sm.starsNeeded;
 
             BarFilled.fillAmount = valueStars;

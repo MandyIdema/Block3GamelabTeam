@@ -191,6 +191,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
             if (onDomain && finalDomain == 0)
             {
+                Debug.Log("this works");
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     ChoosingDomain();
@@ -202,7 +203,6 @@ public class PlayerBehaviour : NetworkBehaviour
             if (inQuestionRange)
             {
                 AlertSprite.SetActive(true);
-
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     QuestionPrompted();
@@ -333,12 +333,13 @@ public class PlayerBehaviour : NetworkBehaviour
             inQuestionRange = true;
             if (isLocalPlayer)
             {
-                if (currentQuestion.GetComponent<TeleportationScript>().currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+                if (currentQuestion != null)
                 {
-                    currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                    if (currentQuestion.GetComponent<TeleportationScript>().currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+                    {
+                        currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                    }
                 }
-
-                
             }
         }
     }
@@ -350,7 +351,10 @@ public class PlayerBehaviour : NetworkBehaviour
             inQuestionRange = false;
             if (isLocalPlayer)
             {
-                currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                if (currentQuestion != null)
+                {
+                    currentQuestion.GetComponent<QuestionRandomizer>().questionPromptUI.SetActive(inQuestionRange);
+                }
             }
             currentQuestion = null;
         }
@@ -378,8 +382,6 @@ public class PlayerBehaviour : NetworkBehaviour
         if (currentDomain != null)
         {
             finalDomain = currentDomainNumber;
-            // [K] Commented that part for later so that the cats do not get any colour, may be useful for testing
-            // playerColor = currentDomain.GetComponent<SpriteRenderer>().color;
             currentDomain.GetComponent<DomainInformation>().currentStatus = DomainInformation.DomainStatus.Chosen;
             onDomain = false;
         }
@@ -446,7 +448,6 @@ public class PlayerBehaviour : NetworkBehaviour
             case PowerUpTypes.GeneralLaziness:
                 // Decreases the speed of everyone else for X seconds
                 // Access the Game Manager to get the list of all players
-                Debug.Log(_countPlayers);
                 for (int i = 0; i < _countPlayers; i++){
                     if(_Players[i].name != gameObject.name){
 
@@ -465,9 +466,9 @@ public class PlayerBehaviour : NetworkBehaviour
                 // Randomly swaps the player with one of others
                 // Access the Game Manager to get a player other than the one using this, swap their transforms
                 // Will probably cause a fuck ton of bugs in combination with Puzzles for now but that's okay
-                if(_countPlayers>1){
+                if(_countPlayers > 1){
                     Vector3 _tempPos = gameObject.transform.position;
-                    int _randNum = UnityEngine.Random.Range(0,_countPlayers-1);
+                    int _randNum = Random.Range(0,_countPlayers - 1);
                     _Players[_randNum].transform.position = _tempPos;
                 }
 
