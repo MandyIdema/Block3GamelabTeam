@@ -16,7 +16,7 @@ public class Sprite_changer : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
 
-        CurrentLight.SetActive(false);
+        //CurrentLight.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,7 +25,7 @@ public class Sprite_changer : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;
             StartCoroutine(ChangeBackAfterDelay(3f));
-            CurrentLight.SetActive(true);
+            //CurrentLight.SetActive(true);
         }
     }
 
@@ -35,7 +35,7 @@ public class Sprite_changer : MonoBehaviour
         {
             spriteRenderer.sprite = newSprite;  
             StartCoroutine(ChangeBackAfterDelay(1f));
-            CurrentLight.SetActive(true);
+            //CurrentLight.SetActive(true);
         }
     }
 
@@ -43,6 +43,6 @@ public class Sprite_changer : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         spriteRenderer.sprite = originalSprite;
-        CurrentLight.SetActive(false);
+        //CurrentLight.SetActive(false);
     }
 }

@@ -10,7 +10,7 @@ public class PowerUpProperties : NetworkBehaviour
         AcceleratePlayer,
         DecceleratePlayers,
         RandomlySwapPlayers,
-        DoSomethingElseWithPlayers
+        SwapPlayerControls
     }
 
     public PowerUpTypes powerUpType;
@@ -32,10 +32,10 @@ public class PowerUpProperties : NetworkBehaviour
                     collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.GeneralLaziness;
                     break;
                 case PowerUpTypes.RandomlySwapPlayers:
-                    collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.Swapping;
+                    collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.SwappingPositions;
                     break;
-                case PowerUpTypes.DoSomethingElseWithPlayers:
-                    collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.Type4;
+                case PowerUpTypes.SwapPlayerControls:
+                    collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.SwappingControls;
                     break;
             }
 

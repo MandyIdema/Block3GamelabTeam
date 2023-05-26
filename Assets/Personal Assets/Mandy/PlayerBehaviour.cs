@@ -22,8 +22,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     public static PlayerBehaviour Local;
 
-    [Header("Main Properties")]
-
     private Sprite defaultSprite;
     public enum PlayerStatus
     {
@@ -34,13 +32,15 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Space]
 
+    #region Domains
     [Header("Domains")]
-    [SyncVar] [HideInInspector] public bool onDomain = false;
-    [SyncVar] public int finalDomain = 0;
-    public GameObject currentDomain;
+    [HideInInspector] public bool onDomain = false;
+    [HideInInspector] public int finalDomain = 0;
+    [HideInInspector] public GameObject currentDomain;
     [HideInInspector] public int currentDomainNumber;
     [HideInInspector] public bool showDomainMenu = true;
     [HideInInspector] public List<GameObject> domainObjects = new();
+    #endregion
 
     [Space]
 
@@ -59,15 +59,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
-    [SyncVar] public bool turnOffSpeed = false;
-    [SerializeField] private GameObject gm;
+    [SyncVar] public bool movementBlocked = true;
+    private GameObject gm;
+    private InactivateRule ir;
     public enum PowerUpTypes
     {
         None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
         SelfAcceleration,
         GeneralLaziness,
-        Swapping,
-        Type4 // Has to be swapped for an actual spell
+        SwappingControls,
+        SwappingPositions // Has to be swapped for an actual spell
     }
 
     [SyncVar] public PowerUpTypes currentPowerUpType = PowerUpTypes.None;
@@ -75,20 +76,13 @@ public class PlayerBehaviour : NetworkBehaviour
     [Space]
 
     [Header("UI")]
-    public GameObject exitMenuPanel;
-    public GameObject settingsMenuPanel;
+    [HideInInspector] public GameObject exitMenuPanel;
+    [HideInInspector] public GameObject settingsMenuPanel;
+    public GameObject AlertSprite;
 
-    [Space]
-    public TextMesh playerNameText;
-    public GameObject floatingInfo;
-
-    [Space]
     private Camera _camera;
-
     private Material playerMaterialClone;
-
     public float speed;
-
     private Rigidbody2D rb;
 
     ////===== TELEPORTATION ============
@@ -97,7 +91,9 @@ public class PlayerBehaviour : NetworkBehaviour
     //public GameObject[] TeleportationDestination;
 
     // ===== Alert =========
-    public GameObject AlertSprite;
+    [Header("Obsolete properties")]
+    public TextMesh playerNameText;
+    public GameObject floatingInfo;
 
     void Start()
     {
@@ -111,6 +107,11 @@ public class PlayerBehaviour : NetworkBehaviour
             exitMenuPanel.transform.GetChild(0).gameObject.SetActive(false);
         }
         gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
+        if (Local.ir == null)
+        {
+            Local.ir = FindObjectOfType<InactivateRule>();
+        }
+
     }
 
     private void Update()
@@ -124,6 +125,11 @@ public class PlayerBehaviour : NetworkBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
+        if (ir != null && ir.gameObject.activeSelf == false && movementBlocked)
+        {
+            movementBlocked = false;
+            ir = null;
+        }
 
         if (currentDomain != null)
         {
@@ -202,7 +208,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
             if (inQuestionRange)
             {
-                AlertSprite.SetActive(true);
+                if (isLocalPlayer)
+                {
+                    if (currentQuestion != null)
+                    {
+                        if (currentQuestion.GetComponent<TeleportationScript>().currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
+                        {
+                            AlertSprite.SetActive(true);
+                        }
+                    }
+                }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     QuestionPrompted();
@@ -255,7 +270,7 @@ public class PlayerBehaviour : NetworkBehaviour
     void FixedUpdate()
     {
         //if(!QuestionScript.isEnabled){
-        if(!turnOffSpeed){
+        if(!movementBlocked){
             movement();
         }
         //}
@@ -459,18 +474,18 @@ public class PlayerBehaviour : NetworkBehaviour
                 for (int i = 0; i < _countPlayers; i++){
                     if(_Players[i].name != gameObject.name){
 
-                        _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = true;
+                        _Players[i].GetComponent<PlayerBehaviour>().movementBlocked = true;
                     }
                 }     
                 yield return new WaitForSeconds(3);
                 if(_countPlayers>1){
                     for(int i = 0;i < _countPlayers; i++){
-                        _Players[i].GetComponent<PlayerBehaviour>().turnOffSpeed = false;
+                        _Players[i].GetComponent<PlayerBehaviour>().movementBlocked = false;
                     }
                 }
                 break;
 
-            case PowerUpTypes.Swapping:
+            case PowerUpTypes.SwappingPositions:
                 // Randomly swaps the player with one of others
                 // Access the Game Manager to get a player other than the one using this, swap their transforms
                 // Will probably cause a fuck ton of bugs in combination with Puzzles for now but that's okay
@@ -483,7 +498,7 @@ public class PlayerBehaviour : NetworkBehaviour
                 yield return new WaitForSeconds(3);
                 break;
 
-            case PowerUpTypes.Type4:
+            case PowerUpTypes.SwappingControls:
                 // Placeholder, your suggestions are welcome
                 // I backtracked on the stealing other's stars idea because
                 // it would require revamping a lot of scripts AGAIN

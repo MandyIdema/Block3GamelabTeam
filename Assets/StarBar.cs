@@ -18,8 +18,12 @@ namespace GM{
 
         private void Update()
         {
-            valueStars = (float)sm.starsTaken / (float)sm.starsNeeded;
+            BarUpdate();
+        }
 
+        public void BarUpdate()
+        {
+            valueStars = (float)sm.starsTaken / (float)sm.starsNeeded;
             BarFilled.fillAmount = valueStars;
         }
     }

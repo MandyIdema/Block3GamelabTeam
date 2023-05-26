@@ -56,21 +56,21 @@ namespace GM
                 }
             }
 
-            Analytics();
+            //Analytics();
         }
 
-        async void Analytics()
-        {
-            try
-            {
-                await UnityServices.InitializeAsync();
-                List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
-            }
-            catch (ConsentCheckException e)
-            {
-                // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
-            }
-        }
+        //async void Analytics()
+        //{
+        //    try
+        //    {
+        //        await UnityServices.InitializeAsync();
+        //        List<string> consentIdentifiers = await AnalyticsService.Instance.CheckForRequiredConsents();
+        //    }
+        //    catch (ConsentCheckException e)
+        //    {
+        //        // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+        //    }
+        //}
         // [K] A sorting mechanism to reposition all of the stars for the player
         IEnumerator UpdateStarPosition()
         {
@@ -79,14 +79,14 @@ namespace GM
                 while (CheckStarOverlap(starObject))
                 {
                     starObject.transform.position = DetermineSpawnPosition(starObject.GetComponent<StarProperty>().spawnArea);
-                    Debug.Log($"The position of the {starObject.name} was changed");
+                   // Debug.Log($"The position of the {starObject.name} was changed");
                     CheckStarOverlap(starObject);
                     yield return null;
                 }
                 NetworkServer.Spawn(starObject);
                 starObject.GetComponent<SpriteRenderer>().enabled = true;
-
             }
+            Debug.Log("All of the stars have been repositioned.");
            
         }
 
@@ -125,7 +125,6 @@ namespace GM
             }
         }
 
-        // Has some weird properties if spawned without a Client Rpc declaration
         [ClientRpc]
         void RpcSpawnStars()
         {

@@ -562,7 +562,6 @@ GameObject:
   - component: {fileID: 8432335774314543101}
   - component: {fileID: 7324303561752000969}
   - component: {fileID: 2538572638088422175}
-  - component: {fileID: 4350626630278782181}
   - component: {fileID: 8484394086087375690}
   - component: {fileID: 8938317476443352461}
   - component: {fileID: 3732968277159558847}
@@ -717,20 +716,18 @@ MonoBehaviour:
   domainObjects: []
   currentStatus: 0
   starsCollected: 0
-  starUI: {fileID: 3343249740657516638, guid: 0d005c394d1ddc246a88a97218d4b34a, type: 3}
   gameFinished: 0
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
   possessesAPowerUp: 0
-  turnOffSpeed: 0
-  gm: {fileID: 0}
+  movementBlocked: 1
   currentPowerUpType: 0
   exitMenuPanel: {fileID: 0}
   settingsMenuPanel: {fileID: 0}
+  AlertSprite: {fileID: 2666783859065294910}
+  speed: 0.08
   playerNameText: {fileID: 8432335774249348589}
   floatingInfo: {fileID: 8432335774262698841}
-  speed: 0.08
-  AlertSprite: {fileID: 2666783859065294910}
   playerName: PlayerName
   playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
@@ -754,22 +751,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &4350626630278782181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432335774314543091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58adb6d7dce07904a8c32e5f538a9c08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
-  cubePrefab: {fileID: 4819793146421267454, guid: 9664f40fbc6f37f4a859f206883c43e3, type: 3}
 --- !u!61 &8484394086087375690
 BoxCollider2D:
   m_ObjectHideFlags: 0

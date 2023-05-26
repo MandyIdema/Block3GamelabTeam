@@ -71,7 +71,6 @@ public class SettingsMenu : NetworkBehaviour
 
     public void ApplyToPlayer(){
         if(isLocalPlayer){
-            Debug.Log("FSDFDSFS");
             Transform childTransform = transform.Find("head");
             Transform childTransform2 = transform.Find("body");
             Transform childTransform3 = transform.Find("feet");
@@ -79,7 +78,6 @@ public class SettingsMenu : NetworkBehaviour
             childTransform2.GetComponent<SpriteRenderer>().sprite = avatarTransforms[1].sprite;
             childTransform3.GetComponent<SpriteRenderer>().sprite = avatarTransforms[2].sprite;
         }else{
-            Debug.Log("NNNNNNNNNNNNNNNN");
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Mirror.Discovery
         public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
+        public GameObject shopIcon;
    
         // bool paused = false;
 
@@ -34,6 +35,7 @@ namespace Mirror.Discovery
                 if (networkManager.mode == NetworkManagerMode.Host)
                 {
                     Destroy(ExitGamePanel);
+                    Destroy(shopIcon);
                     NetworkManager.singleton.StopHost();
                     networkDiscovery.StopDiscovery();
                     Debug.Log("Stopped game");
@@ -49,6 +51,7 @@ namespace Mirror.Discovery
                 if (networkManager.mode == NetworkManagerMode.ClientOnly)
                 {
                     Destroy(ExitGamePanel);
+                    Destroy(shopIcon);
                     NetworkManager.singleton.StopClient();
                     networkDiscovery.StopDiscovery();
                     Debug.Log("Stopped game");
@@ -63,6 +66,7 @@ namespace Mirror.Discovery
         public void Host()
         {
             menuPanel.SetActive(false);
+            shopIcon.SetActive(false);
             background.SetActive(false);
 
             // paused = false;
@@ -93,6 +97,7 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
             menuPanel.SetActive(false);
+            shopIcon.SetActive(false);
             //discoveryPanel.SetActive(false);
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
@@ -104,6 +109,7 @@ namespace Mirror.Discovery
             // paused = false;
 
             menuPanel.SetActive(true);
+            shopIcon.SetActive(true);
             discoveryPanel.SetActive(false);
             discoveredServers.Clear();
 
