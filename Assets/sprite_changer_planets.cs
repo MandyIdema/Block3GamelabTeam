@@ -22,7 +22,12 @@ public class sprite_changer_planets : MonoBehaviour
 
     private void Update()
     {
-      
+       
+        if (planet_interact.PlanetInteract)
+        {
+            UpdatePlanet();
+        }
+       
     }
 
     public void UpdatePlanet()

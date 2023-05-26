@@ -173,6 +173,7 @@ MonoBehaviour:
   spawnArea: 0
   _gm: {fileID: 0}
   _sm: {fileID: 0}
+  light_Star: {fileID: 8674395054265789000}
 --- !u!1 &8674395054265789000
 GameObject:
   m_ObjectHideFlags: 0

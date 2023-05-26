@@ -22,6 +22,8 @@ namespace GM
         [HideInInspector] public int spawnArea;
         [HideInInspector] public GameManager _gm;
         [HideInInspector] public StarManager _sm;
+
+        public GameObject light_Star;
         public void Start()
         {
             
@@ -80,6 +82,7 @@ namespace GM
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>().enabled = false;
 
             if (isServer)
             {
