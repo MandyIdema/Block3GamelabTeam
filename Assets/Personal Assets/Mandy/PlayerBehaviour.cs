@@ -47,6 +47,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Header("Player Stats")]
     [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
     [SyncVar] public int starsCollected = 0;
+    [SyncVar] public List<string> obtainedClothes;
     [SyncVar] public bool gameFinished = false;
 
     [Space]

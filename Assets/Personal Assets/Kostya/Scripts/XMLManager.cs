@@ -18,6 +18,7 @@ public class XMLManager : MonoBehaviour
             Directory.CreateDirectory(Application.persistentDataPath + "/UserStats/");
         }
         LoadStarScore();
+        Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
     }
 
     // Updates the player's XML file
@@ -57,5 +58,6 @@ public class XMLManager : MonoBehaviour
     public class UserGlobalStats
     {
         public int starsCollectedInTotal;
+        public List<KeyValuePair<string,bool>> obtainedClothes;
     }
 }

@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 132417105}
   - component: {fileID: 132417107}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: body3
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1104944898}
   m_HandleRect: {fileID: 1104944897}
   m_Direction: 0
-  m_Value: -0.000000431833
+  m_Value: 0.49999857
   m_Size: 0.8018602
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1843,7 +1843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 53.00244, y: -45.5}
+  m_AnchoredPosition: {x: 0, y: -45.5}
   m_SizeDelta: {x: 535, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439731345
@@ -2833,7 +2833,7 @@ GameObject:
   - component: {fileID: 598180787}
   - component: {fileID: 598180791}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: head3
   m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2941,7 +2941,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -2966,7 +2966,7 @@ GameObject:
   - component: {fileID: 639082444}
   - component: {fileID: 639082448}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: head4
   m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3074,7 +3074,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -3670,10 +3670,9 @@ MonoBehaviour:
   syncInterval: 0.1
   blackScreen: {fileID: 943877363}
   resolutionsDropDown: {fileID: 0}
-  avatarTransforms:
-  - {fileID: 772051433}
-  - {fileID: 1586889798}
-  - {fileID: 1165746868}
+  avatarTransforms: []
+  clothesPrefabs: []
+  currencyText: {fileID: 0}
 --- !u!114 &736689720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,7 +4249,7 @@ GameObject:
   - component: {fileID: 777713570}
   - component: {fileID: 777713572}
   m_Layer: 5
-  m_Name: Image (9)
+  m_Name: body6
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4358,7 +4357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -4420,7 +4419,7 @@ GameObject:
   - component: {fileID: 813714493}
   - component: {fileID: 813714495}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: body4
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4528,7 +4527,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -4751,6 +4750,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851137892}
   m_CullTransparentMesh: 1
+--- !u!1 &874603144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874603146}
+  - component: {fileID: 874603145}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &874603145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874603144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e57060cdad6ce247bf1d6b0979939dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ugStats:
+    starsCollectedInTotal: 0
+--- !u!4 &874603146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874603144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 655.3695, y: 289.36325, z: -1.4531529}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879791017
 GameObject:
   m_ObjectHideFlags: 0
@@ -4825,6 +4870,141 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!1 &902699559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902699560}
+  - component: {fileID: 902699562}
+  - component: {fileID: 902699561}
+  m_Layer: 5
+  m_Name: currency
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &902699560
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902699559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1006840322}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -480, y: -343}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &902699561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902699559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Currency
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &902699562
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902699559}
+  m_CullTransparentMesh: 1
 --- !u!1 &904761528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,6 +5740,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1006840322}
+  - component: {fileID: 1006840324}
+  - component: {fileID: 1006840323}
   m_Layer: 5
   m_Name: Shop Menu
   m_TagString: Untagged
@@ -5585,6 +5767,7 @@ RectTransform:
   - {fileID: 1119828223}
   - {fileID: 654942376}
   - {fileID: 757952515}
+  - {fileID: 902699560}
   m_Father: {fileID: 1987021979385414523}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5593,6 +5776,62 @@ RectTransform:
   m_AnchoredPosition: {x: 235, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1006840323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006840321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141b2ddc83771c64f86e4f05063c9479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  blackScreen: {fileID: 0}
+  resolutionsDropDown: {fileID: 0}
+  avatarTransforms:
+  - {fileID: 772051433}
+  - {fileID: 1586889798}
+  - {fileID: 1165746868}
+  clothesPrefabs:
+  - {fileID: 8481266144400739551, guid: 6e21fcee6f14dff458eed81a3ec8f7f0, type: 3}
+  - {fileID: 5679826648760716717, guid: 608c9e41f7cb3de4ba5bc08210c64eff, type: 3}
+  - {fileID: 5533514794476439379, guid: f2114d6b0b24f77428b0fb2b625341b4, type: 3}
+  - {fileID: 6953723247108921450, guid: c36e6a279af9c7846914d7f5e84a31a3, type: 3}
+  - {fileID: 1705667935448324902, guid: 2ae2d3cb0e1f4544a8f6119c5af1a04f, type: 3}
+  - {fileID: 202258691057338291, guid: 63d94a301758afc48badea6a5d1bf138, type: 3}
+  - {fileID: 4432158173740139506, guid: 7c35e4b8aa80fc84c9acd69b0f1c1310, type: 3}
+  - {fileID: 6328205090974573400, guid: 37f1b4c5cc8b9a54d8c72841b521f9bc, type: 3}
+  - {fileID: 3493188259378297267, guid: c67932748238de84a92f8da7af363232, type: 3}
+  - {fileID: 6028121591430453106, guid: 52eaf2d424115424795cf42fe7bb27ee, type: 3}
+  - {fileID: 2015545264038810557, guid: 75b3ee6d91ef5d84e92ae4397139bf41, type: 3}
+  - {fileID: 4517607984993644464, guid: c4cae35a36f2f63409be749eb0f3b4a7, type: 3}
+  - {fileID: 4342236319931480881, guid: 7eb27d18ad4d1ea4bac4d9c11c8aaa3a, type: 3}
+  - {fileID: 4014764479056782749, guid: a92129cf460566545a839ab115e852b7, type: 3}
+  - {fileID: 5766698905557452085, guid: b820ff5f3acbbed4a8fdd1f431e06cce, type: 3}
+  - {fileID: 6918774830295159216, guid: 0ca8d4540a59f0c439076e06ba376d35, type: 3}
+  currencyText: {fileID: 902699561}
+--- !u!114 &1006840324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006840321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1755371958
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &1015449886
 GameObject:
   m_ObjectHideFlags: 0
@@ -6109,8 +6348,8 @@ RectTransform:
   m_Father: {fileID: 1036136875}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.8018602, y: 1}
+  m_AnchorMin: {x: 0.09906961, y: 0}
+  m_AnchorMax: {x: 0.9009298, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6165,7 +6404,7 @@ GameObject:
   - component: {fileID: 1107899413}
   - component: {fileID: 1107899415}
   m_Layer: 5
-  m_Name: Image (8)
+  m_Name: body5
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6273,7 +6512,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -6392,7 +6631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.502441, y: 47}
+  m_AnchoredPosition: {x: 0, y: 47}
   m_SizeDelta: {x: 460, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1127533377
@@ -6690,7 +6929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 465.50232, y: 47}
+  m_AnchoredPosition: {x: -0.00015258789, y: 47}
   m_SizeDelta: {x: 1360, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191966610
@@ -6842,8 +7081,8 @@ RectTransform:
   m_Father: {fileID: 354451939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.31543764, y: 1}
+  m_AnchorMin: {x: 0.34228125, y: 0}
+  m_AnchorMax: {x: 0.6577189, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6898,7 +7137,7 @@ GameObject:
   - component: {fileID: 1233233321}
   - component: {fileID: 1233233323}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: feet3
   m_TagString: feet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7006,7 +7245,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -7527,7 +7766,7 @@ GameObject:
   - component: {fileID: 1386482676}
   - component: {fileID: 1386482678}
   m_Layer: 5
-  m_Name: Image (13)
+  m_Name: body8
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7635,7 +7874,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -7697,7 +7936,7 @@ GameObject:
   - component: {fileID: 1428092221}
   - component: {fileID: 1428092223}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: feet2
   m_TagString: feet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7805,7 +8044,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -7982,7 +8221,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1560287945}
   m_HandleRect: {fileID: 1560287944}
   m_Direction: 0
-  m_Value: -0.0000014764288
+  m_Value: 0.49999458
   m_Size: 0.9325983
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8233,8 +8472,8 @@ RectTransform:
   m_Father: {fileID: 1577522414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.9325983, y: 1}
+  m_AnchorMin: {x: 0.03370049, y: 0}
+  m_AnchorMax: {x: 0.96629876, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9573,7 +9812,7 @@ GameObject:
   - component: {fileID: 1870093646}
   - component: {fileID: 1870093650}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: head2
   m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9681,7 +9920,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -9782,7 +10021,7 @@ GameObject:
   - component: {fileID: 1930859475}
   - component: {fileID: 1930859477}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: feet1
   m_TagString: feet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9890,7 +10129,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -9985,7 +10224,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1219193876}
   m_HandleRect: {fileID: 1219193875}
   m_Direction: 0
-  m_Value: -0.000000049168776
+  m_Value: 0.5000001
   m_Size: 0.31543764
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10217,7 +10456,7 @@ GameObject:
   - component: {fileID: 1968741526}
   - component: {fileID: 1968741528}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: body1
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10325,7 +10564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -10350,7 +10589,7 @@ GameObject:
   - component: {fileID: 1969772397}
   - component: {fileID: 1969772399}
   m_Layer: 5
-  m_Name: Image (12)
+  m_Name: body7
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10458,7 +10697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -10559,7 +10798,7 @@ GameObject:
   - component: {fileID: 1999856019}
   - component: {fileID: 1999856021}
   m_Layer: 5
-  m_Name: Image (14)
+  m_Name: body9
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10667,7 +10906,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -11103,7 +11342,7 @@ GameObject:
   - component: {fileID: 2064272752}
   - component: {fileID: 2064272756}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: head1
   m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11211,7 +11450,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2
@@ -11412,7 +11651,7 @@ GameObject:
   - component: {fileID: 2121963238}
   - component: {fileID: 2121963240}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: body2
   m_TagString: body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11520,7 +11759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SetClothing
         m_Mode: 2

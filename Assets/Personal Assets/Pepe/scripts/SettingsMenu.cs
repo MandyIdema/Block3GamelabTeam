@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Audio;
 using Mirror;
 
 public class SettingsMenu : NetworkBehaviour
 {
+    [Header("For Exit Menu")]
     [SerializeField] private Image blackScreen;
     [SerializeField] private Dropdown resolutionsDropDown;
+    [Header("For Shopping Menu")]
     [SerializeField] private Image[] avatarTransforms;
+    [SerializeField] private GameObject[] clothesPrefabs;
+    [SerializeField] private TextMeshProUGUI currencyText;
     Resolution[] resolutions;
 
     void Start(){
@@ -28,6 +33,8 @@ public class SettingsMenu : NetworkBehaviour
         resolutionsDropDown.AddOptions(options);
         resolutionsDropDown.value = currentResIndex;
         resolutionsDropDown.RefreshShownValue(); */
+
+        currencyText.text = "Currency: " + XMLManager.instance.LoadStarScore();
     }
     public void SetVolume(float volume){
 
