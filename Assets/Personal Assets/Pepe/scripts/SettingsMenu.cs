@@ -14,6 +14,7 @@ public class SettingsMenu : NetworkBehaviour
     [Header("For Shopping Menu")]
     [SerializeField] private Image[] avatarTransforms;
     [SerializeField] private GameObject[] clothesPrefabs;
+    [SerializeField] private XMLManager saveSystem;
     [SerializeField] private TextMeshProUGUI currencyText;
     Resolution[] resolutions;
 
@@ -33,8 +34,12 @@ public class SettingsMenu : NetworkBehaviour
         resolutionsDropDown.AddOptions(options);
         resolutionsDropDown.value = currentResIndex;
         resolutionsDropDown.RefreshShownValue(); */
+    }
 
-        currencyText.text = "Currency: " + XMLManager.instance.LoadStarScore();
+    void Update(){
+        if(currencyText){
+            currencyText.text = "Currency: " + XMLManager.instance.LoadStarScore();
+        }
     }
     public void SetVolume(float volume){
 
@@ -77,14 +82,34 @@ public class SettingsMenu : NetworkBehaviour
     }
 
     public void ApplyToPlayer(){
-        if(isLocalPlayer){
-            Transform childTransform = transform.Find("head");
-            Transform childTransform2 = transform.Find("body");
-            Transform childTransform3 = transform.Find("feet");
-            childTransform.GetComponent<SpriteRenderer>().sprite = avatarTransforms[0].sprite;
-            childTransform2.GetComponent<SpriteRenderer>().sprite = avatarTransforms[1].sprite;
-            childTransform3.GetComponent<SpriteRenderer>().sprite = avatarTransforms[2].sprite;
-        }else{
+        //put it on the prefab model of the player
+    }
+
+    public void GetCloth(Image Cloth){
+        var nameOfCloth = Cloth.name;
+        var _clothNum = -1;
+/*         for(int i=0;i<clothesPrefabs.Length;i++){
+            if(nameOfCloth==clothesPrefabs[i].name){
+                if(!saveSystem.ugStats.obtainedClothes[i].Value){
+                    _clothNum = i;
+                    Debug.Log(_clothNum);
+                    break;
+                }
+            }
+        } */
+
+        //we still dont have prices but oh well
+        //compares how much money the player has and the price
+        if(Cloth.GetComponent<ClothSetting>() && !Cloth.GetComponent<ClothSetting>().cInfo.obtained){
+            var _currency = XMLManager.instance.LoadStarScore();
+            var _item = Cloth.GetComponent<ClothSetting>().cPrice;
+            if(_currency>=_item){
+                _currency-=_item;
+                XMLManager.instance.SaveStarScoreShop(_currency);
+                Cloth.GetComponent<ClothSetting>().cInfo.obtained = true;
+                XMLManager.instance.AddToInventory(Cloth.GetComponent<ClothSetting>().cInfo);
+                //Debug.Log("IT WORKS");
+            }
         }
     }
 }
