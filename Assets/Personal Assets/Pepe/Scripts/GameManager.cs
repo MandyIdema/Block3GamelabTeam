@@ -81,7 +81,7 @@ namespace GM
         public void EndGame()
         {
             currentStatus = GameStatus.Finished;
-            XMLManager.instance.SaveStarScore();
+            XMLManager.instance.SaveStarScoreGame();
             Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
             if (currentStatus == GameStatus.Finished)
             {

@@ -85,29 +85,16 @@ public class SettingsMenu : NetworkBehaviour
         //put it on the prefab model of the player
     }
 
-    public void GetCloth(Image Cloth){
-        var nameOfCloth = Cloth.name;
-        var _clothNum = -1;
-/*         for(int i=0;i<clothesPrefabs.Length;i++){
-            if(nameOfCloth==clothesPrefabs[i].name){
-                if(!saveSystem.ugStats.obtainedClothes[i].Value){
-                    _clothNum = i;
-                    Debug.Log(_clothNum);
-                    break;
-                }
-            }
-        } */
-
-        //we still dont have prices but oh well
-        //compares how much money the player has and the price
+    public void GetCloth(Image Cloth)
+    {
         if(Cloth.GetComponent<ClothSetting>() && !Cloth.GetComponent<ClothSetting>().cInfo.obtained){
             var _currency = XMLManager.instance.LoadStarScore();
             var _item = Cloth.GetComponent<ClothSetting>().cPrice;
-            if(_currency>=_item){
-                _currency-=_item;
-                XMLManager.instance.SaveStarScoreShop(_currency);
+            if(_currency >= _item){
+                _currency -=_item;
+                //XMLManager.instance.SaveStarScoreShop(_currency);
                 Cloth.GetComponent<ClothSetting>().cInfo.obtained = true;
-                XMLManager.instance.AddToInventory(Cloth.GetComponent<ClothSetting>().cInfo);
+                // XMLManager.instance.AddToInventory(Cloth.GetComponent<ClothSetting>().cInfo);
                 //Debug.Log("IT WORKS");
             }
         }

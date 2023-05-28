@@ -9,7 +9,7 @@ public class DontDestroyDomainOnLoad : MonoBehaviour
     public enum DDOLTypes
     {
         Default,
-        Canvas
+        AvoidDuplicates
     }
 
     public DDOLTypes DDOLType = DDOLTypes.Default;
@@ -20,13 +20,13 @@ public class DontDestroyDomainOnLoad : MonoBehaviour
             case DDOLTypes.Default:
                 DefaultDDOL();
                 break;
-            case DDOLTypes.Canvas:
-                CanvasDDOL();
+            case DDOLTypes.AvoidDuplicates:
+                AvoidDuplicatesDDOL();
                 break;
         }
     }
 
-    void CanvasDDOL()
+    void AvoidDuplicatesDDOL()
     {
 
         DontDestroyOnLoad(gameObject);

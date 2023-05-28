@@ -179,7 +179,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
             if (Input.GetKeyDown(KeyCode.J))
             {
-                XMLManager.instance.SaveStarScore();
+                XMLManager.instance.SaveStarScoreGame();
                 Debug.Log("Score is saved");
             }
 
@@ -205,7 +205,6 @@ public class PlayerBehaviour : NetworkBehaviour
                 }
             }
 
-            
 
             if (inQuestionRange)
             {

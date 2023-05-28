@@ -9,6 +9,28 @@ public class XMLManager : MonoBehaviour
 
     public static XMLManager instance;
     [HideInInspector] public UserGlobalStats ugStats;
+    [HideInInspector] public UserOutfits usOutfits;
+
+    // [K] THIS is the class used in-game
+    public List<bool> obtainedClothes = new List<bool>
+    {
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    };
 
     private void Awake()
     {
@@ -18,52 +40,34 @@ public class XMLManager : MonoBehaviour
             Directory.CreateDirectory(Application.persistentDataPath + "/UserStats/");
         }
         LoadStarScore();
-        //ugStats.obtainedClothes[0] = new KeyValuePair<string, bool>("head1",true);
-        //Debug.Log(ugStats.obtainedClothes[0]);
+
+        if (!File.Exists(Application.persistentDataPath + "/UserStats/outfitinfo.xml"))
+        {
+            SaveOutfits();
+        }
+            LoadOutfits();
+
     }
 
-    // Updates the player's XML file
-    public void SaveStarScore()
+    #region STARS
+
+    // Saving stars from the game
+    public void SaveStarScoreGame()
     {
         ugStats.starsCollectedInTotal += PlayerBehaviour.Local.starsCollected;//faulty can add even stars that have been counted before in-game
-        XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
-        serializer.Serialize(stream, ugStats);
-        stream.Close();
+        SaveStarScore();
     }
 
-    public void SaveStarScoreShop(int starAmount){
-        ugStats.starsCollectedInTotal = starAmount;
-        XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
-        serializer.Serialize(stream, ugStats);
-        stream.Close();
-    }
-
-    public void AddToInventory(ClothSetting.ClothingInformation cInfo){
-        
-        XmlSerializer serializer = new XmlSerializer(typeof(ClothSetting.ClothingInformation));
-        FileStream stream = new FileStream(Application.persistentDataPath+"UserStats/userinfo.xml",FileMode.Create);
-        serializer.Serialize(stream,cInfo);
-        stream.Close();
-/*         if (File.Exists(Application.persistentDataPath + "/UserStats/userinfo.xml"))
-        {
-            var _tempList = ugStats.obtainedClothes;
-            
-            ugStats.obtainedClothes.Clear();
-            var _count = 0;
-            foreach(var i in _tempList){
-                Debug.Log(_count+"AAAA");
-                _count++;
-            }
-        } */
-
-    }
-
-    // Resets the player's XML file
-    public void NullifyStarScore()
+    // Saving stars from the shop
+    public void SaveStarScoreShop(int starAmount)
     {
-        ugStats.starsCollectedInTotal = 0;
+        ugStats.starsCollectedInTotal = starAmount;
+        SaveStarScore();
+    }
+
+    // Default function for updating the XML file
+    public void SaveStarScore()
+    {
         XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
         FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
         serializer.Serialize(stream, ugStats);
@@ -83,27 +87,67 @@ public class XMLManager : MonoBehaviour
         return ugStats.starsCollectedInTotal;
     }
 
+    // Resets the player's XML file
+    public void NullifyStarScore()
+    {
+        ugStats.starsCollectedInTotal = 0;
+        XmlSerializer serializer = new XmlSerializer(typeof(UserGlobalStats));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/userinfo.xml", FileMode.Create);
+        serializer.Serialize(stream, ugStats);
+        stream.Close();
+    }
+
     [System.Serializable]
     public class UserGlobalStats
     {
         public int starsCollectedInTotal;
-/*         public List<KeyValuePair<string,bool>> obtainedClothes = new List<KeyValuePair<string, bool>>{
-            new KeyValuePair<string, bool>("head1",false),
-            new KeyValuePair<string, bool>("head2",false),
-            new KeyValuePair<string, bool>("head3",false),
-            new KeyValuePair<string, bool>("head4",false),
-            new KeyValuePair<string, bool>("body1",false),
-            new KeyValuePair<string, bool>("body2",false),
-            new KeyValuePair<string, bool>("body3",false),
-            new KeyValuePair<string, bool>("body4",false),
-            new KeyValuePair<string, bool>("body5",false),
-            new KeyValuePair<string, bool>("body6",false),
-            new KeyValuePair<string, bool>("body7",false),
-            new KeyValuePair<string, bool>("body8",false),
-            new KeyValuePair<string, bool>("body9",false),
-            new KeyValuePair<string, bool>("feet1",false),
-            new KeyValuePair<string, bool>("feet2",false),
-            new KeyValuePair<string, bool>("feet3",false)
-        }; */
     }
+
+    #endregion
+
+    #region OUTFITS
+
+    // Transfers the info from the game object to XML file
+    public void SaveOutfits()
+    {
+        usOutfits.obtainedUserClothes = instance.obtainedClothes;
+        XmlSerializer serializer = new XmlSerializer(typeof(UserOutfits));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/outfitinfo.xml", FileMode.Create);
+        serializer.Serialize(stream, usOutfits);
+        stream.Close();
+            
+    }
+
+    // Transfers the info from the XML file to the game object
+    public void LoadOutfits()
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(UserOutfits));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/outfitinfo.xml", FileMode.Open);
+        usOutfits = serializer.Deserialize(stream) as UserOutfits;
+        stream.Close();
+
+        if (usOutfits.obtainedUserClothes != null)
+        {
+            instance.obtainedClothes = usOutfits.obtainedUserClothes;
+        }
+    }
+
+    //public void AddToInventory(ClothSetting.ClothingInformation cInfo)
+    //{
+    //    XmlSerializer serializer = new XmlSerializer(typeof(ClothSetting.ClothingInformation));
+    //    FileStream stream = new FileStream(Application.persistentDataPath + "UserStats/userinfo.xml", FileMode.Create);
+    //    serializer.Serialize(stream, cInfo);
+    //    stream.Close();
+
+    //}
+
+
+    // [K] THIS is the class that is used for the XML file
+    [System.Serializable]
+    public class UserOutfits
+    {
+        public List<bool> obtainedUserClothes;
+    }
+    #endregion
+
 }
