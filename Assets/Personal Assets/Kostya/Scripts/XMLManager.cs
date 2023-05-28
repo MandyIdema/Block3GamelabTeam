@@ -132,16 +132,6 @@ public class XMLManager : MonoBehaviour
         }
     }
 
-    //public void AddToInventory(ClothSetting.ClothingInformation cInfo)
-    //{
-    //    XmlSerializer serializer = new XmlSerializer(typeof(ClothSetting.ClothingInformation));
-    //    FileStream stream = new FileStream(Application.persistentDataPath + "UserStats/userinfo.xml", FileMode.Create);
-    //    serializer.Serialize(stream, cInfo);
-    //    stream.Close();
-
-    //}
-
-
     // [K] THIS is the class that is used for the XML file
     [System.Serializable]
     public class UserOutfits

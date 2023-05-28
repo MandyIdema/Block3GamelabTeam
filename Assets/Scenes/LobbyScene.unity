@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 132417106}
   - component: {fileID: 132417105}
   - component: {fileID: 132417107}
+  - component: {fileID: 132417108}
   m_Layer: 5
   m_Name: body3
   m_TagString: body
@@ -754,6 +755,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 132417105}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 132417108}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &132417108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132417103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 3
+  obtained: 0
 --- !u!1 &164347647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1801,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1104944898}
   m_HandleRect: {fileID: 1104944897}
   m_Direction: 0
-  m_Value: 0.5
+  m_Value: 0.50000024
   m_Size: 0.6128503
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1843,7 +1884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000045776367, y: -45.5}
+  m_AnchoredPosition: {x: -0.00010681152, y: -28}
   m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439731345
@@ -2954,13 +2995,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2064272757}
-        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
-        m_MethodName: ShowPrice
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 598180787}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 598180785}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2978,12 +3031,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cInfo:
-    name: 
-    price: 0
-    obtained: 0
-  whatever: {fileID: 0}
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
   cPrice: 3
+  obtained: 0
 --- !u!1 &639082442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,7 +3169,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2064272757}
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 639082444}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 639082449}
         m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
         m_MethodName: ShowPrice
         m_Mode: 1
@@ -3142,12 +3205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cInfo:
-    name: 
-    price: 0
-    obtained: 0
-  whatever: {fileID: 0}
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
   cPrice: 4
+  obtained: 0
 --- !u!1 &644501605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,141 +4028,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757952514}
   m_CullTransparentMesh: 1
---- !u!1 &764520535
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 764520536}
-  - component: {fileID: 764520538}
-  - component: {fileID: 764520537}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &764520536
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764520535}
-  m_LocalRotation: {x: -0, y: -0, z: 0.31880045, w: 0.94782186}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3562901, y: 0.29916883, z: 0.24999999}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1625147799}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.181}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.5, y: 12.499996}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &764520537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764520535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Not Bought
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &764520538
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764520535}
-  m_CullTransparentMesh: 1
 --- !u!1 &766349865
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,6 +4350,7 @@ GameObject:
   - component: {fileID: 777713571}
   - component: {fileID: 777713570}
   - component: {fileID: 777713572}
+  - component: {fileID: 777713573}
   m_Layer: 5
   m_Name: body6
   m_TagString: body
@@ -4545,6 +4472,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 777713570}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 777713573}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &777713573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777713568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 8
+  obtained: 0
 --- !u!1 &786048026
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4561,7 @@ GameObject:
   - component: {fileID: 813714494}
   - component: {fileID: 813714493}
   - component: {fileID: 813714495}
+  - component: {fileID: 813714496}
   m_Layer: 5
   m_Name: body4
   m_TagString: body
@@ -4715,6 +4683,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 813714493}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 813714496}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &813714496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813714491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 5
+  obtained: 0
 --- !u!1 &827883437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5993,6 +6001,23 @@ MonoBehaviour:
   - {fileID: 6028121591430453106, guid: 52eaf2d424115424795cf42fe7bb27ee, type: 3}
   - {fileID: 2015545264038810557, guid: 75b3ee6d91ef5d84e92ae4397139bf41, type: 3}
   - {fileID: 4517607984993644464, guid: c4cae35a36f2f63409be749eb0f3b4a7, type: 3}
+  clothesUI:
+  - {fileID: 2064272752}
+  - {fileID: 1870093646}
+  - {fileID: 598180787}
+  - {fileID: 639082444}
+  - {fileID: 1968741526}
+  - {fileID: 2121963238}
+  - {fileID: 132417105}
+  - {fileID: 813714493}
+  - {fileID: 1107899413}
+  - {fileID: 777713570}
+  - {fileID: 1969772397}
+  - {fileID: 1386482676}
+  - {fileID: 1999856019}
+  - {fileID: 1930859475}
+  - {fileID: 1428092221}
+  - {fileID: 1233233321}
   saveSystem: {fileID: 874603145}
   currencyText: {fileID: 902699561}
 --- !u!114 &1006840324
@@ -6528,8 +6553,8 @@ RectTransform:
   m_Father: {fileID: 1036136875}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19357485, y: 0}
-  m_AnchorMax: {x: 0.80642515, y: 1}
+  m_AnchorMin: {x: 0.19357494, y: 0}
+  m_AnchorMax: {x: 0.8064252, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6583,6 +6608,7 @@ GameObject:
   - component: {fileID: 1107899414}
   - component: {fileID: 1107899413}
   - component: {fileID: 1107899415}
+  - component: {fileID: 1107899416}
   m_Layer: 5
   m_Name: body5
   m_TagString: body
@@ -6704,6 +6730,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1107899413}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1107899416}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1107899416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107899411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 6
+  obtained: 0
 --- !u!1 &1119828222
 GameObject:
   m_ObjectHideFlags: 0
@@ -7109,7 +7175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000091552734, y: 47}
+  m_AnchoredPosition: {x: -0.000030517578, y: 47}
   m_SizeDelta: {x: 1360, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191966610
@@ -7261,8 +7327,8 @@ RectTransform:
   m_Father: {fileID: 354451939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.34228116, y: 0}
-  m_AnchorMax: {x: 0.6577188, y: 1}
+  m_AnchorMin: {x: 0.34228113, y: 0}
+  m_AnchorMax: {x: 0.6577187, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7316,6 +7382,7 @@ GameObject:
   - component: {fileID: 1233233322}
   - component: {fileID: 1233233321}
   - component: {fileID: 1233233323}
+  - component: {fileID: 1233233324}
   m_Layer: 5
   m_Name: feet3
   m_TagString: feet
@@ -7437,6 +7504,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1233233321}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1233233324}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1233233324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233233319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 0
+  obtained: 0
 --- !u!1 &1263771362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7945,6 +8052,7 @@ GameObject:
   - component: {fileID: 1386482677}
   - component: {fileID: 1386482676}
   - component: {fileID: 1386482678}
+  - component: {fileID: 1386482679}
   m_Layer: 5
   m_Name: body8
   m_TagString: body
@@ -8066,6 +8174,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1386482676}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1386482679}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1386482679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386482674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 8
+  obtained: 0
 --- !u!1 &1389994042
 GameObject:
   m_ObjectHideFlags: 0
@@ -8115,6 +8263,7 @@ GameObject:
   - component: {fileID: 1428092222}
   - component: {fileID: 1428092221}
   - component: {fileID: 1428092223}
+  - component: {fileID: 1428092224}
   m_Layer: 5
   m_Name: feet2
   m_TagString: feet
@@ -8236,6 +8385,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1428092221}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1428092224}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1428092224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428092219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 0
+  obtained: 0
 --- !u!1 &1463724772
 GameObject:
   m_ObjectHideFlags: 0
@@ -8401,7 +8590,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1560287945}
   m_HandleRect: {fileID: 1560287944}
   m_Direction: 0
-  m_Value: 0.5
+  m_Value: 0.4999985
   m_Size: 0.9325983
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8652,8 +8841,8 @@ RectTransform:
   m_Father: {fileID: 1577522414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.033700854, y: 0}
-  m_AnchorMax: {x: 0.9662992, y: 1}
+  m_AnchorMin: {x: 0.033700753, y: 0}
+  m_AnchorMax: {x: 0.96629906, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8907,83 +9096,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!1 &1625147798
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625147799}
-  - component: {fileID: 1625147801}
-  - component: {fileID: 1625147800}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1625147799
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625147798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 764520536}
-  m_Father: {fileID: 2064272751}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1625147800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625147798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.7607843}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1625147801
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625147798}
-  m_CullTransparentMesh: 1
 --- !u!1 &1646199695
 GameObject:
   m_ObjectHideFlags: 0
@@ -10190,13 +10302,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2064272757}
-        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
-        m_MethodName: ShowPrice
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1870093646}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1870093644}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10214,12 +10338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cInfo:
-    name: 
-    price: 0
-    obtained: 0
-  whatever: {fileID: 0}
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
   cPrice: 2
+  obtained: 0
 --- !u!1 &1906887802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10308,6 +10430,7 @@ GameObject:
   - component: {fileID: 1930859476}
   - component: {fileID: 1930859475}
   - component: {fileID: 1930859477}
+  - component: {fileID: 1930859478}
   m_Layer: 5
   m_Name: feet1
   m_TagString: feet
@@ -10429,6 +10552,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1930859475}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1930859478}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1930859478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930859473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 0
+  obtained: 0
 --- !u!1 &1936084951
 GameObject:
   m_ObjectHideFlags: 0
@@ -10512,8 +10675,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1219193876}
   m_HandleRect: {fileID: 1219193875}
   m_Direction: 0
-  m_Value: 0.5
-  m_Size: 0.31543764
+  m_Value: 0.49999988
+  m_Size: 0.3154376
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10743,6 +10906,7 @@ GameObject:
   - component: {fileID: 1968741527}
   - component: {fileID: 1968741526}
   - component: {fileID: 1968741528}
+  - component: {fileID: 1968741529}
   m_Layer: 5
   m_Name: body1
   m_TagString: body
@@ -10864,6 +11028,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1968741526}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1968741529}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1968741529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968741524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 3
+  obtained: 0
 --- !u!1 &1969772395
 GameObject:
   m_ObjectHideFlags: 0
@@ -10876,6 +11080,7 @@ GameObject:
   - component: {fileID: 1969772398}
   - component: {fileID: 1969772397}
   - component: {fileID: 1969772399}
+  - component: {fileID: 1969772400}
   m_Layer: 5
   m_Name: body7
   m_TagString: body
@@ -10997,6 +11202,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1969772397}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1969772400}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1969772400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969772395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 8
+  obtained: 0
 --- !u!1 &1981923610
 GameObject:
   m_ObjectHideFlags: 0
@@ -11085,6 +11330,7 @@ GameObject:
   - component: {fileID: 1999856020}
   - component: {fileID: 1999856019}
   - component: {fileID: 1999856021}
+  - component: {fileID: 1999856022}
   m_Layer: 5
   m_Name: body9
   m_TagString: body
@@ -11206,6 +11452,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1999856019}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1999856017}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1999856022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999856017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 8
+  obtained: 0
 --- !u!1 &2046824904
 GameObject:
   m_ObjectHideFlags: 0
@@ -11648,8 +11934,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.1500006, y: 2.5262506, z: 2.1500006}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1625147799}
+  m_Children: []
   m_Father: {fileID: 439731344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11752,18 +12037,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2064272757}
-        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
-        m_MethodName: ShowPrice
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: GetCloth
@@ -11771,6 +12044,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2064272752}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2064272757}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11788,12 +12073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cInfo:
-    name: 
-    price: 0
-    obtained: 0
-  whatever: {fileID: 1625147798}
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
   cPrice: 1
+  obtained: 0
 --- !u!1 &2090684039
 GameObject:
   m_ObjectHideFlags: 0
@@ -11982,6 +12265,7 @@ GameObject:
   - component: {fileID: 2121963239}
   - component: {fileID: 2121963238}
   - component: {fileID: 2121963240}
+  - component: {fileID: 2121963241}
   m_Layer: 5
   m_Name: body2
   m_TagString: body
@@ -12103,6 +12387,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1006840323}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: GetCloth
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2121963238}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2121963241}
+        m_TargetAssemblyTypeName: ClothSetting, Assembly-CSharp
+        m_MethodName: ShowPrice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2121963241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121963236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01ea07e16b30664a974d028960ad118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockUI: {fileID: 7469199746212943300, guid: ac027a0013a0a244cacd957c0020d235, type: 3}
+  priceUI: {fileID: 6903459690318237766, guid: 39d57e2c77d647540a24f441392d3f04, type: 3}
+  cPrice: 2
+  obtained: 0
 --- !u!1 &346914627211070137
 GameObject:
   m_ObjectHideFlags: 0
