@@ -3369,7 +3369,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1006840323}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: ApplyToPlayer
         m_Mode: 1
@@ -6018,6 +6018,7 @@ MonoBehaviour:
   - {fileID: 1930859475}
   - {fileID: 1428092221}
   - {fileID: 1233233321}
+  appliedClothes: []
   saveSystem: {fileID: 874603145}
   currencyText: {fileID: 902699561}
 --- !u!114 &1006840324
@@ -12601,7 +12602,7 @@ GameObject:
   - component: {fileID: 7038236926894034962}
   m_Layer: 5
   m_Name: MenuPanel
-  m_TagString: Untagged
+  m_TagString: shop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -62,7 +62,7 @@ namespace Mirror.Discovery
 
         public void Host()
         {
-            menuPanel.SetActive(false);
+            //menuPanel.SetActive(false);
             background.SetActive(false);
 
             // paused = false;

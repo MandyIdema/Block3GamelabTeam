@@ -47,7 +47,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Header("Player Stats")]
     [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
     [SyncVar] public int starsCollected = 0;
-    [SyncVar] public List<string> obtainedClothes;
+    [SyncVar] public List<GameObject> obtainedClothes;
     [SyncVar] public bool gameFinished = false;
 
     [Space]
@@ -106,13 +106,21 @@ public class PlayerBehaviour : NetworkBehaviour
             _camera = Camera.main;
             exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
             exitMenuPanel.transform.GetChild(0).gameObject.SetActive(false);
+            settingsMenuPanel = GameObject.FindGameObjectWithTag("shop");
         }
         gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
         if (Local.ir == null)
         {
             Local.ir = FindObjectOfType<InactivateRule>();
         }
-
+        var _childOfMenu = settingsMenuPanel.transform.GetChild(4);
+        if(_childOfMenu.GetComponent<SettingsMenu>().appliedClothes.Count != 0){
+            foreach(var i in _childOfMenu.GetComponent<SettingsMenu>().appliedClothes){
+                var _tempGameObject = Instantiate(i,gameObject.transform);
+                _tempGameObject.transform.SetParent(gameObject.transform);
+            }
+        }
+        settingsMenuPanel.SetActive(false);
     }
 
     private void Update()
