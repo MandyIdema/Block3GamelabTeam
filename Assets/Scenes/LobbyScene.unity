@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 164347649}
   m_Layer: 5
   m_Name: BackButton
-  m_TagString: Untagged
+  m_TagString: BackButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4134,7 +4134,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766765655}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 1
@@ -4144,7 +4144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 360}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 698.7, y: 269.5}
+  m_AnchoredPosition: {x: 698.6999, y: 269.5}
   m_SizeDelta: {x: 94.4457, y: 91.5375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766765657
@@ -7634,7 +7634,7 @@ GameObject:
   - component: {fileID: 1274049229}
   - component: {fileID: 1274049228}
   m_Layer: 5
-  m_Name: BackButton (1)
+  m_Name: Unused button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12980,6 +12980,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 736689714}
     - target: {fileID: 9091512826268284644, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
+      propertyPath: shopButton
+      value: 
+      objectReference: {fileID: 1805390042}
+    - target: {fileID: 9091512826268284644, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
       propertyPath: ExitGamePanel
       value: 
       objectReference: {fileID: 736689714}
@@ -12987,6 +12991,10 @@ PrefabInstance:
       propertyPath: discoveryPanel
       value: 
       objectReference: {fileID: 260298908}
+    - target: {fileID: 9091512826268284644, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
+      propertyPath: settingsButton
+      value: 
+      objectReference: {fileID: 766765655}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65dd71c99bc23e841a3347b81e78bd91, type: 3}
 --- !u!114 &7038236926894034962
