@@ -25,6 +25,7 @@ public class ClothSetting : MonoBehaviour
     public void ShowPrice(){
         if(obtained && instanceBlock!=null){
             instanceBlock.SetActive(false);
+            instancePrice.SetActive(false);
         }
     }
 }

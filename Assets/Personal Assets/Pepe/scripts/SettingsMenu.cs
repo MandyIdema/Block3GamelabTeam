@@ -15,6 +15,7 @@ public class SettingsMenu : NetworkBehaviour
     [SerializeField] private Image[] avatarTransforms;
     [SerializeField] private GameObject[] clothesPrefabs;
     [SerializeField] private Image[] clothesUI;
+    public List<GameObject> appliedClothes;
     [SerializeField] private XMLManager saveSystem;
     [SerializeField] private TextMeshProUGUI currencyText;
     Resolution[] resolutions;
@@ -80,26 +81,46 @@ public class SettingsMenu : NetworkBehaviour
                     var _a = avatarTransforms[0].color;
                     _a.a = 255;
                     avatarTransforms[0].color = _a;
-
+                    avatarTransforms[0].name = cloth.name;
                 break;
                 case "body":
                     avatarTransforms[1].sprite = cloth.sprite;
                     var _b = avatarTransforms[1].color;
                     _b.a = 255;
                     avatarTransforms[1].color = _b;
+                    avatarTransforms[1].name = cloth.name;
                 break;
                 case "feet":
                     avatarTransforms[2].sprite = cloth.sprite;
                     var _c = avatarTransforms[2].color;
                     _c.a = 255;
                     avatarTransforms[2].color = _c;
+                    avatarTransforms[2].name = cloth.name;
                 break;
             }
         }
     }
 
+    //put it on the prefab model of the player
     public void ApplyToPlayer(){
-        //put it on the prefab model of the player
+        var _tempList = new List<string>();
+        for(int i = 0; i < avatarTransforms.Length; i++){
+            if(avatarTransforms[i].color.a == 255){
+                _tempList.Add(avatarTransforms[i].name);
+            }
+        }
+        if(_tempList.Count!=0){
+            appliedClothes.Clear();
+            var _j = 0;
+            for(int i = 0; i < clothesPrefabs.Length; i++){
+                if(_j < _tempList.Count){
+                    if(clothesPrefabs[i].name == _tempList[_j]){
+                        appliedClothes.Add(clothesPrefabs[i]);
+                        _j++;
+                    }
+                }
+            }
+        }
     }
 
     public void GetCloth(Image Cloth)
