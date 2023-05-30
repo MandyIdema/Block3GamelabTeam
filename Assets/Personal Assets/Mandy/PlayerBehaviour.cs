@@ -199,6 +199,7 @@ public class PlayerBehaviour : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.N))
             {
                 XMLManager.instance.NullifyStarScore();
+                XMLManager.instance.NullifyOutfits();
                 Debug.Log("Score is reset");
             }
 

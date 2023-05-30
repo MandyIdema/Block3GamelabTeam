@@ -24,7 +24,6 @@ namespace Mirror.Discovery
         public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
-   
         // bool paused = false;
 
         public void Stop()
@@ -64,6 +63,10 @@ namespace Mirror.Discovery
         {
             //menuPanel.SetActive(false);
             background.SetActive(false);
+            for (int i = 0; i < 4; i++)
+            {
+                menuPanel.transform.GetChild(i).gameObject.SetActive(false);
+            }
 
             // paused = false;
 

@@ -45,7 +45,9 @@ public class XMLManager : MonoBehaviour
         {
             SaveOutfits();
         }
-            LoadOutfits();
+        // Trigger this if the XML file has been accidentally reset to null
+       // SaveOutfits();
+        LoadOutfits();
 
     }
 
@@ -130,6 +132,19 @@ public class XMLManager : MonoBehaviour
         {
             instance.obtainedClothes = usOutfits.obtainedUserClothes;
         }
+    }
+
+    public void NullifyOutfits()
+    {
+        for (int i = 0; i < instance.obtainedClothes.Count; i++)
+        {
+            instance.obtainedClothes[i] = false;
+        }
+        usOutfits.obtainedUserClothes = instance.obtainedClothes;
+        XmlSerializer serializer = new XmlSerializer(typeof(UserOutfits));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/UserStats/outfitinfo.xml", FileMode.Create);
+        serializer.Serialize(stream, usOutfits);
+        stream.Close();
     }
 
     // [K] THIS is the class that is used for the XML file

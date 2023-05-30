@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace GM
@@ -32,6 +33,8 @@ namespace GM
 
         [Header("Other stuff")]
         public StarManager _sm;
+        public GameObject _endMenu;
+        public GameObject endButton;
 
         private void Awake()
         {
@@ -39,6 +42,11 @@ namespace GM
         }
         void Update()
         {
+
+            if (endButton == null)
+            {
+              endButton = GameObject.FindGameObjectWithTag("BackButton");
+            }
 
             if (players.Count < 4 && !allPlayersAppeared)
             {
@@ -85,7 +93,8 @@ namespace GM
             Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
             if (currentStatus == GameStatus.Finished)
             {
-                SceneManager.LoadScene(2);
+                // SceneManager.LoadScene(2);
+                _endMenu.SetActive(true);
             }
         }
         public void CheckingDomains()
@@ -104,6 +113,12 @@ namespace GM
                 currentStatus = GameStatus.Started;
                 barriers.SetActive(false);
             }
+        }
+
+
+        public void TriggerGameEnd()
+        {
+            endButton.GetComponent<Button>().onClick.Invoke();
         }
     }
 }
