@@ -11,6 +11,7 @@ public class QuestionRandomizer : NetworkBehaviour
     public GameObject localPlayer;
     public GameObject questionPromptUI;
     public bool enteredDoors;
+    private AudioSource beepSound;
 
     private void Start()
     {
@@ -22,6 +23,9 @@ public class QuestionRandomizer : NetworkBehaviour
         }
 
         localPlayer = NetworkClient.localPlayer.gameObject;
+
+        //sound
+        beepSound = GetComponent<AudioSource>();
     }
     public void ActivateQuestion()
     {
@@ -34,6 +38,7 @@ public class QuestionRandomizer : NetworkBehaviour
             QuestionList.Remove(QuestionList[RandomObjectSetActive]);
             isActive = true;
             enteredDoors = true;
+            beepSound.Play();
         }
 
     }
