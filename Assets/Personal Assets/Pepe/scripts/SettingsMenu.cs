@@ -44,6 +44,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetBrightness(float brightness){
         var _temp = blackScreen.color;
         _temp.a = brightness;
+        Debug.Log(_temp.a);
         blackScreen.color = _temp;
     }
     public void SetFullScreen(bool isFullScreen){
@@ -64,7 +65,11 @@ public class SettingsMenu : MonoBehaviour
     #region ClothingMenu
 
     void Awake(){
-        saveSystem.LoadOutfits();
+        try{
+            saveSystem.LoadOutfits();
+        }catch(System.NullReferenceException e){
+            Debug.Log("Null Reference fo outfits");
+        }
         var _listOfObtainedClothes = saveSystem.obtainedClothes;
         for(var i = 0; i<_listOfObtainedClothes.Count;i++){
             if(_listOfObtainedClothes[i]){

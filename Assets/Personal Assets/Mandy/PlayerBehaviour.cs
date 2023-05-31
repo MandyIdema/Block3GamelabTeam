@@ -85,6 +85,8 @@ public class PlayerBehaviour : NetworkBehaviour
     private Material playerMaterialClone;
     public float speed;
     private Rigidbody2D rb;
+    private AudioSource stepsAudio;
+    public AudioClip stepSound;
 
     ////===== TELEPORTATION ============
 
@@ -122,6 +124,10 @@ public class PlayerBehaviour : NetworkBehaviour
             }
         }
         settingsMenuPanel.SetActive(false); */
+
+        stepsAudio = GetComponent<AudioSource>();
+        stepsAudio.Stop();
+        //stepsAudio.clip = stepSound;
     }
 
     private void Update()
@@ -156,10 +162,15 @@ public class PlayerBehaviour : NetworkBehaviour
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             {
                 anim.SetBool("WalkTrigger", true);
+                if(!stepsAudio.isPlaying){
+                    stepsAudio.Play();
+                    Debug.Log("FFSDF");
+                }
             }
             else
             {
                 anim.SetBool("WalkTrigger", false);
+                stepsAudio.Stop();
             }
 
             //If the player moves from left to right, mirror the character (look into direction
