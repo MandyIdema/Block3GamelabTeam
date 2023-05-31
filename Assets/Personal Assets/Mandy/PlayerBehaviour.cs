@@ -3,6 +3,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public enum PlayerDomain
@@ -95,8 +96,11 @@ public class PlayerBehaviour : NetworkBehaviour
 
     // ===== Alert =========
     [Header("Obsolete properties")]
-    public TextMesh playerNameText;
+    //public TextMesh playerNameText;
+    public TMP_Text playerNameText;
     public GameObject floatingInfo;
+
+    
 
     void Start()
     {
@@ -535,5 +539,16 @@ public class PlayerBehaviour : NetworkBehaviour
         possessesAPowerUp = false;
         currentPowerUpType = PowerUpTypes.None;
     }
+
+    public struct PlayerData
+    {
+        public string playerName { get; private set; }
+
+        public PlayerData(string Player_name)
+        {
+            playerName = Player_name;
+        }
+    }
+   
 }
 
