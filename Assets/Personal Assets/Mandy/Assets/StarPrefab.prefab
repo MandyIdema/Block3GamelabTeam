@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4833918364913629227}
   - component: {fileID: 7544660375308710181}
   - component: {fileID: -1137945013968869014}
+  - component: {fileID: 9034414247249719322}
   m_Layer: 6
   m_Name: StarPrefab
   m_TagString: Star
@@ -272,6 +273,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &9034414247249719322
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743888868990299079}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac458dc51106d2b4a9844d4f970d7dea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8674395054265789000
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3050734514993328468}
   - component: {fileID: 5405790533343785563}
+  - component: {fileID: 7092589675507982057}
   m_Layer: 6
   m_Name: Light 2D
   m_TagString: Untagged
@@ -389,3 +412,24 @@ MonoBehaviour:
   - {x: -2.4150317, y: 2.822485, z: -0.000000117564184}
   - {x: -5.6335793, y: 1.4948283, z: 0.0000003618993}
   - {x: -3.963019, y: -1.846291, z: 0.0000003618993}
+--- !u!95 &7092589675507982057
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674395054265789000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac458dc51106d2b4a9844d4f970d7dea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

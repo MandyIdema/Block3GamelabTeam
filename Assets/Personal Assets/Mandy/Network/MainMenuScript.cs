@@ -24,6 +24,8 @@ namespace Mirror.Discovery
         public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
+
+        public GameObject LoadRing;
         // bool paused = false;
 
         public void Stop()
@@ -112,7 +114,8 @@ namespace Mirror.Discovery
 
         }
 
-       
+
+
 
         // Start is called before the first frame update
         void Start()
