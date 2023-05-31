@@ -142,7 +142,7 @@ namespace GM
                 }
                 starsSpawnedTotal += starsWithinAnArea[i];
             }
-            starsNeeded = starsSpawnedTotal - 15;
+            // starsNeeded = starsSpawnedTotal - 15;
         }
 
         // [K] Function to determine a random positioning within the spawn area

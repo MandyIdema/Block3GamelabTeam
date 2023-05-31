@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -445770478145721183}
   - component: {fileID: -9042075426116059212}
   m_Layer: 0
-  m_Name: Type4PowerUp
+  m_Name: SwappingControlsPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -63,7 +63,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [SyncVar] public bool possessesAPowerUp = false;
     [SyncVar] public bool movementBlocked = true;
     private GameObject gm;
-    private InactivateRule ir;
+    public InactivateRule ir;
     public enum PowerUpTypes
     {
         None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
@@ -84,7 +84,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Camera _camera;
     private Material playerMaterialClone;
-    public float speed;
+    [SyncVar] public float normalizedMovement;
+    [SyncVar] public float speed;
     private Rigidbody2D rb;
     private AudioSource stepsAudio;
     public AudioClip stepSound;
@@ -99,12 +100,9 @@ public class PlayerBehaviour : NetworkBehaviour
     //public TextMesh playerNameText;
     public TMP_Text playerNameText;
     public GameObject floatingInfo;
-
-    
-
     void Start()
     {
-
+        normalizedMovement = 1;
         defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
         if (isLocalPlayer)
         {
@@ -168,7 +166,6 @@ public class PlayerBehaviour : NetworkBehaviour
                 anim.SetBool("WalkTrigger", true);
                 if(!stepsAudio.isPlaying){
                     stepsAudio.Play();
-                    Debug.Log("FFSDF");
                 }
             }
             else
@@ -239,7 +236,7 @@ public class PlayerBehaviour : NetworkBehaviour
                     {
                         if (currentQuestion.GetComponent<TeleportationScript>().currentPuzzleStatus == TeleportationScript.puzzleStatus.Unsolved)
                         {
-                            AlertSprite.SetActive(true);
+                            Local.AlertSprite.SetActive(true);
                         }
                     }
                 }
@@ -255,13 +252,22 @@ public class PlayerBehaviour : NetworkBehaviour
             }
             else
             {
-                AlertSprite.SetActive(false);
+                Local.AlertSprite.SetActive(false);
             }
 
             if (possessesAPowerUp)
             {
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
+                    if (currentPowerUpType == PowerUpTypes.GeneralLaziness || currentPowerUpType == PowerUpTypes.SwappingControls || 
+                        currentPowerUpType == PowerUpTypes.SwappingPositions)
+                    {
+                        if (!isClient)
+                        {
+                            return;
+                        }
+                    }
+
                     StartCoroutine(UsingAPowerUp());
                 }
             }
@@ -314,7 +320,7 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");
-            Vector3 movement = new Vector2(moveHorizontal * speed, moveVertical * speed);
+            Vector3 movement = new Vector2(moveHorizontal * speed * normalizedMovement, moveVertical * speed * normalizedMovement);
             this.transform.position = transform.position + movement;
         }
 
@@ -486,54 +492,30 @@ public class PlayerBehaviour : NetworkBehaviour
         switch (currentPowerUpType)
         {
             case PowerUpTypes.SelfAcceleration:
-                // Supposed to increase player's own speed for X seconds
-                // Should be restricted to this script alone
                 speed *= 2;
                 yield return new WaitForSeconds(3);
                 speed /= 2;
                 break;
 
             case PowerUpTypes.GeneralLaziness:
-                // Decreases the speed of everyone else for X seconds
-                // Access the Game Manager to get the list of all players
-                for (int i = 0; i < _countPlayers; i++){
-                    if(_Players[i].name != gameObject.name){
 
-                        _Players[i].GetComponent<PlayerBehaviour>().movementBlocked = true;
-                    }
-                }     
-                yield return new WaitForSeconds(3);
-                if(_countPlayers>1){
-                    for(int i = 0;i < _countPlayers; i++){
-                        _Players[i].GetComponent<PlayerBehaviour>().movementBlocked = false;
-                    }
-                }
+                CmdSlowOthersDown(false);
+                yield return new WaitForSeconds(6);
+                CmdSlowOthersDown(true);
                 break;
 
             case PowerUpTypes.SwappingPositions:
-                // Randomly swaps the player with one of others
-                // Access the Game Manager to get a player other than the one using this, swap their transforms
-                // Will probably cause a fuck ton of bugs in combination with Puzzles for now but that's okay
-                if(_countPlayers > 1){
-                    Vector3 _tempPos = gameObject.transform.position;
-                    int _randNum = Random.Range(0,_countPlayers - 1);
-                    _Players[_randNum].transform.position = _tempPos;
-                }
-
-                yield return new WaitForSeconds(3);
+                yield return new WaitForEndOfFrame();
                 break;
 
             case PowerUpTypes.SwappingControls:
-                // Placeholder, your suggestions are welcome
-                // I backtracked on the stealing other's stars idea because
-                // it would require revamping a lot of scripts AGAIN
-                yield return new WaitForSeconds(3);
+                CmdSwapControls(false);
+                yield return new WaitForSeconds(30);
+                CmdSwapControls(true);
                 break;
 
             case PowerUpTypes.None:
-                // Default option, not sure if it is needed considering the
-                // possessesAPowerUp boolean but decided to keep it
-                yield return new WaitForSeconds(3);
+                yield return null;
                 break;
         }
         possessesAPowerUp = false;
@@ -547,6 +529,78 @@ public class PlayerBehaviour : NetworkBehaviour
         public PlayerData(string Player_name)
         {
             playerName = Player_name;
+        }
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdSlowOthersDown(bool slowingDown)
+    {
+        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        int _countPlayers = _Players.Count;
+
+        for (int i = 0; i < _countPlayers; i++)
+        {
+            if (_Players[i].name != gameObject.name)
+            {
+                if (slowingDown == false)
+                {
+                    _Players[i].GetComponent<PlayerBehaviour>().speed /= 5;
+                }
+                else
+                {
+                    _Players[i].GetComponent<PlayerBehaviour>().speed *= 5;
+                }
+            }
+        }
+    }
+
+    //[TargetRpc]
+    //public void RpcSwapPlayersReceiver()
+    //{
+
+    //}
+
+    [Command(requiresAuthority = false)]
+    public void CmdSwapPositionsUser()
+    {
+        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        int _countPlayers = _Players.Count;
+
+        if (_countPlayers > 1)
+        {
+            Vector3 _playerPos = gameObject.transform.position;
+        choosingPlayer:
+            int _randNum = Random.Range(0, _countPlayers - 1);
+            if (_Players[_randNum] == gameObject)
+            {
+                Debug.Log("The player chose themselves");
+                goto choosingPlayer;
+            }
+            Vector3 _otherPlayerPos = _Players[_randNum].transform.position;
+            _Players[_randNum].transform.position = _playerPos;
+            gameObject.transform.position = gameObject.transform.position - _otherPlayerPos;
+        }
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdSwapControls(bool normalControls)
+    {
+        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        int _countPlayers = _Players.Count;
+
+        for (int i = 0; i < _countPlayers; i++)
+        {
+            if (_Players[i] != gameObject)
+            {
+                if (normalControls == false)
+                {
+                    _Players[i].GetComponent<PlayerBehaviour>().normalizedMovement = -1;
+                }
+                else
+                {
+                    _Players[i].GetComponent<PlayerBehaviour>().normalizedMovement = 1;
+                }
+            }
         }
     }
    

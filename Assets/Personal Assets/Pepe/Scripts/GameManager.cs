@@ -88,12 +88,16 @@ namespace GM
 
         public void EndGame()
         {
+            if (currentStatus == GameStatus.Finished)
+            {
+                return;
+            }
             currentStatus = GameStatus.Finished;
-            XMLManager.instance.SaveStarScoreGame();
-            Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
             if (currentStatus == GameStatus.Finished)
             {
                 // SceneManager.LoadScene(2);
+                XMLManager.instance.SaveStarScoreGame();
+                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
                 _endMenu.SetActive(true);
             }
         }

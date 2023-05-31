@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7672556691262345491
 Transform:
   m_ObjectHideFlags: 0
@@ -629,10 +629,12 @@ MonoBehaviour:
   currentQuestion: {fileID: 0}
   possessesAPowerUp: 0
   movementBlocked: 1
+  ir: {fileID: 0}
   currentPowerUpType: 0
   exitMenuPanel: {fileID: 0}
   settingsMenuPanel: {fileID: 0}
   AlertSprite: {fileID: 2666783859065294910}
+  normalizedMovement: 1
   speed: 0.08
   stepSound: {fileID: 0}
   playerNameText: {fileID: 0}
