@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.Audio;
 using Mirror;
 
-public class SettingsMenu : NetworkBehaviour
+public class SettingsMenu : MonoBehaviour
 {
     [Header("For Exit Menu")]
     [SerializeField] private Image blackScreen;

@@ -61,7 +61,7 @@ namespace Mirror.Discovery
 
         public void Host()
         {
-            //menuPanel.SetActive(false);
+            menuPanel.SetActive(false);
             background.SetActive(false);
             for (int i = 0; i < 4; i++)
             {

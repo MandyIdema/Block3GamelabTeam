@@ -106,21 +106,22 @@ public class PlayerBehaviour : NetworkBehaviour
             _camera = Camera.main;
             exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
             exitMenuPanel.transform.GetChild(0).gameObject.SetActive(false);
-            settingsMenuPanel = GameObject.FindGameObjectWithTag("shop");
+            //settingsMenuPanel = GameObject.FindGameObjectWithTag("shop");
         }
         gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
+        //what is this for
         if (Local.ir == null)
         {
             Local.ir = FindObjectOfType<InactivateRule>();
         }
-        var _childOfMenu = settingsMenuPanel.transform.GetChild(4);
+/*         var _childOfMenu = settingsMenuPanel.transform.GetChild(4);
         if(_childOfMenu.GetComponent<SettingsMenu>().appliedClothes.Count != 0){
             foreach(var i in _childOfMenu.GetComponent<SettingsMenu>().appliedClothes){
                 var _tempGameObject = Instantiate(i,gameObject.transform);
                 _tempGameObject.transform.SetParent(gameObject.transform);
             }
         }
-        settingsMenuPanel.SetActive(false);
+        settingsMenuPanel.SetActive(false); */
     }
 
     private void Update()
