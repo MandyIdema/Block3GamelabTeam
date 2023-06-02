@@ -62,6 +62,30 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
     }
 
+    public void wrongAwnserVoorzetsel()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Op de kast, voor de kast, naast de kast";
+        Debug.Log("This is the wrong awnser");
+    }
+
+    public void wrongAwnserPersoonsvorm()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Maak de zin een vraag! Wat is het eerste woord?";
+        Debug.Log("This is the wrong awnser");
+    }
+
+    public void wrongAwnserPersoonlijkVoorwerp()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wie/wat + het onderwerp + werkwoord";
+        Debug.Log("This is the wrong awnser");
+    }
+
     public void rightAwnser()
     {
         //If the awnser is right, state in the feedback that it is right and close the panel
