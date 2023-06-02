@@ -38,6 +38,30 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
     }
 
+    public void wrongAwnserWerkwoord()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wat zijn ze aan het doen?";
+        Debug.Log("This is the wrong awnser");
+    }
+
+    public void wrongAwnserLidwoord()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: De man, het water, een knoop";
+        Debug.Log("This is the wrong awnser");
+    }
+
+    public void wrongAwnserOnderwerp()
+    {
+        //If the awnser is wrong, state in the feedback that it is wrong
+        awnserText.enabled = true;
+        awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wie?";
+        Debug.Log("This is the wrong awnser");
+    }
+
     public void rightAwnser()
     {
         //If the awnser is right, state in the feedback that it is right and close the panel
