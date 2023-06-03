@@ -9,7 +9,6 @@ public class PowerUpProperties : NetworkBehaviour
     {
         AcceleratePlayer,
         DecceleratePlayers,
-        RandomlySwapPlayers,
         SwapPlayerControls
     }
 
@@ -31,17 +30,23 @@ public class PowerUpProperties : NetworkBehaviour
                 case PowerUpTypes.DecceleratePlayers:
                     collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.GeneralLaziness;
                     break;
-                case PowerUpTypes.RandomlySwapPlayers:
-                    collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.SwappingPositions;
-                    break;
                 case PowerUpTypes.SwapPlayerControls:
                     collision.gameObject.GetComponent<PlayerBehaviour>().currentPowerUpType = PlayerBehaviour.PowerUpTypes.SwappingControls;
                     break;
             }
 
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            if (isServer)
+            {
+                ObjectDisabled();
+            }
         }
+    }
+
+    [ClientRpc]
+    void ObjectDisabled()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 }

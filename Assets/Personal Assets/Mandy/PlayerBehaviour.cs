@@ -5,17 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-public enum PlayerDomain
-{
-    Brainstorming,
-    Conceptualizing,
-    Communication,
-    Execution,
-    Logistics,
-    Leadership
-}
-
 public class PlayerBehaviour : NetworkBehaviour
 {
 
@@ -33,23 +22,19 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Space]
 
-    #region Domains
-    [Header("Domains")]
-    [HideInInspector] public bool onDomain = false;
-    [HideInInspector] public int finalDomain = 0;
-    [HideInInspector] public GameObject currentDomain;
-    [HideInInspector] public int currentDomainNumber;
-    [HideInInspector] public bool showDomainMenu = true;
-    [HideInInspector] public List<GameObject> domainObjects = new();
-    #endregion
-
-    [Space]
-
     [Header("Player Stats")]
-    [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
     [SyncVar] public int starsCollected = 0;
     [SyncVar] public List<GameObject> obtainedClothes;
-    [SyncVar] public bool gameFinished = false;
+    [SyncVar] public float normalizedMovement;
+    [SyncVar] public float speed;
+
+    [Header("Player Info")]
+    [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
+    [SyncVar] public bool movementBlocked = true;
+    public GameObject AlertSprite;
+    public AudioClip stepSound;
+    public TMP_Text playerNameText;
+    public GameObject playerUsername;
 
     [Space]
 
@@ -61,71 +46,50 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
-    [SyncVar] public bool movementBlocked = true;
-    private GameObject gm;
-    public InactivateRule ir;
+
     public enum PowerUpTypes
     {
         None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
         SelfAcceleration,
         GeneralLaziness,
-        SwappingControls,
-        SwappingPositions // Has to be swapped for an actual spell
+        SwappingControls
     }
 
     [SyncVar] public PowerUpTypes currentPowerUpType = PowerUpTypes.None;
 
     [Space]
 
-    [Header("UI")]
-    [HideInInspector] public GameObject exitMenuPanel;
-    [HideInInspector] public GameObject settingsMenuPanel;
-    public GameObject AlertSprite;
+    private GameObject exitMenuPanel;
 
     private Camera _camera;
-    private Material playerMaterialClone;
-    [SyncVar] public float normalizedMovement;
-    [SyncVar] public float speed;
     private Rigidbody2D rb;
     private AudioSource stepsAudio;
-    public AudioClip stepSound;
+    
 
-    ////===== TELEPORTATION ============
+    private GameManager _gm;
+    private Referencer _Referencer;
+    private InactivateRule ir;
 
-    //public GameObject[] TeleportationDoor;
-    //public GameObject[] TeleportationDestination;
 
-    // ===== Alert =========
-    [Header("Obsolete properties")]
-    //public TextMesh playerNameText;
-    public TMP_Text playerNameText;
-    public GameObject floatingInfo;
     void Start()
     {
         normalizedMovement = 1;
-        defaultSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
+        defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         if (isLocalPlayer)
         {
             Local = this;
             _camera = Camera.main;
-            exitMenuPanel = GameObject.FindGameObjectWithTag("GamePanel");
-            exitMenuPanel.transform.GetChild(0).gameObject.SetActive(false);
-            //settingsMenuPanel = GameObject.FindGameObjectWithTag("shop");
         }
-        gm = GameObject.Find("Game Manager"); //theres no other way to access game manager than this for powerupps
-        //what is this for
-        if (Local.ir == null)
+        _Referencer = FindObjectOfType<Referencer>();
+        exitMenuPanel = _Referencer.ExitMenuPanel;
+        exitMenuPanel.SetActive(false);
+
+        _gm = FindObjectOfType<GameManager>();
+
+        if (ir == null)
         {
-            Local.ir = FindObjectOfType<InactivateRule>();
+            ir = FindObjectOfType<InactivateRule>();
         }
-/*         var _childOfMenu = settingsMenuPanel.transform.GetChild(4);
-        if(_childOfMenu.GetComponent<SettingsMenu>().appliedClothes.Count != 0){
-            foreach(var i in _childOfMenu.GetComponent<SettingsMenu>().appliedClothes){
-                var _tempGameObject = Instantiate(i,gameObject.transform);
-                _tempGameObject.transform.SetParent(gameObject.transform);
-            }
-        }
-        settingsMenuPanel.SetActive(false); */
 
         stepsAudio = GetComponent<AudioSource>();
         stepsAudio.Stop();
@@ -149,12 +113,9 @@ public class PlayerBehaviour : NetworkBehaviour
             ir = null;
         }
 
-        if (currentDomain != null)
+        if (isServer)
         {
-            if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
-            {
-                return;
-            }
+                RpcUpdateUsername();
         }
 
         if (isLocalPlayer)
@@ -178,10 +139,12 @@ public class PlayerBehaviour : NetworkBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
+                //playerUsername.transform.localRotation = Quaternion.Euler(0, 180, 0);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
+                // playerUsername.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (Input.GetKey(KeyCode.Space))
@@ -213,20 +176,10 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 XMLManager.instance.NullifyStarScore();
                 XMLManager.instance.NullifyOutfits();
-                Debug.Log("Score is reset");
+                Debug.Log("Score and outfits are reset");
             }
 
             #endregion
-
-            if (onDomain && finalDomain == 0)
-            {
-                Debug.Log("this works");
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    ChoosingDomain();
-                }
-            }
-
 
             if (inQuestionRange)
             {
@@ -257,43 +210,28 @@ public class PlayerBehaviour : NetworkBehaviour
 
             if (possessesAPowerUp)
             {
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (!isClient)
                 {
-                    if (currentPowerUpType == PowerUpTypes.GeneralLaziness || currentPowerUpType == PowerUpTypes.SwappingControls || 
-                        currentPowerUpType == PowerUpTypes.SwappingPositions)
-                    {
-                        if (!isClient)
-                        {
-                            return;
-                        }
-                    }
-
-                    StartCoroutine(UsingAPowerUp());
+                    return;
                 }
+                StartCoroutine(UsingAPowerUp());
+                Debug.Log("Somebody used a power-up!");
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                findingMenu:
                 if (exitMenuPanel != null)
                 {
-                    exitMenuPanel.transform.GetChild(0).gameObject.SetActive(!exitMenuPanel.transform.GetChild(0).gameObject.activeSelf);
+                    exitMenuPanel.SetActive(!exitMenuPanel.activeSelf);
+                }
+                else
+                {
+                    exitMenuPanel = _Referencer.ExitMenuPanel;
+                    goto findingMenu;
                 }
             }
         }
-
-            if (currentDomain != null)
-        {
-            if (currentDomain.GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
-            {
-                Local.showDomainMenu = false;
-            }
-        }
-
-            if(finalDomain != 0)
-        {
-            currentStatus = PlayerStatus.Ready;
-        }
-
     }
 
 
@@ -311,6 +249,11 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         if (!isLocalPlayer || !_camera) return;
         _camera.transform.position = transform.position + 10 * Vector3.back;
+
+        if (!isLocalPlayer)
+        {
+            playerUsername.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     void movement()
@@ -325,45 +268,6 @@ public class PlayerBehaviour : NetworkBehaviour
         }
 
     }
-
-    #region Default functions
-
-    [SyncVar(hook = nameof(OnNameChanged))]
-    public string playerName;
-
-    [SyncVar(hook = nameof(OnColorChanged))]
-    public Color playerColor = Color.white;
-
-    void OnNameChanged(string _Old, string _New)
-    {
-        //Change the name of the player from the text above its head
-        playerNameText.text = playerName;
-    }
-    void OnColorChanged(Color _Old, Color _New)
-    {
-        //Change the material of the player 
-        playerNameText.color = _New;
-        playerMaterialClone = new Material(GetComponent<Renderer>().material);
-        playerMaterialClone.color = _New;
-        GetComponent<Renderer>().material = playerMaterialClone;
-    }
-
-    public void CmdSetupPlayer(string _name, Color _col)
-    {
-        // player info sent to server, then server updates sync vars which handles it on all clients
-        playerName = _name;
-        playerColor = _col;
-    }
-
-    public override void OnStartLocalPlayer()
-    {
-        //On start of the game, choose a random color for the player to assign
-
-        string name = "Player" + Random.Range(100, 999);
-        Color color = new Color(1, 1, 1, 1/*Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)*/);
-        CmdSetupPlayer(name, color);
-    }
-    #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -408,11 +312,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("AvatarChoice"))
-        {
-            EnteringAvatarChoice(collision);
-        }
-
         if (collision.gameObject.CompareTag("Star"))
         {
             if (isLocalPlayer)
@@ -421,26 +320,6 @@ public class PlayerBehaviour : NetworkBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("AvatarChoice"))
-        {
-            ExitingAvatarChoice(collision);
-        }
-    }
-
-
-    [Command]
-    public void ChoosingDomain()
-    {
-        if (currentDomain != null)
-        {
-            finalDomain = currentDomainNumber;
-            currentDomain.GetComponent<DomainInformation>().currentStatus = DomainInformation.DomainStatus.Chosen;
-            onDomain = false;
-        }
-    }
-
     public void QuestionPrompted()
     {
         if (isLocalPlayer)
@@ -448,45 +327,9 @@ public class PlayerBehaviour : NetworkBehaviour
             currentQuestion.GetComponent<QuestionRandomizer>().ActivateQuestion();
         }
     }
-
-    public void EnteringAvatarChoice(Collider2D colAvatar)
-    {
-        for (int i = 0; i < domainObjects.Count; i++)
-        {
-            if (colAvatar.gameObject == domainObjects[i])
-            {
-                if (domainObjects.Contains(colAvatar.gameObject))
-                {
-                    currentDomainNumber = i;
-                    currentDomain = colAvatar.gameObject;
-                    if (finalDomain == 0)
-                    {
-                        this.gameObject.GetComponent<SpriteRenderer>().sprite =
-                            colAvatar.gameObject.GetComponent<DomainInformation>().characterModel;
-                    }
-                }
-            }
-            onDomain = true;
-        }
-    }
-
-    public void ExitingAvatarChoice(Collider2D colAvatar)
-    {
-        currentDomainNumber = 0;
-        currentDomain = null;
-        if (finalDomain == 0)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultSprite;
-        }
-        onDomain = false;
-    }
-
     // [K] Set-up for Pepe
     IEnumerator UsingAPowerUp()
     {
-        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
-        int _countPlayers = _Players.Count;
-
         possessesAPowerUp = false;
 
         switch (currentPowerUpType)
@@ -500,17 +343,13 @@ public class PlayerBehaviour : NetworkBehaviour
             case PowerUpTypes.GeneralLaziness:
 
                 CmdSlowOthersDown(false);
-                yield return new WaitForSeconds(6);
+                yield return new WaitForSeconds(4);
                 CmdSlowOthersDown(true);
-                break;
-
-            case PowerUpTypes.SwappingPositions:
-                yield return new WaitForEndOfFrame();
                 break;
 
             case PowerUpTypes.SwappingControls:
                 CmdSwapControls(false);
-                yield return new WaitForSeconds(30);
+                yield return new WaitForSeconds(6);
                 CmdSwapControls(true);
                 break;
 
@@ -518,7 +357,6 @@ public class PlayerBehaviour : NetworkBehaviour
                 yield return null;
                 break;
         }
-        possessesAPowerUp = false;
         currentPowerUpType = PowerUpTypes.None;
     }
 
@@ -535,7 +373,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdSlowOthersDown(bool slowingDown)
     {
-        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        List<GameObject> _Players = _gm.players;
         int _countPlayers = _Players.Count;
 
         for (int i = 0; i < _countPlayers; i++)
@@ -544,48 +382,19 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 if (slowingDown == false)
                 {
-                    _Players[i].GetComponent<PlayerBehaviour>().speed /= 5;
+                    _Players[i].GetComponent<PlayerBehaviour>().speed /= 2;
                 }
                 else
                 {
-                    _Players[i].GetComponent<PlayerBehaviour>().speed *= 5;
+                    _Players[i].GetComponent<PlayerBehaviour>().speed *= 2;
                 }
             }
         }
     }
-
-    //[TargetRpc]
-    //public void RpcSwapPlayersReceiver()
-    //{
-
-    //}
-
-    [Command(requiresAuthority = false)]
-    public void CmdSwapPositionsUser()
-    {
-        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
-        int _countPlayers = _Players.Count;
-
-        if (_countPlayers > 1)
-        {
-            Vector3 _playerPos = gameObject.transform.position;
-        choosingPlayer:
-            int _randNum = Random.Range(0, _countPlayers - 1);
-            if (_Players[_randNum] == gameObject)
-            {
-                Debug.Log("The player chose themselves");
-                goto choosingPlayer;
-            }
-            Vector3 _otherPlayerPos = _Players[_randNum].transform.position;
-            _Players[_randNum].transform.position = _playerPos;
-            gameObject.transform.position = gameObject.transform.position - _otherPlayerPos;
-        }
-    }
-
     [Command(requiresAuthority = false)]
     public void CmdSwapControls(bool normalControls)
     {
-        List<GameObject> _Players = gm.GetComponent<GameManager>().players;
+        List<GameObject> _Players = _gm.players;
         int _countPlayers = _Players.Count;
 
         for (int i = 0; i < _countPlayers; i++)
@@ -603,6 +412,12 @@ public class PlayerBehaviour : NetworkBehaviour
             }
         }
     }
-   
+
+    [ClientRpc]
+    public void RpcUpdateUsername()
+    {
+        playerUsername.transform.rotation = Quaternion.Euler(0, -gameObject.transform.rotation.y, 0);
+    }
+
 }
 

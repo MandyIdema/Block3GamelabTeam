@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 namespace GM
 {
@@ -11,7 +9,6 @@ namespace GM
     {
         [Header("Game Info")]
         [SerializeField] public List<GameObject> players = new List<GameObject>(); 
-        // public Dictionary<GameObject, int> starsCollected = new Dictionary<GameObject, int>();
         [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
         public enum GameStatus
         {
@@ -23,18 +20,10 @@ namespace GM
 
         [Space]
 
-        [Header("Domains")]
-        [SerializeField] private GameObject domainInfo;
-        // [SyncVar] public int starsCollectedInTotal = 0;
-        // [SerializeField] private TextMeshProUGUI _starsCollected;
-        [SerializeField] private GameObject barriers;
-
-        [Space]
-
         [Header("Other stuff")]
         public StarManager _sm;
-        public GameObject _endMenu;
-        public GameObject endButton;
+        public Referencer _Referencer;
+        public GameObject onlineSceneCanvas;
 
         private void Awake()
         {
@@ -43,9 +32,9 @@ namespace GM
         void Update()
         {
 
-            if (endButton == null)
+            if (_Referencer == null)
             {
-              endButton = GameObject.FindGameObjectWithTag("BackButton");
+                _Referencer = FindObjectOfType<Referencer>();
             }
 
             if (players.Count < 4 && !allPlayersAppeared)
@@ -75,54 +64,29 @@ namespace GM
 
             if (_sm.starsTaken >= _sm.starsNeeded)
             {
-                EndGame();
-            }
-        }
-        void LateUpdate()
-        {
-            if (players.Count > 1 && currentStatus == GameStatus.Pending)
-            {
-                CheckingDomains();
-            }
-        }
-
-        public void EndGame()
-        {
-            if (currentStatus == GameStatus.Finished)
-            {
-                return;
-            }
-            currentStatus = GameStatus.Finished;
-            if (currentStatus == GameStatus.Finished)
-            {
-                // SceneManager.LoadScene(2);
-                XMLManager.instance.SaveStarScoreGame();
-                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
-                _endMenu.SetActive(true);
-            }
-        }
-        public void CheckingDomains()
-        {
-            var domainCount = 0;
-            var domains = domainInfo.GetComponent<DomainInfoGiver>().domains;
-            for (int i = 1; i < domains.Count; i++)
-            {
-                if (domains[i].GetComponent<DomainInformation>().currentStatus == DomainInformation.DomainStatus.Chosen)
+                if (isServer && currentStatus != GameStatus.Finished)
                 {
-                    domainCount++;
+                    currentStatus = GameStatus.Finished;
+                    RpcEndGame();
                 }
             }
-            if (players.Count == domainCount)
-            {
-                currentStatus = GameStatus.Started;
-                barriers.SetActive(false);
-            }
         }
-
-
-        public void TriggerGameEnd()
+        [ClientRpc]
+        public void RpcEndGame()
         {
-            endButton.GetComponent<Button>().onClick.Invoke();
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerBehaviour>().movementBlocked = true;
+            } 
+            Debug.Log("This message should only show up once!");
+            if (isLocalPlayer)
+            {
+                XMLManager.instance.SaveStarScoreGame();
+                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+            }
+            _Referencer.MainMenuBackground.SetActive(true);
+            _Referencer.EndGamePanelButtons.SetActive(true);
+            onlineSceneCanvas.SetActive(false);
         }
     }
 }

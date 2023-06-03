@@ -167,4 +167,4 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  powerUpType: 3
+  powerUpType: 2

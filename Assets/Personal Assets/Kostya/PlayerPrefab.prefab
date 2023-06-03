@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 7396670684039139771}
   - component: {fileID: 4351508069591772621}
   m_Layer: 5
-  m_Name: Playerinfo
+  m_Name: Player Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,7 +325,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.181, y: 0.619}
+  m_AnchoredPosition: {x: 0.074, y: 0.619}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7396670684039139771
@@ -615,32 +615,21 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   anim: {fileID: 0}
-  onDomain: 0
-  finalDomain: 0
-  currentDomain: {fileID: 0}
-  currentDomainNumber: 0
-  showDomainMenu: 1
-  domainObjects: []
-  currentStatus: 0
   starsCollected: 0
   obtainedClothes: []
+  normalizedMovement: 1
   gameFinished: 0
+  speed: 0.08
+  currentStatus: 0
+  movementBlocked: 1
+  AlertSprite: {fileID: 2666783859065294910}
+  stepSound: {fileID: 0}
+  playerNameText: {fileID: 0}
+  playerUsername: {fileID: 6456650595017743630}
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
   possessesAPowerUp: 0
-  movementBlocked: 1
-  ir: {fileID: 0}
   currentPowerUpType: 0
-  exitMenuPanel: {fileID: 0}
-  settingsMenuPanel: {fileID: 0}
-  AlertSprite: {fileID: 2666783859065294910}
-  normalizedMovement: 1
-  speed: 0.08
-  stepSound: {fileID: 0}
-  playerNameText: {fileID: 0}
-  floatingInfo: {fileID: 8432335774262698841}
-  playerName: PlayerName
-  playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4

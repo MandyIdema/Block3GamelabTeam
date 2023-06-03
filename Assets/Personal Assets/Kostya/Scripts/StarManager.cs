@@ -14,7 +14,6 @@ namespace GM
 
         [Header("Prefabs")]
         public GameObject starPrefab;
-        public GameObject exitDoor;
         public Transform parentStarObject;
 
         //[HideInInspector] public GameObject enemy;

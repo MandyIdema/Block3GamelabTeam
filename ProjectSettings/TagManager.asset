@@ -4,24 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Domain
-  - AvatarChoice
   - Star
   - Question
-  - GameManager
-  - StarManager
   - Door
   - Teleportation
-  - Menupanel
-  - GamePanel
-  - SettingsPanel
   - QuestionPrompt
   - head
   - body
   - feet
   - shop
   - GameEndMenu
-  - BackButton
+  - StarManager
+  - GameManager
   layers:
   - Default
   - TransparentFX

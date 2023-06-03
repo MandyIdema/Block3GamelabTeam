@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class InactivateRule : MonoBehaviour
 {
+    public GameObject prompt;
     private void Start()
     {
         gameObject.SetActive(true);
+        Invoke(nameof(ActivatePrompt), 3.0f);
     }
 
     // Update is called once per frame
@@ -17,6 +19,11 @@ public class InactivateRule : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    void ActivatePrompt()
+    {
+        prompt.SetActive(true);
     }
 }
 

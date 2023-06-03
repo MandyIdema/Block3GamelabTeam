@@ -5,10 +5,6 @@ using Mirror;
 
 namespace Mirror.Discovery
 {
-
-    [DisallowMultipleComponent]
-    [AddComponentMenu("Network/Network Discovery HUD")]
-    [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-discovery")]
     [RequireComponent(typeof(NetworkDiscovery))]
 
     public class MainMenuScript : MonoBehaviour
@@ -30,11 +26,10 @@ namespace Mirror.Discovery
 
         public void Stop()
         {
-            //If this button is pressed the game stops and goes back to mainmenu
            if (networkManager.mode != NetworkManagerMode.ClientOnly){
                 if (networkManager.mode == NetworkManagerMode.Host)
                 {
-                    Destroy(ExitGamePanel);
+                    //Destroy(ExitGamePanel);
                     NetworkManager.singleton.StopHost();
                     networkDiscovery.StopDiscovery();
                     Debug.Log("Stopped game");
@@ -49,7 +44,7 @@ namespace Mirror.Discovery
 
                 if (networkManager.mode == NetworkManagerMode.ClientOnly)
                 {
-                    Destroy(ExitGamePanel);
+                    //Destroy(ExitGamePanel);
                     NetworkManager.singleton.StopClient();
                     networkDiscovery.StopDiscovery();
                     Debug.Log("Stopped game");
@@ -126,8 +121,6 @@ namespace Mirror.Discovery
             // It is by no means optimal, especially with slower devices
             // ExitGamePanel.SetActive(false);
             discoveryPanel.SetActive(false);
-
-            ExitGamePanel = GameObject.FindGameObjectWithTag("GamePanel");
 
             // paused = false;
         }

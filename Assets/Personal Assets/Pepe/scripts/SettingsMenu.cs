@@ -57,7 +57,7 @@ public class SettingsMenu : MonoBehaviour
 
     void Update(){
         if(currencyText){
-            currencyText.text = "Currency: " + XMLManager.instance.LoadStarScore();
+            currencyText.text = "Sterren:  " + XMLManager.instance.LoadStarScore();
         }
     }
     #endregion
@@ -152,7 +152,6 @@ public class SettingsMenu : MonoBehaviour
                 XMLManager.instance.SaveStarScoreShop(_currency);
                 saveSystem.obtainedClothes[_orderItem] = true;
                 XMLManager.instance.SaveOutfits();
-                Debug.Log("MADE DEAL");
             }
             
             //exception

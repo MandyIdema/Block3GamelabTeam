@@ -13,7 +13,7 @@ public class DontDestroyDomainOnLoad : MonoBehaviour
     }
 
     public DDOLTypes DDOLType = DDOLTypes.Default;
-    private void Start()
+    private void Awake()
     {
         switch (DDOLType)
         {
