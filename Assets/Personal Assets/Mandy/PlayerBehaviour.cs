@@ -80,8 +80,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     void Start()
     {
-        Username_field = GameObject.Find("UsernameField");
-        input = Username_field.GetComponent<TMP_InputField>().text;
+        
 
         normalizedMovement = 1;
         defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -90,6 +89,9 @@ public class PlayerBehaviour : NetworkBehaviour
             Local = this;
             _camera = Camera.main;
 
+            Username_field = GameObject.Find("UsernameField");
+            Username_field.SetActive(false);
+            input = Username_field.GetComponent<TMP_InputField>().text;
             Username = gameObject.GetComponentInChildren<TMP_Text>();
             Username.text = input;
         }
@@ -113,7 +115,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private void Update()
     {
-        
 
         if (anim == null)
         {
@@ -137,7 +138,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            Username.text = input;
+            
             //If these inputs are made, trigger the animation bool
             #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))

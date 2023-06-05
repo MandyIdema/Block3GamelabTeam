@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: a
+  m_text: Username
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
   m_sharedMaterial: {fileID: 5560163931482592191, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
   currentPowerUpType: 0
   input: JO
   Username: {fileID: 4351508069591772621}
-  Username_field: {fileID: 3199504871205957525, guid: 99154a72125729942a01f5ffaa2dc8e3, type: 3}
+  Username_field: {fileID: 0}
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4

@@ -83,6 +83,7 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             NetworkManager.singleton.StartServer();
             networkDiscovery.AdvertiseServer();
+            InputFieldUsername.SetActive(false);
         }
 
         public void SetIP(string ip)
@@ -98,7 +99,6 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
             menuPanel.SetActive(false);
-            InputFieldUsername.SetActive(false);
             //discoveryPanel.SetActive(false);
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
@@ -110,6 +110,7 @@ namespace Mirror.Discovery
             // paused = false;
 
             menuPanel.SetActive(true);
+            InputFieldUsername.SetActive(true);
             discoveryPanel.SetActive(false);
             discoveredServers.Clear();
 
@@ -123,7 +124,6 @@ namespace Mirror.Discovery
         {
             menuPanel.SetActive(true);
             background.SetActive(true);
-            InputFieldUsername.SetActive(true);
             // [K] Disabled since I found a workaround that I put in PlayerBehaviour
             // It is by no means optimal, especially with slower devices
             // ExitGamePanel.SetActive(false);
