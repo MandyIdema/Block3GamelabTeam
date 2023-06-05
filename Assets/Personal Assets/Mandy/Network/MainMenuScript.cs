@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Mirror;
 
 namespace Mirror.Discovery
@@ -20,9 +21,11 @@ namespace Mirror.Discovery
         public GameObject ExitGamePanel;
         public GameObject discoveryPanel;
         public GameObject background;
+        public GameObject InputFieldUsername;
 
         public GameObject LoadRing;
         // bool paused = false;
+
 
         public void Stop()
         {
@@ -54,19 +57,21 @@ namespace Mirror.Discovery
             }
             
         }
-        
+
+
 
         public void Host()
         {
             menuPanel.SetActive(false);
             background.SetActive(false);
+            InputFieldUsername.SetActive(false);
             for (int i = 0; i < 4; i++)
             {
                 menuPanel.transform.GetChild(i).gameObject.SetActive(false);
             }
 
             // paused = false;
-
+      
             discoveredServers.Clear();
             NetworkManager.singleton.StartHost();
             networkDiscovery.AdvertiseServer();
@@ -93,6 +98,7 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
             menuPanel.SetActive(false);
+            InputFieldUsername.SetActive(false);
             //discoveryPanel.SetActive(false);
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
@@ -117,6 +123,7 @@ namespace Mirror.Discovery
         {
             menuPanel.SetActive(true);
             background.SetActive(true);
+            InputFieldUsername.SetActive(true);
             // [K] Disabled since I found a workaround that I put in PlayerBehaviour
             // It is by no means optimal, especially with slower devices
             // ExitGamePanel.SetActive(false);

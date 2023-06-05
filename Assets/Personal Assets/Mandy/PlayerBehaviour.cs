@@ -70,15 +70,28 @@ public class PlayerBehaviour : NetworkBehaviour
     private Referencer _Referencer;
     private InactivateRule ir;
 
+    ///USERNAME
+
+    public string input;
+    public TMP_Text Username;
+    public GameObject Username_field;
+
+
 
     void Start()
     {
+        Username_field = GameObject.Find("UsernameField");
+        input = Username_field.GetComponent<TMP_InputField>().text;
+
         normalizedMovement = 1;
         defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         if (isLocalPlayer)
         {
             Local = this;
             _camera = Camera.main;
+
+            Username = gameObject.GetComponentInChildren<TMP_Text>();
+            Username.text = input;
         }
         _Referencer = FindObjectOfType<Referencer>();
         exitMenuPanel = _Referencer.ExitMenuPanel;
@@ -94,10 +107,14 @@ public class PlayerBehaviour : NetworkBehaviour
         stepsAudio = GetComponent<AudioSource>();
         stepsAudio.Stop();
         //stepsAudio.clip = stepSound;
+
+        
     }
 
     private void Update()
     {
+        
+
         if (anim == null)
         {
             anim = GetComponent<Animator>();
@@ -120,6 +137,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
+            Username.text = input;
             //If these inputs are made, trigger the animation bool
             #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
@@ -419,5 +437,13 @@ public class PlayerBehaviour : NetworkBehaviour
         playerUsername.transform.rotation = Quaternion.Euler(0, -gameObject.transform.rotation.y, 0);
     }
 
+
+    public void ReadStringInput(string name)
+    {
+
+        input = name;
+        Debug.Log("Username set to:" + input);
+
+    }
 }
 

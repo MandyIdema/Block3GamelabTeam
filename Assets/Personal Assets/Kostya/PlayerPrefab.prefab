@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Username
+  m_text: a
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
   m_sharedMaterial: {fileID: 5560163931482592191, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 8938317476443352461}
   - component: {fileID: 3732968277159558847}
   - component: {fileID: 8714147260892164883}
+  - component: {fileID: 772715136970414711}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -618,7 +619,6 @@ MonoBehaviour:
   starsCollected: 0
   obtainedClothes: []
   normalizedMovement: 1
-  gameFinished: 0
   speed: 0.08
   currentStatus: 0
   movementBlocked: 1
@@ -630,6 +630,9 @@ MonoBehaviour:
   currentQuestion: {fileID: 0}
   possessesAPowerUp: 0
   currentPowerUpType: 0
+  input: JO
+  Username: {fileID: 4351508069591772621}
+  Username_field: {fileID: 3199504871205957525, guid: 99154a72125729942a01f5ffaa2dc8e3, type: 3}
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4
@@ -807,6 +810,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &772715136970414711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432335774314543091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20226da347374a4b94fde54f2b5da6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8631264266038163308
 GameObject:
   m_ObjectHideFlags: 0

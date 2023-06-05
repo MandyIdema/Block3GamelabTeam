@@ -16,6 +16,7 @@ TagManager:
   - GameEndMenu
   - StarManager
   - GameManager
+  - InputField
   layers:
   - Default
   - TransparentFX
