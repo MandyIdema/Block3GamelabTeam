@@ -17,6 +17,7 @@ TagManager:
   - StarManager
   - GameManager
   - InputField
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -77,4 +78,7 @@ TagManager:
     locked: 0
   - name: Top Overview
     uniqueID: 2307253045
+    locked: 0
+  - name: Ball
+    uniqueID: 2387597001
     locked: 0
