@@ -14,5 +14,9 @@ namespace GM
         public GameObject UsernameInputField;
         public GameObject UsernameInputText;
 
+        void Start(){
+            Debug.Log(MainMenuPanelButtons.transform.GetChild(4).name);
+        }
+
     }
 }

@@ -108,6 +108,16 @@ public class PlayerBehaviour : NetworkBehaviour
             ir = FindObjectOfType<InactivateRule>();
         }
 
+        if(obtainedClothes.Count == 0){
+            var _shopMenu = _Referencer.MainMenuPanelButtons.transform.GetChild(4);
+            obtainedClothes =  _shopMenu.GetComponent<SettingsMenu>().appliedClothes;
+            if(obtainedClothes.Count > 0){
+                foreach (var i in obtainedClothes){
+                    
+                }
+            }
+        }
+
         stepsAudio = GetComponent<AudioSource>();
         stepsAudio.Stop();
         //stepsAudio.clip = stepSound;
