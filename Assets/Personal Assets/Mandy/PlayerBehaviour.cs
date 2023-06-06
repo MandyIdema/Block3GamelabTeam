@@ -89,7 +89,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isClient)
         {
-            if (gameObject.GetComponent<NetworkIdentity>().connectionToServer != null)
+            if (isLocalPlayer)
             {
                 GetUsernameDataFromMenu();
                 _Referencer.UsernameInputField.SetActive(false);
@@ -441,8 +441,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     public void GetUsernameDataFromMenu()
     {
-        if (gameObject.GetComponent<NetworkIdentity>().connectionToServer != null)
-        {
             if (!string.IsNullOrEmpty(_Referencer.UsernameInputField.GetComponent<TMP_InputField>().text))
             {
                 playerUsernameString = _Referencer.UsernameInputField.GetComponent<TMP_InputField>().text;
@@ -452,7 +450,6 @@ public class PlayerBehaviour : NetworkBehaviour
                 playerUsernameString = $"Player {(int)Random.Range(0, 999)}";
             }
             playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
-        }
     }
 
     [ClientRpc]
