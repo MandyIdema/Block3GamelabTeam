@@ -103,6 +103,8 @@ public class PlayerBehaviour : NetworkBehaviour
             }
         }
 
+        _gm = FindObjectOfType<GameManager>();
+
         if (ir == null)
         {
             ir = FindObjectOfType<InactivateRule>();
