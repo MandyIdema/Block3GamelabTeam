@@ -410,7 +410,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.074, y: 0.619}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7396670684039139771
 CanvasRenderer:
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Username
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
   m_sharedMaterial: {fileID: 5560163931482592191, guid: e48a4c6a48c76bd498d8f6e64639e0f1, type: 2}
@@ -711,13 +711,14 @@ MonoBehaviour:
   stepSound: {fileID: 0}
   playerNameText: {fileID: 0}
   playerUsername: {fileID: 6456650595017743630}
+  playerUsernameString: 
   inQuestionRange: 0
   currentQuestion: {fileID: 0}
   possessesAPowerUp: 0
   currentPowerUpType: 0
-  input: Player
-  Username: {fileID: 4351508069591772621}
-  Username_field: {fileID: 0}
+  exitMenuPanel: {fileID: 0}
+  _Referencer: {fileID: 0}
+  whatever: 
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4

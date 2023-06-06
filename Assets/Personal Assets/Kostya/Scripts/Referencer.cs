@@ -11,6 +11,8 @@ namespace GM
         public GameObject MainMenuPanelButtons;
         public GameObject ExitMenuPanel;
         public GameObject EndGamePanelButtons;
+        public GameObject UsernameInputField;
+        public GameObject UsernameInputText;
 
     }
 }

@@ -64,7 +64,7 @@ namespace Mirror.Discovery
         {
             menuPanel.SetActive(false);
             background.SetActive(false);
-            InputFieldUsername.SetActive(false);
+            //InputFieldUsername.SetActive(false);
             for (int i = 0; i < 4; i++)
             {
                 menuPanel.transform.GetChild(i).gameObject.SetActive(false);
@@ -83,7 +83,7 @@ namespace Mirror.Discovery
             discoveredServers.Clear();
             NetworkManager.singleton.StartServer();
             networkDiscovery.AdvertiseServer();
-            InputFieldUsername.SetActive(false);
+            //InputFieldUsername.SetActive(false);
         }
 
         public void SetIP(string ip)

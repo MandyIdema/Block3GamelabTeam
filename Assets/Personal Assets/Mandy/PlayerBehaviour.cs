@@ -35,6 +35,7 @@ public class PlayerBehaviour : NetworkBehaviour
     public AudioClip stepSound;
     public TMP_Text playerNameText;
     public GameObject playerUsername;
+    [SyncVar] public string playerUsernameString;
 
     [Space]
 
@@ -59,7 +60,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Space]
 
-    private GameObject exitMenuPanel;
+    public GameObject exitMenuPanel;
 
     private Camera _camera;
     private Rigidbody2D rb;
@@ -67,39 +68,40 @@ public class PlayerBehaviour : NetworkBehaviour
     
 
     private GameManager _gm;
-    private Referencer _Referencer;
+    public Referencer _Referencer;
     private InactivateRule ir;
-
-    ///USERNAME
-
-    public string input;
-    public TMP_Text Username;
-    public GameObject Username_field;
-
-
 
     void Start()
     {
-        
 
         normalizedMovement = 1;
         defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-        if (isLocalPlayer)
-        {
-            Local = this;
-            _camera = Camera.main;
 
-            Username_field = GameObject.Find("UsernameField");
-            Username_field.SetActive(false);
-            input = Username_field.GetComponent<TMP_InputField>().text;
-            Username = gameObject.GetComponentInChildren<TMP_Text>();
-            Username.text = input;
-        }
         _Referencer = FindObjectOfType<Referencer>();
         exitMenuPanel = _Referencer.ExitMenuPanel;
         exitMenuPanel.SetActive(false);
 
-        _gm = FindObjectOfType<GameManager>();
+        if (isLocalPlayer)
+        {
+            Local = this;
+            _camera = Camera.main;
+        }
+
+        if (isClient)
+        {
+            if (gameObject.GetComponent<NetworkIdentity>().connectionToServer != null)
+            {
+                GetUsernameDataFromMenu();
+                _Referencer.UsernameInputField.SetActive(false);
+            }
+        }
+        if (isServer && isClient)
+        {
+            if (!isLocalPlayer)
+            {
+                // GetUsernameDataFromMenu();
+            }
+        }
 
         if (ir == null)
         {
@@ -112,7 +114,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
         
     }
-
     private void Update()
     {
 
@@ -133,7 +134,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isServer)
         {
-                RpcUpdateUsername();
+            RpcUpdateUsername();
         }
 
         if (isLocalPlayer)
@@ -145,13 +146,13 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 anim.SetBool("WalkTrigger", true);
                 if(!stepsAudio.isPlaying){
-                    stepsAudio.Play();
+                    //stepsAudio.Play();
                 }
             }
             else
             {
                 anim.SetBool("WalkTrigger", false);
-                stepsAudio.Stop();
+                //stepsAudio.Stop();
             }
 
             //If the player moves from left to right, mirror the character (look into direction
@@ -438,12 +439,25 @@ public class PlayerBehaviour : NetworkBehaviour
         playerUsername.transform.rotation = Quaternion.Euler(0, -gameObject.transform.rotation.y, 0);
     }
 
-
-    public void ReadStringInput(string name)
+    public void GetUsernameDataFromMenu()
     {
+        if (gameObject.GetComponent<NetworkIdentity>().connectionToServer != null)
+        {
+            if (!string.IsNullOrEmpty(_Referencer.UsernameInputField.GetComponent<TMP_InputField>().text))
+            {
+                playerUsernameString = _Referencer.UsernameInputField.GetComponent<TMP_InputField>().text;
+            }
+            else
+            {
+                playerUsernameString = $"Player {(int)Random.Range(0, 999)}";
+            }
+            playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
+        }
+    }
 
-        input = name;
-        Debug.Log("Username set to:" + input);
+    [ClientRpc]
+    public void RpcRelayName()
+    {
 
     }
 }

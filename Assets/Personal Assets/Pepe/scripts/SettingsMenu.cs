@@ -65,11 +65,11 @@ public class SettingsMenu : MonoBehaviour
     #region ClothingMenu
 
     void Awake(){
-        try{
-            saveSystem.LoadOutfits();
-        }catch(System.NullReferenceException e){
-            Debug.Log("Null Reference fo outfits");
-        }
+        //try{
+        //    saveSystem.LoadOutfits();
+        //}catch(System.NullReferenceException e){
+        //    Debug.Log("Null Reference fo outfits");
+        //}
         var _listOfObtainedClothes = saveSystem.obtainedClothes;
         for(var i = 0; i<_listOfObtainedClothes.Count;i++){
             if(_listOfObtainedClothes[i]){
