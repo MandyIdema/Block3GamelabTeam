@@ -108,15 +108,16 @@ public class PlayerBehaviour : NetworkBehaviour
             ir = FindObjectOfType<InactivateRule>();
         }
 
-        if(obtainedClothes.Count == 0){
+/*         if(obtainedClothes.Count == 0){
             var _shopMenu = _Referencer.MainMenuPanelButtons.transform.GetChild(4);
             obtainedClothes =  _shopMenu.GetComponent<SettingsMenu>().appliedClothes;
             if(obtainedClothes.Count > 0){
                 foreach (var i in obtainedClothes){
-                    
+                    var _tempCloth = Instantiate(i,gameObject.transform);
+                    _tempCloth.transform.SetParent(gameObject.transform);
                 }
             }
-        }
+        } */
 
         stepsAudio = GetComponent<AudioSource>();
         stepsAudio.Stop();
