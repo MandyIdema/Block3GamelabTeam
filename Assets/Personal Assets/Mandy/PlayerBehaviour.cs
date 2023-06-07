@@ -241,14 +241,13 @@ public class PlayerBehaviour : NetworkBehaviour
                 Local.AlertSprite.SetActive(false);
             }
 
-            if (possessesAPowerUp)
+            if (possessesAPowerUp && currentPowerUpType != PowerUpTypes.None)
             {
                 if (!isClient)
                 {
                     return;
                 }
                 StartCoroutine(UsingAPowerUp());
-                Debug.Log("Somebody used a power-up!");
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -364,13 +363,12 @@ public class PlayerBehaviour : NetworkBehaviour
     IEnumerator UsingAPowerUp()
     {
         possessesAPowerUp = false;
-
         switch (currentPowerUpType)
         {
             case PowerUpTypes.SelfAcceleration:
-                speed *= 2;
-                yield return new WaitForSeconds(3);
-                speed /= 2;
+                speed *= 1.3f;
+                yield return new WaitForSeconds(5);
+                speed /= 1.3f;
                 break;
 
             case PowerUpTypes.GeneralLaziness:
@@ -382,7 +380,7 @@ public class PlayerBehaviour : NetworkBehaviour
 
             case PowerUpTypes.SwappingControls:
                 CmdSwapControls(false);
-                yield return new WaitForSeconds(6);
+                yield return new WaitForSeconds(5);
                 CmdSwapControls(true);
                 break;
 
@@ -415,11 +413,11 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 if (slowingDown == false)
                 {
-                    _Players[i].GetComponent<PlayerBehaviour>().speed /= 2;
+                    _Players[i].GetComponent<PlayerBehaviour>().speed /= 1.8f;
                 }
                 else
                 {
-                    _Players[i].GetComponent<PlayerBehaviour>().speed *= 2;
+                    _Players[i].GetComponent<PlayerBehaviour>().speed *= 1.8f;
                 }
             }
         }

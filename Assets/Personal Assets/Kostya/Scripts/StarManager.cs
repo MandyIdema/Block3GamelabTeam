@@ -54,8 +54,33 @@ namespace GM
                     RpcClientStarSpawn();
                 }
             }
+            
+            StartCoroutine(UpdateStarSituationInArea());
 
             //Analytics();
+        }
+        IEnumerator UpdateStarSituationInArea()
+        {
+            while (true)
+            {
+                foreach (GameObject spawnArea in spawnAreas)
+                {
+                    if (spawnArea.name.Contains("Puzzle"))
+                    {
+                        if (Physics2D.IsTouchingLayers(spawnArea.GetComponent<BoxCollider2D>(), LayerMask.GetMask("Stars")))
+                        {
+                            //Debug.Log($"There are stars in {spawnArea}");
+                            spawnArea.transform.GetChild(1).gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            //Debug.Log($"There are no stars in {spawnArea}");
+                            spawnArea.transform.GetChild(1).gameObject.SetActive(false);
+                        }
+                    }
+                }
+                yield return new WaitForSeconds(2.5f);
+            }
         }
 
         //async void Analytics()
