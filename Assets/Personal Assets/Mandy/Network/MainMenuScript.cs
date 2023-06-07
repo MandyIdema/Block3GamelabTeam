@@ -22,6 +22,7 @@ namespace Mirror.Discovery
         public GameObject discoveryPanel;
         public GameObject background;
         public GameObject InputFieldUsername;
+        public GameObject ShopActivate;
 
         public GameObject LoadRing;
         // bool paused = false;
@@ -103,6 +104,14 @@ namespace Mirror.Discovery
             // [K] I changed this to prevent the menu from persisting onto the game, disable the line above
             // And enable the line below if you want to return to the way it was before
             discoveryPanel.SetActive(true);
+        }
+
+        public void Shop()
+        {
+            ShopActivate.SetActive(true);
+            InputFieldUsername.SetActive(false);
+            discoveryPanel.SetActive(false);
+            discoveredServers.Clear();
         }
 
         public void Back()
