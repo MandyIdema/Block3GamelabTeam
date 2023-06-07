@@ -22,14 +22,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Stars
   - Objects
   - Minimap
   - Global Light
-  - 
+  - MoveAble object
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ball
+    uniqueID: 2387597001
+    locked: 0
   - name: Tiles
     uniqueID: 2838044005
     locked: 0
@@ -78,7 +81,4 @@ TagManager:
     locked: 0
   - name: Top Overview
     uniqueID: 2307253045
-    locked: 0
-  - name: Ball
-    uniqueID: 2387597001
     locked: 0

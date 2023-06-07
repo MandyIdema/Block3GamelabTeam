@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5536198218107992708}
   - component: {fileID: 9126613026568146594}
   - component: {fileID: 3713200469804073673}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 7985462382601990819}
   - component: {fileID: 7396670684039139771}
   - component: {fileID: 4351508069591772621}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Player Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,6 @@ MonoBehaviour:
   currentPowerUpType: 0
   exitMenuPanel: {fileID: 0}
   _Referencer: {fileID: 0}
-  whatever: 
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4

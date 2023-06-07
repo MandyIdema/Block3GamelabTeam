@@ -11,7 +11,9 @@ public class BallController : NetworkBehaviour
     private Rigidbody2D rb;
     private Vector3 offset; 
 
-    public float releaseForce = 1.5f; 
+    public float releaseForce = 1.5f;
+
+    public float stopping = 2.0f;
 
     private void Start()
     {
@@ -59,7 +61,9 @@ public class BallController : NetworkBehaviour
     {
         Vector2 releaseDirection = Random.insideUnitCircle.normalized;
         Vector2 force = releaseDirection * releaseForce;
-        rb.AddForce(force, ForceMode2D.Impulse);
+        rb.AddForce(force * Time.deltaTime, ForceMode2D.Impulse);
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
