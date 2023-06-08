@@ -473,15 +473,15 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         Debug.Log($"Your local string is {localUsernameString}");
         movementBlocked = false;
-        if (isClient && isServer)
+        if (isClient)
         {
             CmdSetupUsername();
         }
-        if (isClientOnly)
-        {
-            Debug.Log(netIdentity.connectionToClient);
-            UpdatePlayerUsernameClient();
-        }
+        //if (isClientOnly)
+        //{
+        //    Debug.Log(usernameHolder.GetComponent<NetworkBehaviour>().netIdentity.isOwned);
+        //    UpdatePlayerUsernameClient();
+        //}
     }
     public void UpdatePlayerUsernameClient()
     {
