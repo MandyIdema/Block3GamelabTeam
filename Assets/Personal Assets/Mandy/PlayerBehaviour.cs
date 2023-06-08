@@ -48,6 +48,10 @@ public class PlayerBehaviour : NetworkBehaviour
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
 
+    [Header("Leaderboard")]
+    public TMP_Text LeaderboardStars;
+    public TMP_Text LeaderboardName;
+
     public enum PowerUpTypes
     {
         None, // [K] Temporary measure, maybe will be able to remove it once I figure out the Inspector editor
@@ -467,6 +471,11 @@ public class PlayerBehaviour : NetworkBehaviour
     public void RpcRelayName()
     {
 
+    }
+
+    public void LeaderBoard()
+    {
+        LeaderboardStars.text = starsCollected.ToString();
     }
 }
 
