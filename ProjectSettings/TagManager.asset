@@ -18,6 +18,7 @@ TagManager:
   - GameManager
   - InputField
   - Ball
+  - UsernameHolder
   layers:
   - Default
   - TransparentFX

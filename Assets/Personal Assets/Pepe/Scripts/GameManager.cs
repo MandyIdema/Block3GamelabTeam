@@ -10,8 +10,6 @@ namespace GM
         [Header("Game Info")]
         [SerializeField] public List<GameObject> players = new List<GameObject>(); 
         [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
-
-        public GameObject leaderboardPrefab;
         public enum GameStatus
         {
             Pending,
@@ -50,7 +48,6 @@ namespace GM
                 {
                     players.Clear();
                     players.AddRange(playerObjects);
-                    Instantiate(leaderboardPrefab);
                 }
                 // Using dictionaries is impossible because empty players remain in them and the star stats do not update
                 for (int i = 0; i < players.Count - 1; i++)

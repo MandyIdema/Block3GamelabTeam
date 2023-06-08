@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : NetworkBehaviour
 {
@@ -35,6 +36,7 @@ public class PlayerBehaviour : NetworkBehaviour
     public AudioClip stepSound;
     public TMP_Text playerNameText;
     public GameObject playerUsername;
+    private string localUsernameString;
     [SyncVar] public string playerUsernameString;
 
     [Space]
@@ -47,10 +49,6 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
-
-    [Header("Leaderboard")]
-    public TMP_Text LeaderboardStars;
-    public TMP_Text LeaderboardName;
 
     public enum PowerUpTypes
     {
@@ -73,39 +71,37 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private GameManager _gm;
     public Referencer _Referencer;
+    public GameObject usernameHolder;
+    public GameObject usernameInput;
     private InactivateRule ir;
 
     void Start()
     {
 
-        normalizedMovement = 1;
-        defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-
-        _Referencer = FindObjectOfType<Referencer>();
-        exitMenuPanel = _Referencer.ExitMenuPanel;
-        exitMenuPanel.SetActive(false);
-
         if (isLocalPlayer)
         {
             Local = this;
             _camera = Camera.main;
+
+
+            usernameHolder = GameObject.FindGameObjectWithTag("UsernameHolder");
+            if (usernameHolder != null)
+            {
+                usernameInput = usernameHolder.gameObject.transform.GetChild(0).gameObject;
+            }
+
+            if (usernameHolder != null)
+            {
+                usernameInput.GetComponent<TMP_InputField>().onEndEdit.AddListener(delegate { DeclareUsername(); });
+            }
         }
 
-        if (isClient)
-        {
-            if (isLocalPlayer)
-            {
-                GetUsernameDataFromMenu();
-                _Referencer.UsernameInputField.SetActive(false);
-            }
-        }
-        if (isServer && isClient)
-        {
-            if (!isLocalPlayer)
-            {
-                // GetUsernameDataFromMenu();
-            }
-        }
+        normalizedMovement = 1;
+
+        defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        _Referencer = FindObjectOfType<Referencer>();
+        exitMenuPanel = _Referencer.ExitMenuPanel;
+        exitMenuPanel.SetActive(false);
 
         _gm = FindObjectOfType<GameManager>();
 
@@ -145,7 +141,10 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (ir != null && ir.gameObject.activeSelf == false && movementBlocked)
         {
-            movementBlocked = false;
+            if (isClient)
+            {
+                movementBlocked = false;
+            }
             ir = null;
         }
 
@@ -395,15 +394,15 @@ public class PlayerBehaviour : NetworkBehaviour
         currentPowerUpType = PowerUpTypes.None;
     }
 
-    public struct PlayerData
-    {
-        public string playerName { get; private set; }
+    //public struct PlayerData
+    //{
+    //    public string playerName { get; private set; }
 
-        public PlayerData(string Player_name)
-        {
-            playerName = Player_name;
-        }
-    }
+    //    public PlayerData(string Player_name)
+    //    {
+    //        playerName = Player_name;
+    //    }
+    //}
 
     [Command(requiresAuthority = false)]
     public void CmdSlowOthersDown(bool slowingDown)
@@ -454,28 +453,56 @@ public class PlayerBehaviour : NetworkBehaviour
         playerUsername.transform.rotation = Quaternion.Euler(0, -gameObject.transform.rotation.y, 0);
     }
 
-    public void GetUsernameDataFromMenu()
+
+    void DeclareUsername()
     {
-            if (!string.IsNullOrEmpty(_Referencer.UsernameInputField.GetComponent<TMP_InputField>().text))
-            {
-                playerUsernameString = _Referencer.UsernameInputField.GetComponent<TMP_InputField>().text;
-            }
-            else
-            {
-                playerUsernameString = $"Player {(int)Random.Range(0, 999)}";
-            }
-            playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
+        if (!isLocalPlayer)
+        {
+            Debug.Log("Somebody else changed their username!");
+            return;
+        }
+        if (!string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
+        {
+            Debug.Log("You chose a username!");
+            localUsernameString = usernameInput.GetComponent<TMP_InputField>().text;
+        }
+        else if(string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
+        {
+            Debug.Log("You didn't choose a username!");
+            localUsernameString = $"Player {(int)Random.Range(0, 999)}";
+        }
+        Debug.Log($"Your local string is {localUsernameString}");
+        movementBlocked = false;
+        if (isClient && isServer)
+        {
+            CmdSetupUsername();
+        }
+        if (isClientOnly)
+        {
+            Debug.Log(netIdentity.connectionToClient);
+            UpdatePlayerUsernameClient();
+        }
+    }
+    public void UpdatePlayerUsernameClient()
+    {
+        playerUsernameString = Local.localUsernameString;
+        playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
+    }
+
+    [Command]
+    public void CmdSetupUsername()
+    {
+        Debug.Log($"Your command string is {Local.localUsernameString}");
+        UpdatePlayerUsername(gameObject.GetComponent<NetworkIdentity>(), Local.localUsernameString);
+        //usernameHolder.SetActive(false);
     }
 
     [ClientRpc]
-    public void RpcRelayName()
+    public void UpdatePlayerUsername(NetworkIdentity chosenPlayer, string chosenUsername)
     {
-
-    }
-
-    public void LeaderBoard()
-    {
-        LeaderboardStars.text = starsCollected.ToString();
+        chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsernameString = chosenUsername;
+        Debug.Log($"The server says that string is {chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsernameString}");
+        chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
     }
 }
 
