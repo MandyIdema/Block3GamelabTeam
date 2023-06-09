@@ -8,7 +8,7 @@ namespace GM
     public class GameManager : NetworkBehaviour
     {
         [Header("Game Info")]
-        [SerializeField] public List<GameObject> players = new List<GameObject>(); 
+        [SerializeField] public List<GameObject> players = new List<GameObject>();
         [HideInInspector] [SyncVar] public bool allPlayersAppeared = false;
         public enum GameStatus
         {
@@ -25,9 +25,15 @@ namespace GM
         public Referencer _Referencer;
         public GameObject onlineSceneCanvas;
 
+        public GameObject Door_Closed;
+        public GameObject Door_Open;
+
         private void Awake()
         {
             _sm = FindObjectOfType<StarManager>();
+            //Doors are closed on default
+            Door_Closed.SetActive(true);
+            Door_Open.SetActive(false);
         }
         void Update()
         {
@@ -44,6 +50,11 @@ namespace GM
                 // But players have to be in a list, since it has to be resizeable
                 GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
 
+                //Ill open them now if just one player is in the scene.
+                Door_Closed.SetActive(false);
+                Door_Open.SetActive(true);
+                //PLEASE REMOVE THIS WHEN THE STARTING REQUIREMENT HAS BEEN ADDED
+
                 if (playerObjects.Length != players.Count)
                 {
                     players.Clear();
@@ -52,44 +63,58 @@ namespace GM
                 // Using dictionaries is impossible because empty players remain in them and the star stats do not update
                 for (int i = 0; i < players.Count - 1; i++)
                 {
-                    
+
                     if (players[i] == null)
                     {
                         players.RemoveAt(i);
                     }
                 }
-            }
-            if (currentStatus == GameStatus.Started)
-            {
 
-            }
+                /*                for (int i = 0; i < players.Count; i++)
+                                {
+                                    if (playerObjects[i].GetComponent<PlayerBehaviour>().PlayerStatus = PlayerStatus.Ready == true)
+                                    {
+                                        //Do something here
+                                    }
+                                }*/
 
-            if (_sm.starsTaken >= _sm.starsNeeded)
-            {
-                if (isServer && currentStatus != GameStatus.Finished)
+
+                //You don't do anything with this yet?
+                if (currentStatus == GameStatus.Started)
                 {
-                    currentStatus = GameStatus.Finished;
-                    RpcEndGame();
+                    //Open the doors when game started
+                    Door_Closed.SetActive(false);
+                    Door_Open.SetActive(true);
+                }
+
+                if (_sm.starsTaken >= _sm.starsNeeded)
+                {
+                    if (isServer && currentStatus != GameStatus.Finished)
+                    {
+                        currentStatus = GameStatus.Finished;
+                        RpcEndGame();
+                    }
                 }
             }
         }
-        [ClientRpc]
-        public void RpcEndGame()
-        {
-            foreach (GameObject player in players)
+
+            [ClientRpc]
+            public void RpcEndGame()
             {
-                player.GetComponent<PlayerBehaviour>().movementBlocked = true;
-            } 
-            Debug.Log("This message should only show up once!");
-            if (isLocalPlayer)
-            {
-                XMLManager.instance.SaveStarScoreGame();
-                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+                foreach (GameObject player in players)
+                {
+                    player.GetComponent<PlayerBehaviour>().movementBlocked = true;
+                }
+                Debug.Log("This message should only show up once!");
+                if (isLocalPlayer)
+                {
+                    XMLManager.instance.SaveStarScoreGame();
+                    Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+                }
+                _Referencer.MainMenuBackground.SetActive(true);
+                _Referencer.EndGamePanelButtons.SetActive(true);
+                onlineSceneCanvas.SetActive(false);
             }
-            _Referencer.MainMenuBackground.SetActive(true);
-            _Referencer.EndGamePanelButtons.SetActive(true);
-            onlineSceneCanvas.SetActive(false);
         }
     }
-}
 

@@ -29,6 +29,8 @@ public class PlayerBehaviour : NetworkBehaviour
     [SyncVar] public float normalizedMovement;
     [SyncVar] public float speed;
 
+    [SyncVar] public bool ReadyGame;
+
     [Header("Player Info")]
     [SyncVar] public PlayerStatus currentStatus = PlayerStatus.Joined;
     [SyncVar] public bool movementBlocked = true;
@@ -49,6 +51,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
     [Header("Power-ups")]
     [SyncVar] public bool possessesAPowerUp = false;
+
+
 
     public enum PowerUpTypes
     {
@@ -75,6 +79,8 @@ public class PlayerBehaviour : NetworkBehaviour
     public GameObject usernameInput;
     private InactivateRule ir;
 
+
+
     void Start()
     {
 
@@ -94,6 +100,8 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 usernameInput.GetComponent<TMP_InputField>().onEndEdit.AddListener(delegate { DeclareUsername(); });
             }
+
+            ReadyGame = false;
         }
 
         normalizedMovement = 1;
@@ -183,10 +191,24 @@ public class PlayerBehaviour : NetworkBehaviour
                 // playerUsername.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
-            if (Input.GetKey(KeyCode.Space))
+/*            if (Input.GetKey(KeyCode.Space))
             {
                 anim.SetBool("InteractionTrigger", true);
                 //activated
+            }
+            else
+            {
+                anim.SetBool("InteractionTrigger", false);
+            }*/
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("InteractionTrigger", true);
+                //activated
+
+                ReadyGame = true;
+                //They only have to press it once
+                //Maybe we can also play the music AFTER they have all set ready?
             }
             else
             {
@@ -227,6 +249,11 @@ public class PlayerBehaviour : NetworkBehaviour
                         {
                             Local.AlertSprite.SetActive(true);
                         }
+                        else
+                        {
+                            //Unblocks movement when question awnsered
+                            movementBlocked = false ;
+                        }
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -242,6 +269,7 @@ public class PlayerBehaviour : NetworkBehaviour
             else
             {
                 Local.AlertSprite.SetActive(false);
+                movementBlocked = false;
             }
 
             if (possessesAPowerUp && currentPowerUpType != PowerUpTypes.None)
@@ -360,6 +388,8 @@ public class PlayerBehaviour : NetworkBehaviour
         if (isLocalPlayer)
         {
             currentQuestion.GetComponent<QuestionRandomizer>().ActivateQuestion();
+            //Blocks movement when awnsering a question
+            movementBlocked = true;
         }
     }
     // [K] Set-up for Pepe
