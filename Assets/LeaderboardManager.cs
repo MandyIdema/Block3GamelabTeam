@@ -39,7 +39,7 @@ namespace GM
                     {
                         DefaultLeaderboardData.Add(new UserData {
                             stars = _gm.players[i].GetComponent<PlayerBehaviour>().starsCollected, 
-                            username = _gm.players[i].name});
+                            username = _gm.players[i].GetComponent<PlayerBehaviour>().playerUsernameString});
                     }
                     SortedLeaderboardData = DefaultLeaderboardData.OrderByDescending((UserData Ud) => Ud.stars).ToList();
                     UpdateLeaderboardUI();
@@ -52,7 +52,8 @@ namespace GM
         {
             for (int i = 0; i < _gm.players.Count; i++)
             {
-                leaderboardUI.transform.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().text = SortedLeaderboardData[i].username;
+                leaderboardUI.transform.GetChild(i).gameObject.GetComponent<TextMeshProUGUI>().text = $"{i + 1}. " 
+                    + $"{SortedLeaderboardData[i].username}: " + $"{SortedLeaderboardData[i].stars} sterren";
             }
         }
     }

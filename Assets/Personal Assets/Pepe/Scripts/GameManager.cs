@@ -31,7 +31,6 @@ namespace GM
         private void Awake()
         {
             _sm = FindObjectOfType<StarManager>();
-            //Doors are closed on default
             Door_Closed.SetActive(true);
             Door_Open.SetActive(false);
         }
@@ -45,15 +44,8 @@ namespace GM
 
             if (players.Count < 4 && !allPlayersAppeared)
             {
-                // Awkward code but I do not currently see a way around it
-                // All player objects are returned in an array via the FindGameObjectsWithTag function
-                // But players have to be in a list, since it has to be resizeable
                 GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");
 
-                //Ill open them now if just one player is in the scene.
-                Door_Closed.SetActive(false);
-                Door_Open.SetActive(true);
-                //PLEASE REMOVE THIS WHEN THE STARTING REQUIREMENT HAS BEEN ADDED
 
                 if (playerObjects.Length != players.Count)
                 {
@@ -69,14 +61,25 @@ namespace GM
                         players.RemoveAt(i);
                     }
                 }
-
-                /*                for (int i = 0; i < players.Count; i++)
-                                {
-                                    if (playerObjects[i].GetComponent<PlayerBehaviour>().PlayerStatus = PlayerStatus.Ready == true)
-                                    {
-                                        //Do something here
-                                    }
-                                }*/
+                if (isServer)
+                {
+                    int PlayersReady = 0;
+                    foreach (GameObject player in players)
+                    {
+                        if (player.GetComponent<PlayerBehaviour>().movementBlocked == false)
+                        {
+                            // player.GetComponent<PlayerBehaviour>().currentStatus = PlayerBehaviour.PlayerStatus.Ready;
+                        }
+                        if (player.GetComponent<PlayerBehaviour>().currentStatus == PlayerBehaviour.PlayerStatus.Ready)
+                        {
+                            PlayersReady += 1;
+                        }
+                    }
+                    if (PlayersReady == players.Count && currentStatus != GameStatus.Started)
+                    {
+                        currentStatus = GameStatus.Started;
+                    }
+                }
 
 
                 //You don't do anything with this yet?

@@ -64,14 +64,19 @@ namespace GM
             if (collision.gameObject.CompareTag("Player"))
             {
                 PlayerEnter(collision);
+                UpdateStats();
             }
         }
+        [Client]
         void PlayerEnter(Collider2D player)
         {
             // Updates player stats
             playerOwner = player.gameObject;
             playerOwner.GetComponent<PlayerBehaviour>().starsCollected++;
 
+        }
+        void UpdateStats()
+        {
             // Updates star stats
             currentStatus = StarStatus.Taken;
 
@@ -85,8 +90,7 @@ namespace GM
             {
                 _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS
             }
-                _sb.BarUpdate(); // Updates the Bar progress whenever the player disconnects
-
+            _sb.BarUpdate(); // Updates the Bar progress whenever the player disconnects
         }
     }
 }

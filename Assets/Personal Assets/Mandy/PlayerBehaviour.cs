@@ -24,7 +24,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Space]
 
     [Header("Player Stats")]
-    [SyncVar] public int starsCollected = 0;
+    [SyncVar] public int starsCollected;
     [SyncVar] public List<GameObject> obtainedClothes;
     [SyncVar] public float normalizedMovement;
     [SyncVar] public float speed;
@@ -90,21 +90,22 @@ public class PlayerBehaviour : NetworkBehaviour
             _camera = Camera.main;
 
 
-            usernameHolder = GameObject.FindGameObjectWithTag("UsernameHolder");
-            if (usernameHolder != null)
-            {
-                usernameInput = usernameHolder.gameObject.transform.GetChild(0).gameObject;
-            }
+            //usernameHolder = GameObject.FindGameObjectWithTag("UsernameHolder");
+            //if (usernameHolder != null)
+            //{
+            //    usernameInput = usernameHolder.gameObject.transform.GetChild(0).gameObject;
+            //}
 
-            if (usernameHolder != null)
-            {
-                usernameInput.GetComponent<TMP_InputField>().onEndEdit.AddListener(delegate { DeclareUsername(); });
-            }
+            //if (usernameHolder != null)
+            //{
+            //    usernameInput.GetComponent<TMP_InputField>().onEndEdit.AddListener(delegate { DeclareUsername(); });
+            //}
 
             ReadyGame = false;
         }
 
         normalizedMovement = 1;
+        starsCollected = 0;
 
         defaultSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
         _Referencer = FindObjectOfType<Referencer>();
@@ -133,7 +134,12 @@ public class PlayerBehaviour : NetworkBehaviour
         stepsAudio.Stop();
         //stepsAudio.clip = stepSound;
 
-        
+        if (isClient)
+        {
+            DeclareUsername();
+        }
+
+
     }
     private void Update()
     {
@@ -151,9 +157,14 @@ public class PlayerBehaviour : NetworkBehaviour
         {
             if (isClient)
             {
-                movementBlocked = false;
+                CmdUpdatePlayerStatus(PlayerStatus.Ready, false);
             }
             ir = null;
+        }
+
+        if (isClient)
+        {
+            playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
         }
 
         if (isServer)
@@ -258,7 +269,7 @@ public class PlayerBehaviour : NetworkBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    QuestionPrompted();
+                    Invoke("QuestionPrompted", 0.65f);
                     anim.SetBool("InteractionTrigger", true);
                 }
                 else
@@ -269,7 +280,7 @@ public class PlayerBehaviour : NetworkBehaviour
             else
             {
                 Local.AlertSprite.SetActive(false);
-                movementBlocked = false;
+                //movementBlocked = false;
             }
 
             if (possessesAPowerUp && currentPowerUpType != PowerUpTypes.None)
@@ -295,6 +306,15 @@ public class PlayerBehaviour : NetworkBehaviour
                 }
             }
         }
+
+
+    }
+
+    [Command]
+    void CmdUpdatePlayerStatus(PlayerStatus newStatus, bool disallowedToMove)
+    {
+        currentStatus = newStatus;
+        movementBlocked = disallowedToMove;
     }
 
 
@@ -484,29 +504,21 @@ public class PlayerBehaviour : NetworkBehaviour
     }
 
 
+    [Client]
     void DeclareUsername()
     {
-        if (!isLocalPlayer)
-        {
-            Debug.Log("Somebody else changed their username!");
-            return;
-        }
-        if (!string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
-        {
-            Debug.Log("You chose a username!");
-            localUsernameString = usernameInput.GetComponent<TMP_InputField>().text;
-        }
-        else if(string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
-        {
-            Debug.Log("You didn't choose a username!");
-            localUsernameString = $"Player {(int)Random.Range(0, 999)}";
-        }
-        Debug.Log($"Your local string is {localUsernameString}");
-        movementBlocked = false;
-        if (isClient)
-        {
-            CmdSetupUsername();
-        }
+        localUsernameString = $"Player {(int)Random.Range(0, 999)}";
+        CmdSetupUsername();
+        //if (!string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
+        //{
+        //    Debug.Log("You chose a username!");
+        //    localUsernameString = usernameInput.GetComponent<TMP_InputField>().text;
+        //}
+        //else if(string.IsNullOrEmpty(Local.usernameInput.GetComponent<TMP_InputField>().text))
+        //{
+        //    Debug.Log("You didn't choose a username!");
+        //}
+        // movementBlocked = false;
         //if (isClientOnly)
         //{
         //    Debug.Log(usernameHolder.GetComponent<NetworkBehaviour>().netIdentity.isOwned);
@@ -522,8 +534,7 @@ public class PlayerBehaviour : NetworkBehaviour
     [Command]
     public void CmdSetupUsername()
     {
-        Debug.Log($"Your command string is {Local.localUsernameString}");
-        UpdatePlayerUsername(gameObject.GetComponent<NetworkIdentity>(), Local.localUsernameString);
+        UpdatePlayerUsername(gameObject.GetComponent<NetworkIdentity>(), localUsernameString);
         //usernameHolder.SetActive(false);
     }
 
@@ -531,7 +542,6 @@ public class PlayerBehaviour : NetworkBehaviour
     public void UpdatePlayerUsername(NetworkIdentity chosenPlayer, string chosenUsername)
     {
         chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsernameString = chosenUsername;
-        Debug.Log($"The server says that string is {chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsernameString}");
         chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
     }
 }

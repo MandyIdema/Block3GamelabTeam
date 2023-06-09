@@ -705,6 +705,7 @@ MonoBehaviour:
   obtainedClothes: []
   normalizedMovement: 1
   speed: 0.08
+  ReadyGame: 0
   currentStatus: 0
   movementBlocked: 1
   AlertSprite: {fileID: 2666783859065294910}
@@ -718,6 +719,8 @@ MonoBehaviour:
   currentPowerUpType: 0
   exitMenuPanel: {fileID: 0}
   _Referencer: {fileID: 0}
+  usernameHolder: {fileID: 0}
+  usernameInput: {fileID: 0}
 --- !u!50 &2538572638088422175
 Rigidbody2D:
   serializedVersion: 4

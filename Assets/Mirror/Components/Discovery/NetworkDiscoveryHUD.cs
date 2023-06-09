@@ -20,6 +20,7 @@ namespace Mirror.Discovery
         public GameObject menuPanel;
         public GameObject discoveryPanel;
         public GameObject Background;
+        public GameObject backButton;
        
 
         private void Start()
@@ -101,6 +102,7 @@ namespace Mirror.Discovery
                     menuPanel.SetActive(false);
                     discoveryPanel.SetActive(false);
                     Background.SetActive(false);
+                    backButton.SetActive(false);
                     Connect(info);
                 }
                    

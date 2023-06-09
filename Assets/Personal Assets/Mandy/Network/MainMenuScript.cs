@@ -94,9 +94,8 @@ namespace Mirror.Discovery
 
         public void Join()
         {
-        
-            // paused = false;
 
+            // paused = false;
             discoveredServers.Clear();
             networkDiscovery.StartDiscovery();
             menuPanel.SetActive(false);
@@ -109,7 +108,7 @@ namespace Mirror.Discovery
         public void Shop()
         {
             ShopActivate.SetActive(true);
-            InputFieldUsername.SetActive(false);
+            //InputFieldUsername.SetActive(false);
             discoveryPanel.SetActive(false);
             discoveredServers.Clear();
         }
@@ -119,7 +118,7 @@ namespace Mirror.Discovery
             // paused = false;
 
             menuPanel.SetActive(true);
-            InputFieldUsername.SetActive(true);
+            //InputFieldUsername.SetActive(true);
             discoveryPanel.SetActive(false);
             discoveredServers.Clear();
 
