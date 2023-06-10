@@ -74,6 +74,7 @@ public class PlayerBehaviour : NetworkBehaviour
     
 
     private GameManager _gm;
+    private PowerUpManager _puManager;
     public Referencer _Referencer;
     public GameObject usernameHolder;
     public GameObject usernameInput;
@@ -113,6 +114,8 @@ public class PlayerBehaviour : NetworkBehaviour
         exitMenuPanel.SetActive(false);
 
         _gm = FindObjectOfType<GameManager>();
+
+        _puManager = FindObjectOfType<PowerUpManager>();
 
         if (ir == null)
         {
@@ -419,21 +422,26 @@ public class PlayerBehaviour : NetworkBehaviour
         switch (currentPowerUpType)
         {
             case PowerUpTypes.SelfAcceleration:
+                CmdUpdatePowerUpUI(PowerUpTypes.SelfAcceleration, 0);
                 speed *= 1.3f;
                 yield return new WaitForSeconds(5);
+                CmdUpdatePowerUpUI(PowerUpTypes.None, 0);
                 speed /= 1.3f;
                 break;
 
             case PowerUpTypes.GeneralLaziness:
-
+                CmdUpdatePowerUpUI(PowerUpTypes.GeneralLaziness, 1);
                 CmdSlowOthersDown(false);
                 yield return new WaitForSeconds(4);
+                CmdUpdatePowerUpUI(PowerUpTypes.None, 1);
                 CmdSlowOthersDown(true);
                 break;
 
             case PowerUpTypes.SwappingControls:
+                CmdUpdatePowerUpUI(PowerUpTypes.SwappingControls, 2);
                 CmdSwapControls(false);
                 yield return new WaitForSeconds(5);
+                CmdUpdatePowerUpUI(PowerUpTypes.None, 2);
                 CmdSwapControls(true);
                 break;
 
@@ -543,6 +551,34 @@ public class PlayerBehaviour : NetworkBehaviour
     {
         chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsernameString = chosenUsername;
         chosenPlayer.gameObject.GetComponent<PlayerBehaviour>().playerUsername.GetComponent<TextMeshProUGUI>().text = playerUsernameString;
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdUpdatePowerUpUI(PowerUpTypes powerUpType, int powerUpNumber)
+    {
+        RpcUpdatePowerUpUI(powerUpType, powerUpNumber);
+    }
+
+    [ClientRpc]
+    public void RpcUpdatePowerUpUI(PowerUpTypes puType, int puNumber)
+    {
+        switch (puType)
+        {
+            case PowerUpTypes.SelfAcceleration:
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} made themselves faster!";
+                break;
+            case PowerUpTypes.GeneralLaziness:
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} slowed everyone else down!";
+                break;
+            case PowerUpTypes.SwappingControls:
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} swapped the controls for everyone!";
+                break;
+            case PowerUpTypes.None:
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = null;
+                break;
+        }
+        
+
     }
 }
 

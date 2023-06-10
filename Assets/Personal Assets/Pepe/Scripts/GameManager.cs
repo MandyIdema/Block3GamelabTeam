@@ -75,7 +75,7 @@ namespace GM
                             PlayersReady += 1;
                         }
                     }
-                    if (PlayersReady == players.Count && currentStatus != GameStatus.Started)
+                    if (PlayersReady == players.Count && players.Count > 1 && currentStatus != GameStatus.Started)
                     {
                         currentStatus = GameStatus.Started;
                     }

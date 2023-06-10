@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class InactivateRule : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class InactivateRule : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(true);
-        Invoke(nameof(ActivatePrompt), 3.0f);
+        Invoke(nameof(ActivatePrompt), 2.0f);
     }
 
     // Update is called once per frame
@@ -18,6 +18,11 @@ public class InactivateRule : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             gameObject.SetActive(false);
+        }
+        if (prompt.activeSelf)
+        {
+            prompt.transform.GetComponentInChildren<TextMeshProUGUI>().canvasRenderer.SetAlpha(Mathf.Abs((float)Mathf.Cos(Time.time)));
+            prompt.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Abs((float)Mathf.Cos(Time.time)));
         }
     }
 

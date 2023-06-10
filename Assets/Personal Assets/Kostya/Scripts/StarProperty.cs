@@ -8,9 +8,6 @@ namespace GM
 {
     public class StarProperty : NetworkBehaviour
     {
-
-        
-
         public enum StarStatus
         {
             Free,

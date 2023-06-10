@@ -18,7 +18,9 @@ public class TeleportationScript : NetworkBehaviour
     [SyncVar] public puzzleStatus currentPuzzleStatus;
     [SyncVar] public GameObject solverUser;
     private GameObject localPlayer;
-    //private bool teleported = false;
+
+    public GameObject disappearanceCloud;
+    [SyncVar] private GameObject spawnedCloud;
 
     [Space]
 
@@ -77,7 +79,6 @@ public class TeleportationScript : NetworkBehaviour
                 currentPuzzleStatus = puzzleStatus.Solved;
                 Teleport(localPlayer);
             }
-
         }
     }
     private void Teleport(GameObject _player){
@@ -85,21 +86,45 @@ public class TeleportationScript : NetworkBehaviour
         {
             if (QuestionScript.QuestionAwnsered)
             {
-                //teleported = true;
-                localPlayer.transform.position = teleportationDestination.transform.position;
+                if (isClient)
+                {
+                    TeleportPlayer(_player);
+                }
                 DestroyObject();
             }
         } 
     }
 
+    [Client]
+    void TeleportPlayer(GameObject teleportedPlayer)
+    {
+        CmdTeleportPlayer(teleportedPlayer);
+    }
     // This allows to disable the door for everyone
     [Command(requiresAuthority = false)]
     void DestroyObject()
     {
+        //teleported = true;
+
         if (destroyAnotherDoor)
         {
             Destroy(otherDoorConvert, destructionTime);
         }
         Destroy(gameObject, destructionTime);
     }
+
+    [Command(requiresAuthority = false)]
+    void CmdTeleportPlayer(GameObject teleportedPlayer)
+    {
+        RpcTeleportPlayer(teleportedPlayer);
+    }
+
+    [ClientRpc]
+    void RpcTeleportPlayer(GameObject teleportedPlayer)
+    {
+        spawnedCloud = Instantiate(disappearanceCloud, teleportedPlayer.transform.position, teleportedPlayer.transform.rotation);
+        // NetworkServer.Spawn(spawnedCloud);
+        teleportedPlayer.transform.position = teleportationDestination.transform.position;
+    }
+
 }

@@ -8,6 +8,10 @@ public class PowerUpManager : NetworkBehaviour
     public List<Transform> powerUpSpawns;
     public List<GameObject> powerUpPrefabs;
     public List<GameObject> readyPowerUps;
+
+    [Space]
+
+    [SyncVar] public GameObject powerUpUI;
     private void Start()
     {
         if (isServer)
