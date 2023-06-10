@@ -9,23 +9,13 @@ public class QuestionScript : MonoBehaviour
     //The text for feedback
     public TMP_Text awnserText;
 
+
+
     // public static bool isEnabled;
     public static bool QuestionAwnsered;
     public TeleportationScript _tsObject;
 
-    public int AnalyticsRight;
 
-    public int AnalyticsWrongWerkwoord;
-
-    public int AnalyticsWrongLidwoord;
-
-    public int AnalyticsWrongOnderwerp;
-
-    public int AnalyticsWrongVoorzetsel;
-
-    public int AnalyticsWrongPersoonsvorm;
-
-    public int AnalyticsWrongPersoonlijkVoorwerp;
 
     private void Start()
     {
@@ -41,7 +31,9 @@ public class QuestionScript : MonoBehaviour
         {
            // isEnabled = true;
         }
-        
+
+
+
     }
 
     public void wrongAwnser()
@@ -60,7 +52,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wat zijn ze aan het doen?";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongWerkwoord += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void wrongAwnserLidwoord()
@@ -70,7 +62,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: De man, het water, een knoop";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongLidwoord += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void wrongAwnserOnderwerp()
@@ -80,7 +72,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wie?";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongOnderwerp += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void wrongAwnserVoorzetsel()
@@ -90,7 +82,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Op de kast, voor de kast, naast de kast";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongVoorzetsel += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void wrongAwnserPersoonsvorm()
@@ -100,7 +92,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Maak de zin een vraag! Wat is het eerste woord?";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongPersoonsvorm += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void wrongAwnserPersoonlijkVoorwerp()
@@ -110,7 +102,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! Tip: Wie/wat + het onderwerp + werkwoord";
         Debug.Log("This is the wrong awnser");
 
-        AnalyticsWrongPersoonlijkVoorwerp += 1;
+        Analytics.AnalyticsWrong += 1;
     }
 
     public void rightAwnser()
@@ -123,7 +115,7 @@ public class QuestionScript : MonoBehaviour
             == TeleportationScript.puzzleStatus.Unsolved))
         {
             awnserText.GetComponent<TextMeshProUGUI>().text = "Goed!";
-            AnalyticsRight += 1;
+            Analytics.AnalyticsRight += 1;
 }
         else
         {
