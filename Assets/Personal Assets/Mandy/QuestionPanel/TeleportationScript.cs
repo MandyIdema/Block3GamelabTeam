@@ -21,6 +21,7 @@ public class TeleportationScript : NetworkBehaviour
 
     public GameObject disappearanceCloud;
     [SyncVar] private GameObject spawnedCloud;
+    public QuestionBackground questionBackground;
 
     [Space]
 
@@ -124,6 +125,10 @@ public class TeleportationScript : NetworkBehaviour
     {
         spawnedCloud = Instantiate(disappearanceCloud, teleportedPlayer.transform.position, teleportedPlayer.transform.rotation);
         // NetworkServer.Spawn(spawnedCloud);
+        if (localPlayer == teleportedPlayer)
+        {
+            questionBackground.WindowAnimation();
+        }
         teleportedPlayer.transform.position = teleportationDestination.transform.position;
     }
 
