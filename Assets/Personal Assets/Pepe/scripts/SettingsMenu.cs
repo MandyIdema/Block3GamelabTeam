@@ -8,9 +8,9 @@ using Mirror;
 
 public class SettingsMenu : MonoBehaviour
 {
-    [Header("For Exit Menu")]
+ /*    [Header("For Exit Menu")]
     [SerializeField] private Image blackScreen;
-    [SerializeField] private Dropdown resolutionsDropDown;
+    [SerializeField] private Dropdown resolutionsDropDown; */
     [Header("For Shopping Menu")]
     [SerializeField] private Image[] avatarTransforms;
     [SerializeField] private GameObject[] clothesPrefabs;
@@ -18,7 +18,7 @@ public class SettingsMenu : MonoBehaviour
     public List<GameObject> appliedClothes;
     [SerializeField] private XMLManager saveSystem;
     [SerializeField] private TextMeshProUGUI currencyText;
-    Resolution[] resolutions;
+    //Resolution[] resolutions;
 
     #region SettingsMenu
     void Start(){
@@ -38,7 +38,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionsDropDown.value = currentResIndex;
         resolutionsDropDown.RefreshShownValue(); */
     }
-    public void SetVolume(float volume){
+/*     public void SetVolume(float volume){
 
     }
     public void SetBrightness(float brightness){
@@ -53,7 +53,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution(int resIndx){
         Resolution resolution = resolutions[resIndx];
         Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen);
-    }
+    } */
 
     void Update(){
         if(currencyText){
