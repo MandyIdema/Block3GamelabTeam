@@ -14,10 +14,13 @@ namespace GM
             SwapPlayerControls
         }
 
+        private AudioManager audioManager;
+
         public PowerUpTypes powerUpType;
         private void Start()
         {
-
+            audioManager = FindObjectOfType<AudioManager>();
+            audioManager.SFX.clip = audioManager.attain;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -26,6 +29,8 @@ namespace GM
                 if (collision.gameObject.GetComponent<PlayerBehaviour>().possessesAPowerUp)
                 {
                     return;
+                }else{
+                    audioManager.SFX.Play();
                 }
                 switch (powerUpType)
                 {

@@ -20,12 +20,13 @@ namespace GM
         [HideInInspector] public GameManager _gm;
         [HideInInspector] public StarManager _sm;
         [HideInInspector] public StarBar _sb;
-        private AudioSource beepSound;
+        private AudioManager audioManager;
 
         public GameObject light_Star;
         public void Start()
         {
-            beepSound = GetComponent<AudioSource>();
+            audioManager = FindObjectOfType<AudioManager>();
+            audioManager.SFX.clip = audioManager.attain;
         }
 
         private void Update()
@@ -81,8 +82,7 @@ namespace GM
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>().enabled = false;
-            beepSound.Play();
-
+            audioManager.SFX.Play();
             if (isServer)
             {
                 _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS

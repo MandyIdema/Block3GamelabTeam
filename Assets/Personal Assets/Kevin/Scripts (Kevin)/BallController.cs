@@ -15,10 +15,14 @@ public class BallController : NetworkBehaviour
 
     public float stopping = 2.0f;
 
+    private AudioManager audioManager;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         offset = new Vector3(0f, -0.5f, 0f); 
+
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,6 +39,7 @@ public class BallController : NetworkBehaviour
                 {
                     ballOwner = playerIdentity;
                     rb.isKinematic = true;
+                    audioManager.KickBall();
                 }
             }
         }

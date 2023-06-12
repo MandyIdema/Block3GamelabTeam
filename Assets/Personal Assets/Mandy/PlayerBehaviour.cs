@@ -70,12 +70,11 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Camera _camera;
     private Rigidbody2D rb;
-    private AudioSource stepsAudio;
-    
 
     private GameManager _gm;
     private PowerUpManager _puManager;
     public Referencer _Referencer;
+    private AudioManager _audioManager;
     public GameObject usernameHolder;
     public GameObject usernameInput;
     private InactivateRule ir;
@@ -117,6 +116,8 @@ public class PlayerBehaviour : NetworkBehaviour
 
         _puManager = FindObjectOfType<PowerUpManager>();
 
+        _audioManager = FindObjectOfType<AudioManager>();
+
         if (ir == null)
         {
             ir = FindObjectOfType<InactivateRule>();
@@ -133,15 +134,11 @@ public class PlayerBehaviour : NetworkBehaviour
             }
         } */
 
-        stepsAudio = GetComponent<AudioSource>();
-        stepsAudio.Stop();
-        //stepsAudio.clip = stepSound;
-
         if (isClient)
         {
             DeclareUsername();
         }
-
+        _audioManager.PlayMusic();
 
     }
     private void Update()
@@ -183,14 +180,10 @@ public class PlayerBehaviour : NetworkBehaviour
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             {
                 anim.SetBool("WalkTrigger", true);
-                if(!stepsAudio.isPlaying){
-                    //stepsAudio.Play();
-                }
             }
             else
             {
                 anim.SetBool("WalkTrigger", false);
-                //stepsAudio.Stop();
             }
 
             //If the player moves from left to right, mirror the character (look into direction

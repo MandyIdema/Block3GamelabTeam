@@ -15,7 +15,7 @@ public class VolumeAndBrightness : MonoBehaviour
     }
    public void SetBrightness(float brightness){
         var _temp = blackScreen.color;
-        _temp.a = brightness;
+        _temp.a = 255-brightness;
         blackScreen.color = _temp;
     }
 }

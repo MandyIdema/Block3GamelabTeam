@@ -15,7 +15,7 @@ public class QuestionScript : MonoBehaviour
     public static bool QuestionAwnsered;
     public TeleportationScript _tsObject;
 
-
+    private AudioManager audioManager;
 
     private void Start()
     {
@@ -23,6 +23,8 @@ public class QuestionScript : MonoBehaviour
         awnserText.enabled = false;
         // isEnabled = false;
         QuestionAwnsered = false;
+
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -42,7 +44,7 @@ public class QuestionScript : MonoBehaviour
         awnserText.enabled = true;
         awnserText.GetComponent<TextMeshProUGUI>().text = "Fout! probeer het nog een keer";
         Debug.Log("This is the wrong awnser");
-
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserWerkwoord()
@@ -53,6 +55,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserLidwoord()
@@ -63,6 +66,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserOnderwerp()
@@ -73,6 +77,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserVoorzetsel()
@@ -83,6 +88,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserPersoonsvorm()
@@ -93,6 +99,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void wrongAwnserPersoonlijkVoorwerp()
@@ -103,6 +110,7 @@ public class QuestionScript : MonoBehaviour
         Debug.Log("This is the wrong awnser");
 
         Analytics.AnalyticsWrong += 1;
+        audioManager.WrongAnswer();
     }
 
     public void rightAwnser()
@@ -116,12 +124,14 @@ public class QuestionScript : MonoBehaviour
         {
             awnserText.GetComponent<TextMeshProUGUI>().text = "Goed!";
             Analytics.AnalyticsRight += 1;
+            audioManager.RightAnswer();
 }
         else
         {
             awnserText.GetComponent<TextMeshProUGUI>().text = "Goed! Maar te laat!";
         }
         Debug.Log("This is the right awnser");
+
         StartCoroutine(closeWindow());
     }
 
