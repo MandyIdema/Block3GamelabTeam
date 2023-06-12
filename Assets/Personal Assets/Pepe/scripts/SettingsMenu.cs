@@ -73,7 +73,10 @@ public class SettingsMenu : MonoBehaviour
         var _listOfObtainedClothes = saveSystem.obtainedClothes;
         for(var i = 0; i<_listOfObtainedClothes.Count;i++){
             if(_listOfObtainedClothes[i]){
-                clothesUI[i].GetComponent<ClothSetting>().obtained = true;
+                if (clothesUI[i] != null)
+                {
+                    clothesUI[i].GetComponent<ClothSetting>().obtained = true;
+                }
             }
         }
     }

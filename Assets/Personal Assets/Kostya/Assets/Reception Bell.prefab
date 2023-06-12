@@ -68,7 +68,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5107325098258804154}
   - component: {fileID: 5107325098258804155}
-  - component: {fileID: 5107325098258804148}
   - component: {fileID: -152715727860081098}
   m_Layer: 7
   m_Name: Reception Bell
@@ -145,18 +144,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5107325098258804148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107325098258804149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b90b924490f8f546b790f14953be18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-152715727860081098
 MonoBehaviour:
   m_ObjectHideFlags: 0

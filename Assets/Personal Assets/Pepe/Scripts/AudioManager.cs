@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Sources")]
     public AudioSource musicMenu;
-    public AudioSource addOn;
+    public AudioClip addOn;
     public AudioSource SFX;
 
     [Header("Audio Clips")]
@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
     
     void Start(){
         PlayMusic();
-        addOn.clip = bgGameHarp;
+        addOn = bgGameHarp;
     }
 
     public void StopMusic(){

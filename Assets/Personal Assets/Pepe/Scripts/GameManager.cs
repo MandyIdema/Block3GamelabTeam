@@ -94,14 +94,13 @@ namespace GM
 
                 if (_sm.starsTaken >= _sm.starsNeeded)
                 {
-                    if (isServer && currentStatus != GameStatus.Finished)
+                    if (currentStatus != GameStatus.Finished)
                     {
                         currentStatus = GameStatus.Finished;
-                        audioManager.SFX.clip = audioManager.endSound;
-                        audioManager.SFX.Play();
-                        audioManager.StopMusic();
-                        audioManager.PlayMusic();
-                        RpcEndGame();
+                        if (isServer)
+                        {
+                            RpcEndGame();
+                        }
                     }
                 }
             }
@@ -110,12 +109,17 @@ namespace GM
             [ClientRpc]
             public void RpcEndGame()
             {
-                foreach (GameObject player in players)
-                {
-                    player.GetComponent<PlayerBehaviour>().movementBlocked = true;
-                }
+            currentStatus = GameStatus.Finished;
+            audioManager.SFX.clip = audioManager.endSound;
+            audioManager.SFX.Play();
+            audioManager.StopMusic();
+            audioManager.PlayMusic();
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerBehaviour>().movementBlocked = true;
+            }
                 Debug.Log("This message should only show up once!");
-                if (isLocalPlayer)
+                if (NetworkClient.localPlayer)
                 {
                     XMLManager.instance.SaveStarScoreGame();
                     Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());

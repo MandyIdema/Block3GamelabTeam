@@ -46,6 +46,8 @@ public class PlayerBehaviour : NetworkBehaviour
     [Header("Questions")]
     public bool inQuestionRange = false;
     public GameObject currentQuestion;
+    public bool inInteractionRange = false;
+    public GameObject currentInteractiveObject;
 
     [Space]
 
@@ -70,13 +72,10 @@ public class PlayerBehaviour : NetworkBehaviour
 
     private Camera _camera;
     private Rigidbody2D rb;
-
     private GameManager _gm;
     private PowerUpManager _puManager;
-    public Referencer _Referencer;
+    private Referencer _Referencer;
     private AudioManager _audioManager;
-    public GameObject usernameHolder;
-    public GameObject usernameInput;
     private InactivateRule ir;
 
 
@@ -226,23 +225,23 @@ public class PlayerBehaviour : NetworkBehaviour
             #region Experimenting with Save System
             // [K] These can be used to test the save system
 
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                XMLManager.instance.SaveStarScoreGame();
-                Debug.Log("Score is saved");
-            }
+            //if (Input.GetKeyDown(KeyCode.J))
+            //{
+            //    XMLManager.instance.SaveStarScoreGame();
+            //    Debug.Log("Score is saved");
+            //}
 
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
-            }
+            //if (Input.GetKeyDown(KeyCode.K))
+            //{
+            //    Debug.Log("Current score is " + XMLManager.instance.LoadStarScore());
+            //}
 
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                XMLManager.instance.NullifyStarScore();
-                XMLManager.instance.NullifyOutfits();
-                Debug.Log("Score and outfits are reset");
-            }
+            //if (Input.GetKeyDown(KeyCode.N))
+            //{
+            //    XMLManager.instance.NullifyStarScore();
+            //    XMLManager.instance.NullifyOutfits();
+            //    Debug.Log("Score and outfits are reset");
+            //}
 
             #endregion
 
@@ -277,6 +276,34 @@ public class PlayerBehaviour : NetworkBehaviour
             {
                 Local.AlertSprite.SetActive(false);
                 //movementBlocked = false;
+            }
+
+            if (inInteractionRange)
+            {
+                if (isLocalPlayer)
+                {
+                    currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        if (currentInteractiveObject != null)
+                        {
+                            if (currentInteractiveObject.name.Contains("Bell"))
+                            {
+                                CmdPlayTheBell();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (isLocalPlayer)
+                {
+                    if (currentInteractiveObject != null)
+                    {
+                        currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
+                    }
+                }
             }
 
             if (possessesAPowerUp && currentPowerUpType != PowerUpTypes.None)
@@ -572,6 +599,18 @@ public class PlayerBehaviour : NetworkBehaviour
         }
         
 
+    }
+
+    [Command(requiresAuthority = false)]
+    void CmdPlayTheBell()
+    {
+        RpcPlayTheBell();
+    }
+
+    [ClientRpc]
+    void RpcPlayTheBell()
+    {
+        currentInteractiveObject.GetComponent<BellRinging>().RingingBell();
     }
 }
 

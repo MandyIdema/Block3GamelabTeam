@@ -62,7 +62,7 @@ namespace GM
             if (collision.gameObject.CompareTag("Player"))
             {
                 PlayerEnter(collision);
-                UpdateStats();
+                UpdateStats(collision.gameObject);
             }
         }
         [Client]
@@ -73,7 +73,7 @@ namespace GM
             playerOwner.GetComponent<PlayerBehaviour>().starsCollected++;
 
         }
-        void UpdateStats()
+        void UpdateStats(GameObject playerOwner)
         {
             // Updates star stats
             currentStatus = StarStatus.Taken;
@@ -82,12 +82,23 @@ namespace GM
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>().enabled = false;
-            audioManager.SFX.PlayOneShot(audioManager.attain, 0.2f);
+            if (isServer)
+            {
+                TargetPlaySound(playerOwner.GetComponent<NetworkIdentity>().connectionToClient);
+            }
+
             if (isServer)
             {
                 _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS
             }
             _sb.BarUpdate(); // Updates the Bar progress whenever the player disconnects
+        }
+
+        [TargetRpc]
+        void TargetPlaySound(NetworkConnectionToClient chosenPlayer)
+        {
+            Debug.Log("This happens once");
+            audioManager.SFX.PlayOneShot(audioManager.attain, 0.2f);
         }
     }
 }

@@ -9,38 +9,22 @@ public class sprite_changer_planets : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
-
-
-
-
+    private float originalY;
+    public bool playerInRange;
+    private float randomizer;
+    private float period;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
+        originalY = this.transform.position.y;
+        randomizer = Random.Range(0.4f, 1.2f);
+        period = Random.Range(0.4f, 1.2f);
 
     }
 
     private void Update()
     {
-       
-        if (planet_interact.PlanetInteract)
-        {
-            UpdatePlanet();
-        }
-       
-    }
-
-    public void UpdatePlanet()
-    {
-        spriteRenderer.sprite = newSprite;
-        StartCoroutine(ChangeBackAfterDelay(1f));
-        
-    }
-
-    private System.Collections.IEnumerator ChangeBackAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        spriteRenderer.sprite = originalSprite;
-        
+        transform.position = new Vector2(transform.position.x, originalY + randomizer * ((float)Mathf.Cos(Time.time * period)));
     }
 }

@@ -6,9 +6,13 @@ using TMPro;
 public class InactivateRule : MonoBehaviour
 {
     public GameObject prompt;
-    private void Start()
+
+    private void Awake()
     {
         gameObject.SetActive(true);
+    }
+    private void Start()
+    {
         Invoke(nameof(ActivatePrompt), 2.0f);
     }
 
