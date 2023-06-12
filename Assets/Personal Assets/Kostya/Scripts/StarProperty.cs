@@ -82,7 +82,7 @@ namespace GM
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>().enabled = false;
-            audioManager.SFX.Play();
+            audioManager.SFX.PlayOneShot(audioManager.attain, 0.2f);
             if (isServer)
             {
                 _sm.CheckStars(); // !!! CRUCIAL TO UPDATING THE STATS

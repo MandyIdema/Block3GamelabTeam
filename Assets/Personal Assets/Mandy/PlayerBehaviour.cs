@@ -558,13 +558,13 @@ public class PlayerBehaviour : NetworkBehaviour
         switch (puType)
         {
             case PowerUpTypes.SelfAcceleration:
-                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} made themselves faster!";
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} maakte zichzelf sneller!";
                 break;
             case PowerUpTypes.GeneralLaziness:
-                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} slowed everyone else down!";
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} maakte iedereen langzamer!";
                 break;
             case PowerUpTypes.SwappingControls:
-                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} swapped the controls for everyone!";
+                _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = $"{playerUsernameString} verwisselde de controles voor anderen!";
                 break;
             case PowerUpTypes.None:
                 _puManager.powerUpUI.transform.GetChild(puNumber).GetComponent<TextMeshProUGUI>().text = null;

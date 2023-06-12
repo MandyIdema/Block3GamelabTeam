@@ -30,7 +30,7 @@ namespace GM
                 {
                     return;
                 }else{
-                    audioManager.SFX.Play();
+                    audioManager.SFX.PlayOneShot(audioManager.attain, 0.1f);
                 }
                 switch (powerUpType)
                 {
