@@ -4079,7 +4079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 943877363}
-  audioMixer: {fileID: 24100000, guid: 8a5d0e367bab2484c97ef71bba9c4a2e, type: 2}
+  audioMixer: {fileID: 24100000, guid: 93e0f538362ab8b4f8b1ffa4b5ede68e, type: 2}
 --- !u!1 &757952514
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,12 +27,14 @@ namespace GM
 
         public GameObject Door_Closed;
         public GameObject Door_Open;
+        private AudioManager audioManager;
 
         private void Awake()
         {
             _sm = FindObjectOfType<StarManager>();
             Door_Closed.SetActive(true);
             Door_Open.SetActive(false);
+            audioManager = FindObjectOfType<AudioManager>();
         }
         void Update()
         {
@@ -95,6 +97,10 @@ namespace GM
                     if (isServer && currentStatus != GameStatus.Finished)
                     {
                         currentStatus = GameStatus.Finished;
+                        audioManager.SFX.clip = audioManager.endSound;
+                        audioManager.SFX.Play();
+                        audioManager.StopMusic();
+                        audioManager.PlayMusic();
                         RpcEndGame();
                     }
                 }

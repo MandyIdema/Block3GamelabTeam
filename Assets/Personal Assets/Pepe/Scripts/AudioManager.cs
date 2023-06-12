@@ -7,20 +7,23 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Sources")]
     public AudioSource musicMenu;
+    public AudioSource addOn;
     public AudioSource SFX;
 
     [Header("Audio Clips")]
     [SerializeField] AudioClip bg;
     [SerializeField] AudioClip bgGame;
+    [SerializeField] AudioClip bgGameHarp;
     public AudioClip attain;
     [SerializeField] AudioClip buttonClick;
     [SerializeField] AudioClip kickBall;
-    [SerializeField] AudioClip endSound;
+    public AudioClip endSound;
     [SerializeField] AudioClip rightAnswer;
     [SerializeField] AudioClip wrongAnswer;
     
     void Start(){
         PlayMusic();
+        addOn.clip = bgGameHarp;
     }
 
     public void StopMusic(){
@@ -31,7 +34,7 @@ public class AudioManager : MonoBehaviour
         string sceneName = currentScene.name;
         if(sceneName == "LobbyScene"){
             musicMenu.clip = bg;
-        }else if(sceneName == "GameScene"){
+        }else if(sceneName == "GameScene" || sceneName == "EndScene"){
             musicMenu.clip = bgGame;
         }
         musicMenu.Play();
