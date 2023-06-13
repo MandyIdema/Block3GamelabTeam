@@ -173,7 +173,15 @@ public class PlayerBehaviour : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            
+
+            if (QuestionScript.QuestionEnabled)
+            {
+                movementBlocked = true;
+            }
+            else
+            {
+                movementBlocked = false;
+            }
             //If these inputs are made, trigger the animation bool
             #region Movement
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
@@ -258,7 +266,7 @@ public class PlayerBehaviour : NetworkBehaviour
                         else
                         {
                             //Unblocks movement when question awnsered
-                            movementBlocked = false ;
+                            //movementBlocked = false;
                         }
                     }
                 }
