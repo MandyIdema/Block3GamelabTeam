@@ -129,6 +129,7 @@ public class TeleportationScript : NetworkBehaviour
         {
             questionBackground.WindowAnimation();
         }
+        teleportedPlayer.GetComponent<PlayerBehaviour>().movementBlocked = false;
         teleportedPlayer.transform.position = teleportationDestination.transform.position;
     }
 
