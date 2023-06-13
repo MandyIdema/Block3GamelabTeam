@@ -46,8 +46,8 @@ public class PlayerBehaviour : NetworkBehaviour
     [Header("Questions")]
     public bool inQuestionRange = false;
     public GameObject currentQuestion;
-    public bool inInteractionRange = false;
-    public GameObject currentInteractiveObject;
+    //public bool inInteractionRange = false;
+    //public GameObject currentInteractiveObject;
 
     [Space]
 
@@ -278,33 +278,33 @@ public class PlayerBehaviour : NetworkBehaviour
                 //movementBlocked = false;
             }
 
-            if (inInteractionRange)
-            {
-                if (isLocalPlayer)
-                {
-                    currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        if (currentInteractiveObject != null)
-                        {
-                            if (currentInteractiveObject.name.Contains("Bell"))
-                            {
-                                CmdPlayTheBell();
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (isLocalPlayer)
-                {
-                    if (currentInteractiveObject != null)
-                    {
-                        currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
-                    }
-                }
-            }
+            //if (inInteractionRange)
+            //{
+            //    if (isLocalPlayer)
+            //    {
+            //        currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
+            //        if (Input.GetKeyDown(KeyCode.Space))
+            //        {
+            //            if (currentInteractiveObject != null)
+            //            {
+            //                if (currentInteractiveObject.name.Contains("Bell"))
+            //                {
+            //                    CmdPlayTheBell();
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    if (isLocalPlayer)
+            //    {
+            //        if (currentInteractiveObject != null)
+            //        {
+            //            currentInteractiveObject.GetComponent<BellRinging>().questionUI.SetActive(inInteractionRange);
+            //        }
+            //    }
+            //}
 
             if (possessesAPowerUp && currentPowerUpType != PowerUpTypes.None)
             {
@@ -601,16 +601,16 @@ public class PlayerBehaviour : NetworkBehaviour
 
     }
 
-    [Command(requiresAuthority = false)]
-    void CmdPlayTheBell()
-    {
-        RpcPlayTheBell();
-    }
+    //[Command(requiresAuthority = false)]
+    //void CmdPlayTheBell()
+    //{
+    //    RpcPlayTheBell();
+    //}
 
-    [ClientRpc]
-    void RpcPlayTheBell()
-    {
-        currentInteractiveObject.GetComponent<BellRinging>().RingingBell();
-    }
+    //[ClientRpc]
+    //void RpcPlayTheBell()
+    //{
+    //    currentInteractiveObject.GetComponent<BellRinging>().RingingBell();
+    //}
 }
 
