@@ -13,7 +13,6 @@ public class QuestionScript : MonoBehaviour
 
     // public static bool isEnabled;
     public static bool QuestionAwnsered;
-    public static bool QuestionEnabled;
     public TeleportationScript _tsObject;
 
     private AudioManager audioManager;
@@ -25,15 +24,14 @@ public class QuestionScript : MonoBehaviour
         // isEnabled = false;
         QuestionAwnsered = false;
 
-
         audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
     {
-        if (this.gameObject.activeSelf)
+        if (this.gameObject)
         {
-            QuestionEnabled = true;
+           // isEnabled = true;
         }
 
 
@@ -145,8 +143,6 @@ public class QuestionScript : MonoBehaviour
         QuestionAwnsered = true;
         yield return new WaitForSeconds(0.5f);
         this.gameObject.SetActive(false);
-        awnserText.enabled = false;
-        QuestionEnabled = false;
     }
     
 
